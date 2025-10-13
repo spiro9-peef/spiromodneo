@@ -7,7 +7,8 @@ public enum StoneSubBlockType
     STAIRS("_stairs"),
     WALL("_wall"),
     BUTTON("_button"),
-    PRESSURE_PLATE("_pressure_plate");
+    PRESSURE_PLATE("_pressure_plate"),
+    GROUND_STONES("_ground_stones");
 
     private final String name;
 

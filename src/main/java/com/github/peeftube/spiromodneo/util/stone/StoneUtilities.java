@@ -76,7 +76,8 @@ public interface StoneUtilities
                 switch(subSet)
                 {
                     // These sets do not ever have walls or redstone triggers.
-                    case WALL, PRESSURE_PLATE, BUTTON -> { return false; }
+                    // Additionally, they should NEVER have ground stones.
+                    case WALL, PRESSURE_PLATE, BUTTON, GROUND_STONES -> { return false; }
                     default -> { return true; }
                 }
             }
@@ -101,7 +102,8 @@ public interface StoneUtilities
                         switch(subSet)
                         {
                             // Bricks and tiles all have slabs, stairs and wall subtypes.
-                            case BUTTON, PRESSURE_PLATE -> { return false; }
+                            // Additionally, they should NEVER have ground stones.
+                            case BUTTON, PRESSURE_PLATE, GROUND_STONES -> { return false; }
                             default -> { return true; }
                         }
                     }

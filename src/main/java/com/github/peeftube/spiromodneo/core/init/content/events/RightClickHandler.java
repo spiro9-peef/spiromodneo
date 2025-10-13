@@ -19,7 +19,9 @@ public class RightClickHandler
     {
         if (event.getItemStack().is(Items.STICK) && event.getLevel().getBlockState(event.getPos()).is(BlockTags.DIRT))
         {
-            if (0.02 >= event.getLevel().getRandom().nextFloat() && event.getPlayer() != null)
+            // Make this drop only (on average) 0.5% of the time as opposed to 2% now that ground stones are a thing
+            // that generate
+            if (0.005 >= event.getLevel().getRandom().nextFloat() && event.getPlayer() != null)
             { event.getPlayer().addItem(Registrar.SMALL_STONE.toStack()); }
         }
     }

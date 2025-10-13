@@ -791,6 +791,7 @@ public class BlockstateDataProv extends BlockStateProvider
                                     .with(PressurePlateBlock.POWERED, Boolean.TRUE)
                                         .setModels(new ConfiguredModel(builders.getLast()));
                             }
+
                         }
                     }
                 }
