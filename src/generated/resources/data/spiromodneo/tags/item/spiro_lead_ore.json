@@ -1,18 +1,18 @@
 {
   "values": [
-    "spiromodneo:dripstone_lead_ore",
-    "spiromodneo:lead_ore",
-    "spiromodneo:deepslate_lead_ore",
-    "spiromodneo:tuff_lead_ore",
     "spiromodneo:andesite_lead_ore",
-    "spiromodneo:limbipetra_lead_ore",
-    "spiromodneo:end_lead_ore",
-    "spiromodneo:granite_lead_ore",
-    "spiromodneo:diorite_lead_ore",
+    "spiromodneo:lead_ore",
     "spiromodneo:smooth_red_sandstone_lead_ore",
-    "spiromodneo:nether_lead_ore",
+    "spiromodneo:tuff_lead_ore",
+    "spiromodneo:granite_lead_ore",
     "spiromodneo:basalt_lead_ore",
+    "spiromodneo:limbipetra_lead_ore",
+    "spiromodneo:diorite_lead_ore",
+    "spiromodneo:smooth_sandstone_lead_ore",
+    "spiromodneo:deepslate_lead_ore",
     "spiromodneo:calcite_lead_ore",
-    "spiromodneo:smooth_sandstone_lead_ore"
+    "spiromodneo:nether_lead_ore",
+    "spiromodneo:end_lead_ore",
+    "spiromodneo:dripstone_lead_ore"
   ]
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": {
+      "item": "spiromodneo:mossy_cobbled_tuff"
+    },
+    "s": {
+      "item": "spiromodneo:small_stone"
+    }
+  },
+  "pattern": [
+    " X ",
+    "sss"
+  ],
+  "result": {
+    "count": 4,
+    "id": "spiromodneo:mossy_cobbled_tuff_ground_stones"
+  }
+}

@@ -8,16 +8,11 @@ import com.github.peeftube.spiromodneo.util.RLUtility;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.TreePlacements;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
@@ -28,16 +23,13 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlac
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaJungleFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.BeehiveDecorator;
-import net.minecraft.world.level.levelgen.feature.treedecorators.CocoaDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.MegaJungleTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 import java.util.List;
 
@@ -117,6 +109,8 @@ public class ConfigFeaturesData
     public static final ResourceKey<ConfiguredFeature<?, ?>> MAPLE_TREES_01 = registerKey("maple_trees_01");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUBBER_TREES_01 = registerKey("rubber_trees_01");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GROUND_STONES = registerKey("ground_stones");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context)
     {
@@ -353,6 +347,8 @@ public class ConfigFeaturesData
                         new WeightedPlacedFeature(
                                 placedFeatures.getOrThrow(TreePlacements.MEGA_JUNGLE_TREE_CHECKED), (float) 1 / 3)),
                         placedFeatures.getOrThrow(TreePlacements.JUNGLE_TREE_CHECKED)));
+
+        register(context, GROUND_STONES, Registrar.GROUND_STONE_FEATURE.get(), new NoneFeatureConfiguration());
     }
 
     private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name)

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_small_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "spiromodneo:small_stone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spiromodneo:spiro_mossy_cobbled_red_sandstone_craft_mossy_cobbled_red_sandstone_ground_stones"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_small_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spiromodneo:spiro_mossy_cobbled_red_sandstone_craft_mossy_cobbled_red_sandstone_ground_stones"
+    ]
+  }
+}

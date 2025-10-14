@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": {
+      "item": "minecraft:deepslate"
+    },
+    "s": {
+      "item": "spiromodneo:small_stone"
+    }
+  },
+  "pattern": [
+    " X ",
+    "sss"
+  ],
+  "result": {
+    "count": 4,
+    "id": "spiromodneo:deepslate_ground_stones"
+  }
+}

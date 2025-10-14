@@ -39,6 +39,8 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
+import java.util.Random;
+
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SpiroMod.MOD_ID)
 public class SpiroMod
@@ -47,6 +49,8 @@ public class SpiroMod
     public static final String MOD_ID = "spiromodneo";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
+    // Mod RNG (Java)
+    public static final Random RNG = new Random();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.

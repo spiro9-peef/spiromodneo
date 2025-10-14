@@ -1,18 +1,18 @@
 {
   "values": [
-    "spiromodneo:dripstone_iron_ore",
-    "minecraft:iron_ore",
-    "minecraft:deepslate_iron_ore",
-    "spiromodneo:tuff_iron_ore",
     "spiromodneo:andesite_iron_ore",
-    "spiromodneo:limbipetra_iron_ore",
-    "spiromodneo:end_iron_ore",
-    "spiromodneo:granite_iron_ore",
-    "spiromodneo:diorite_iron_ore",
+    "minecraft:iron_ore",
     "spiromodneo:smooth_red_sandstone_iron_ore",
-    "spiromodneo:nether_iron_ore",
+    "spiromodneo:tuff_iron_ore",
+    "spiromodneo:granite_iron_ore",
     "spiromodneo:basalt_iron_ore",
+    "spiromodneo:limbipetra_iron_ore",
+    "spiromodneo:diorite_iron_ore",
+    "spiromodneo:smooth_sandstone_iron_ore",
+    "minecraft:deepslate_iron_ore",
     "spiromodneo:calcite_iron_ore",
-    "spiromodneo:smooth_sandstone_iron_ore"
+    "spiromodneo:nether_iron_ore",
+    "spiromodneo:end_iron_ore",
+    "spiromodneo:dripstone_iron_ore"
   ]
 }

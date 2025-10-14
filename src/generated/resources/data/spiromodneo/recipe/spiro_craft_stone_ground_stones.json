@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "s": {
+      "item": "spiromodneo:small_stone"
+    }
+  },
+  "pattern": [
+    "sss"
+  ],
+  "result": {
+    "count": 3,
+    "id": "spiromodneo:stone_ground_stones"
+  }
+}

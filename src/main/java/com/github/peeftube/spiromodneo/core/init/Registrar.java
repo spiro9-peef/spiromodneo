@@ -10,6 +10,7 @@ import com.github.peeftube.spiromodneo.core.init.content.recipe.ManualCrusherRec
 import com.github.peeftube.spiromodneo.core.init.creative.CTProcessor;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherMenu;
+import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.GroundStoneFeature;
 import com.github.peeftube.spiromodneo.util.MinMax;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.github.peeftube.spiromodneo.util.equipment.CustomArmorMaterial;
@@ -33,6 +34,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.neoforge.common.SimpleTier;
@@ -129,9 +131,6 @@ public class Registrar
     public static final StoneCollection TUFF_SET = StoneCollection.registerCollection(StoneMaterial.TUFF);
     public static final StoneCollection ENDSTONE_SET = StoneCollection.registerCollection(StoneMaterial.ENDSTONE);
     public static final StoneCollection LIMBIPETRA_SET = StoneCollection.registerCollection(StoneMaterial.LIMBIPETRA);
-
-    // Features go above all else (that isn't stone collections)!!!
-    // -- placeholder -- //
 
     public static final DeferredItem<Item> SINEW = ITEMS.registerSimpleItem("sinew");
 
@@ -312,6 +311,10 @@ public class Registrar
             TappableWoodCollection.registerCollection(TappableWoodMaterial.RUBBERWOOD);
     public static final TappableWoodCollection MAPLE_WOOD =
             TappableWoodCollection.registerCollection(TappableWoodMaterial.MAPLE);
+
+    // Going to try setting the order of features lower, maybe this will fix weird bugs I'm having
+    public static final DeferredHolder<Feature<?>, GroundStoneFeature> GROUND_STONE_FEATURE =
+            FEATURES.register("ground_stone_feature", () -> new GroundStoneFeature(NoneFeatureConfiguration.CODEC));
 
     // Language key for creative tabs
     public static final String TAB_TITLE_KEY_FORMULAIC = "itemGroup." + SpiroMod.MOD_ID;
