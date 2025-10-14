@@ -101,7 +101,7 @@ public interface OreUtilities
             boolean isFuel = fuelData.isFuel();
 
             Supplier<Block> b = Registrar.regBlock(rawMineral + material.get() + "_block",
-                    () -> new Block(Registrar.RAW_ORE.lightLevel(s -> li)));
+                    () -> new Block(Registrar.RAW_ORE.get().lightLevel(s -> li)));
             Supplier<Item> bi = Registrar.ITEMS.register(rawMineral + material.get() + "_block",
                     isFuel ? () -> new FuelBlockItem(b.get(), new Item.Properties(),
                             fuelData.burnTime() * 10) :

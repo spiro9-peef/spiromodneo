@@ -187,7 +187,7 @@ public class BlockTagDataProv extends BlockTagsProvider
                         { tag(BlockTags.WALLS).add(knownCouplingReadBlockFromKeys(data, k0, k1, k2)); }
                     }
 
-                    if (available)
+                    if (available && (k2 != StoneSubBlockType.GROUND_STONES))
                     {
                         tag(SpiroTags.Blocks.NEEDS_FLINT_TOOL)
                             .add(data.getCouplingForKeys(k0, k1, k2).getBlock().get());

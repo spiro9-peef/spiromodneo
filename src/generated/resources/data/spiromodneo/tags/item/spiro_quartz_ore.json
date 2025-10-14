@@ -1,18 +1,18 @@
 {
   "values": [
+    "spiromodneo:end_quartz_ore",
+    "spiromodneo:granite_quartz_ore",
+    "spiromodneo:tuff_quartz_ore",
+    "spiromodneo:limbipetra_quartz_ore",
+    "spiromodneo:calcite_quartz_ore",
+    "spiromodneo:smooth_red_sandstone_quartz_ore",
     "spiromodneo:andesite_quartz_ore",
     "spiromodneo:quartz_ore",
-    "spiromodneo:smooth_red_sandstone_quartz_ore",
-    "spiromodneo:tuff_quartz_ore",
-    "spiromodneo:granite_quartz_ore",
-    "spiromodneo:basalt_quartz_ore",
-    "spiromodneo:limbipetra_quartz_ore",
-    "spiromodneo:diorite_quartz_ore",
-    "spiromodneo:smooth_sandstone_quartz_ore",
-    "spiromodneo:deepslate_quartz_ore",
-    "spiromodneo:calcite_quartz_ore",
     "minecraft:nether_quartz_ore",
-    "spiromodneo:end_quartz_ore",
-    "spiromodneo:dripstone_quartz_ore"
+    "spiromodneo:dripstone_quartz_ore",
+    "spiromodneo:smooth_sandstone_quartz_ore",
+    "spiromodneo:basalt_quartz_ore",
+    "spiromodneo:deepslate_quartz_ore",
+    "spiromodneo:diorite_quartz_ore"
   ]
 }

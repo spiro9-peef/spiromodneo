@@ -30,22 +30,22 @@ public enum BaseStone
     LIMBIPETRA("limbipetra_", TUFF_BASED_ORE, 15);
 
     private final String                    name;
-    private final BlockBehaviour.Properties props;
+    private final Supplier<BlockBehaviour.Properties> props;
     private final boolean                   prePopulated;
     private Supplier<? extends Block>           oreBase;
     private Supplier<? extends Block>           defaultBase;
     private int lightLevel = 0;
 
-    BaseStone(String name, BlockBehaviour.Properties props)
+    BaseStone(String name, Supplier<BlockBehaviour.Properties> props)
     { this.name = name; this.props = props; this.prePopulated = false; }
 
-    BaseStone(String name, BlockBehaviour.Properties props, int li)
+    BaseStone(String name, Supplier<BlockBehaviour.Properties> props, int li)
     { this.name = name; this.props = props; this.prePopulated = false; this.lightLevel = Math.max(0, Math.min(li, 15)); }
 
-    BaseStone(String name, BlockBehaviour.Properties props, Supplier<? extends Block> oreBase, boolean isPopulated)
+    BaseStone(String name, Supplier<BlockBehaviour.Properties> props, Supplier<? extends Block> oreBase, boolean isPopulated)
     { this.name = name; this.props = props; this.oreBase = oreBase; this.defaultBase = oreBase; this.prePopulated = isPopulated; }
 
-    BaseStone(String name, BlockBehaviour.Properties props, Supplier<? extends Block> oreBase,
+    BaseStone(String name, Supplier<BlockBehaviour.Properties> props, Supplier<? extends Block> oreBase,
             Supplier<? extends Block> defaultBase, boolean isPopulated)
     { this.name = name; this.props = props; this.oreBase = oreBase; this.defaultBase = defaultBase; this.prePopulated = isPopulated; }
 
@@ -53,7 +53,7 @@ public enum BaseStone
     { return name; }
 
     public BlockBehaviour.Properties getProps()
-    { return props; }
+    { return props.get(); }
 
     /** Will only be set if this enum value is not pre-populated.
      * For vanilla stone types, this should always return preset values. */

@@ -31,7 +31,7 @@ public interface MetalUtilities
         {
             MetalBlockCoupling c;
             Supplier<Block> b = Registrar.regBlock(material.get() + "_block",
-                    () -> new Block(Registrar.RAW_ORE.lightLevel(s -> li)));
+                    () -> new Block(Registrar.RAW_ORE.get().lightLevel(s -> li)));
             Supplier<Item> bi = Registrar.regSimpleBlockItem((DeferredBlock<Block>) b);
             c = new MetalBlockCoupling(b, bi);
 

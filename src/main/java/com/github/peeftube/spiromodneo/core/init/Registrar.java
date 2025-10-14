@@ -82,21 +82,21 @@ public class Registrar
     public static final Supplier<MapCodec<SwapLootStackModifier>> SWAP_LOOT_STACKS =
             LOOTMOD_SERIALIZERS.register("swap_loot_stacks", () -> SwapLootStackModifier.CODEC);
 
-    public static final BlockBehaviour.Properties STONE_BASED_ORE     =
+    public static final Supplier<BlockBehaviour.Properties> STONE_BASED_ORE     = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.NORMAL.get()).sound(SoundType.STONE);
-    public static final BlockBehaviour.Properties TUFF_BASED_ORE      =
+    public static final Supplier<BlockBehaviour.Properties> TUFF_BASED_ORE      = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.NORMAL.get()).sound(SoundType.TUFF);
-    public static final BlockBehaviour.Properties DRIPSTONE_BASED_ORE =
+    public static final Supplier<BlockBehaviour.Properties> DRIPSTONE_BASED_ORE = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.NORMAL.get()).sound(SoundType.DRIPSTONE_BLOCK);
-    public static final BlockBehaviour.Properties DEEPSLATE_BASED_ORE =
+    public static final Supplier<BlockBehaviour.Properties> DEEPSLATE_BASED_ORE = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.TOUGH.get()).sound(SoundType.DEEPSLATE);
-    public static final BlockBehaviour.Properties CALCITE_BASED_ORE =
+    public static final Supplier<BlockBehaviour.Properties> CALCITE_BASED_ORE = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.WEAK.get()).sound(SoundType.CALCITE);
-    public static final BlockBehaviour.Properties NETHER_BASED_ORE =
+    public static final Supplier<BlockBehaviour.Properties> NETHER_BASED_ORE = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.WEAK.get()).sound(SoundType.NETHERRACK);
-    public static final BlockBehaviour.Properties BASALT_BASED_ORE =
+    public static final Supplier<BlockBehaviour.Properties> BASALT_BASED_ORE = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.WEAK.get()).sound(SoundType.BASALT);
-    public static final BlockBehaviour.Properties RAW_ORE =
+    public static final Supplier<BlockBehaviour.Properties> RAW_ORE = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.NORMAL.get()).sound(SoundType.METAL);
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SpiroMod.MOD_ID);
@@ -169,7 +169,7 @@ public class Registrar
     public static final DeferredItem<Item> CRUSHED_CARBON = ITEMS.registerSimpleItem("crushed_carbon");
 
     public static final DeferredBlock<Block> MANUAL_CRUSHER = BLOCKS.register("manual_crusher",
-            () -> new ManualCrusherBlock(STONE_BASED_ORE.noOcclusion()));
+            () -> new ManualCrusherBlock(STONE_BASED_ORE.get().noOcclusion()));
     public static final Supplier<BlockEntityType<ManualCrusherBlockEntity>> MANUAL_CRUSHER_ENTITY =
             BLOCK_ENTITIES.register("manual_crusher_entity", () -> BlockEntityType.Builder.of(
                     ManualCrusherBlockEntity::new, MANUAL_CRUSHER.get()).build(null));
@@ -195,7 +195,7 @@ public class Registrar
     public static final DeferredItem<Item> MAPLE_SAP = ITEMS.registerSimpleItem("maple_sap");
 
     public static final DeferredBlock<Block> TAPPER = BLOCKS.register("tapper",
-            () -> new TapperBlock(RAW_ORE.noCollission().strength(0.5f, 0f)));
+            () -> new TapperBlock(RAW_ORE.get().noCollission().strength(0.5f, 0f)));
     public static final DeferredItem<Item> TAPPER_ITEM = regSimpleBlockItem(TAPPER);
 
     // Based on Nyfaria's code:

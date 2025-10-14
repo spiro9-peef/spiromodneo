@@ -198,7 +198,7 @@ public interface StoneUtilities
             if (kv.contains("ground_stones"))
             {
                 Supplier<Block> b = Registrar.regBlock(kv, () -> new GroundStoneBlock(
-                        Properties.ofFullCopy(mat.getOreBase().getOreBase().get()).noCollission().destroyTime(0.01f)
+                        props.noCollission().instabreak()
                 ));
                 Supplier<Item> i = Registrar.regSimpleBlockItem((DeferredBlock<Block>) b);
                 return new GenericBlockItemCoupling(b, i);
