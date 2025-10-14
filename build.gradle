@@ -136,6 +136,8 @@ dependencies {
 
     implementation "com.github.glitchfiend:TerraBlender-neoforge:${minecraft_version}-${terrablender_version}"
 
+    implementation(jarJar("io.github.llamalad7:mixinextras-neoforge:0.5.0"))
+
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html

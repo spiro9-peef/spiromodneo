@@ -4,8 +4,12 @@ import com.github.peeftube.spiromodneo.SpiroMod;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -55,4 +59,18 @@ public class GroundStoneBlock extends HorizontalDirectionalBlock
 
         return null;
     }
+
+    @Override
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos,
+                                   Block neighborBlock, BlockPos neighborPos, boolean movedByPiston)
+    {
+        // Make sure the block can at least survive
+        if (!canSurvive(state, level, pos)) { level.destroyBlock(pos, true); }
+
+        super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
+    }
+
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
+    { return !level.isEmptyBlock(pos.below()); }
 }

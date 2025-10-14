@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 3200,
+  "experience": 2.5,
+  "ingredient": {
+    "item": "spiromodneo:rubber_precursor"
+  },
+  "result": {
+    "count": 1,
+    "id": "spiromodneo:natural_rubber"
+  }
+}

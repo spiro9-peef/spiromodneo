@@ -7,8 +7,10 @@
     "BushBlockMixin",
     "CraftingMenuMixin",
     "FluidTypeMixin",
+    "FoodDataMixin",
     "FungusBlockMixin",
     "NoiseChunkMixin",
+    "PlayerMixin",
     "SpreadingSnowyDirtBlockMixin",
     "TrunkPlacerMixin"
   ],

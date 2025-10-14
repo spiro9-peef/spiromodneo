@@ -5,7 +5,9 @@ import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
@@ -39,11 +41,11 @@ public class GroundStoneFeature extends Feature<NoneFeatureConfiguration>
                 for (int z = 0; z < 16; z++)
                 {
                     // Check if this position is correct, then place the appropriate block.
-                    // This should only succeed 2% of the time on average.
+                    // This should only succeed 3.75% of the time on average.
                     BlockPos.MutableBlockPos mbp = new BlockPos.MutableBlockPos().set(bp).move(x, y, z);
                     if ((level.getBlockState(mbp).is(SpiroTags.Blocks.SUPPORTS_GROUND_STONES)
                                     && level.getBlockState(mbp.offset(0, 1, 0)).isAir()) &&
-                        r.nextFloat(1) <= 0.02)
+                        r.nextFloat(1) <= 0.0375)
                     {
                         BlockPos.MutableBlockPos mbp2 = new BlockPos.MutableBlockPos().set(bp).move(x, y + 1, z);
                         q++;
@@ -70,6 +72,23 @@ public class GroundStoneFeature extends Feature<NoneFeatureConfiguration>
                             pickState =
                                     altStateFlag1 ? BASALT_SET.getBaseStoneGround().get().defaultBlockState() :
                                                     CALCITE_SET.getBaseStoneGround().get().defaultBlockState();
+                        }
+
+                        if (level.getBiome(mbp2).is(Tags.Biomes.IS_BIRCH_FOREST))
+                        {
+                            pickState =
+                                    altStateFlag0 ? DRIPSTONE_SET.getBaseStoneGround().get().defaultBlockState() :
+                                                    pickState;
+                        }
+
+                        if (level.getBiome(mbp2).is(BiomeTags.IS_NETHER))
+                        { pickState = NETHERRACK_SET.getBaseStoneGround().get().defaultBlockState(); }
+
+                        if (level.getBiome(mbp2).is(Biomes.BASALT_DELTAS))
+                        {
+                            pickState =
+                                    altStateFlag0 ? BASALT_SET.getBaseStoneGround().get().defaultBlockState() :
+                                                    pickState;
                         }
 
                         if (level.getBiome(mbp2).is(NETHER_LIMBO_GARDEN))

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_latex": {
+      "conditions": {
+        "items": [
+          {
+            "items": "spiromodneo:rubber_precursor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spiromodneo:spiro_vulcanize_rubber_in_blast_furnace"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_latex"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spiromodneo:spiro_vulcanize_rubber_in_blast_furnace"
+    ]
+  }
+}

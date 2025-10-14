@@ -53,6 +53,13 @@ public class ItemModelDataProv extends ItemModelProvider
         itemParser(Registrar.CRUSHED_CARBON);
         itemParser(Registrar.CAOUTCHOUC);
         itemParser(Registrar.MAPLE_SAP);
+        itemParser(Registrar.RUBBER_PRECURSOR);
+        itemParser(Registrar.NATURAL_RUBBER);
+        itemParser(Registrar.COPPER_WIRE);
+        itemParser(Registrar.SHIELDED_COPPER_WIRE);
+        itemParser(Registrar.IRON_STICK);
+        itemParser(Registrar.LEAD_STICK);
+        itemParser(Registrar.STEEL_ROD);
         for (EquipmentCollection equip : EquipmentCollection.EQUIP_COLLECTIONS) { equipmentSetDesign(equip); }
 
         // ============================================================================================================

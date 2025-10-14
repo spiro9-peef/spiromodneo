@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "spiromodneo:caoutchouc"
+    },
+    {
+      "item": "spiromodneo:caoutchouc"
+    },
+    {
+      "item": "spiromodneo:caoutchouc"
+    },
+    {
+      "item": "spiromodneo:crushed_carbon"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "spiromodneo:rubber_precursor"
+  }
+}

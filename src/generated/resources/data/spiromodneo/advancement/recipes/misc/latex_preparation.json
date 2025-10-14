@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_latex": {
+      "conditions": {
+        "items": [
+          {
+            "items": "spiromodneo:caoutchouc"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spiromodneo:latex_preparation"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_latex"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spiromodneo:latex_preparation"
+    ]
+  }
+}

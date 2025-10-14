@@ -67,6 +67,66 @@ public class RecipeDataProv extends RecipeProvider implements IConditionBuilder
         stringLikeHandler(output);
         manualCrusherCraftingHandler(output);
         tapperRecipe(output);
+        naturalRubberProcessing(output);
+        copperWireCrafting(output);
+        structureRodCrafting(output);
+    }
+
+    private void structureRodCrafting(RecipeOutput consumer)
+    {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Registrar.IRON_STICK, 4)
+                .pattern("X")
+                .pattern("X")
+                .define('X', Items.IRON_INGOT)
+                .unlockedBy("has_ingot", has(Items.IRON_INGOT))
+                .save(consumer, RLUtility.makeRL("craft_iron_rods"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Registrar.LEAD_STICK, 4)
+                .pattern("X")
+                .pattern("X")
+                .define('X', Registrar.LEAD_METAL.ingotData().getIngot().get())
+                .unlockedBy("has_ingot", has(Registrar.LEAD_METAL.ingotData().getIngot().get()))
+                .save(consumer, RLUtility.makeRL("craft_lead_rods"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, Registrar.STEEL_ROD, 4)
+                .pattern("X")
+                .pattern("X")
+                .define('X', Registrar.STEEL_METAL.ingotData().getIngot().get())
+                .unlockedBy("has_ingot", has(Registrar.STEEL_METAL.ingotData().getIngot().get()))
+                .save(consumer, RLUtility.makeRL("craft_steel_rods"));
+    }
+
+    private void copperWireCrafting(RecipeOutput consumer)
+    {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Registrar.COPPER_WIRE, 6)
+                .requires(Items.COPPER_INGOT)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT))
+                .save(consumer, RLUtility.makeRL("craft_copper_wire"));
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Registrar.SHIELDED_COPPER_WIRE, 3)
+                .requires(Registrar.COPPER_WIRE.get(), 3)
+                .requires(Registrar.NATURAL_RUBBER.get(), 1)
+                .unlockedBy("has_wire", has(Registrar.COPPER_WIRE.get()))
+                .save(consumer, RLUtility.makeRL("add_shielding_to_copper_wire"));
+    }
+
+    private void naturalRubberProcessing(RecipeOutput consumer)
+    {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Registrar.RUBBER_PRECURSOR, 4)
+                .requires(Registrar.CAOUTCHOUC.get(), 3)
+                .requires(Registrar.CRUSHED_CARBON)
+                .unlockedBy("has_latex", has(Registrar.CAOUTCHOUC.get()))
+                .save(consumer, RLUtility.makeRL("latex_preparation"));
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Registrar.RUBBER_PRECURSOR), RecipeCategory.MISC,
+                Registrar.NATURAL_RUBBER, 2.5f, 3200)
+                .unlockedBy("has_latex", has(Registrar.RUBBER_PRECURSOR))
+                .save(consumer, RLUtility.makeRL(SpiroMod.MOD_ID, "spiro_vulcanize_rubber_in_furnace"));
+
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(Registrar.RUBBER_PRECURSOR), RecipeCategory.MISC,
+                Registrar.NATURAL_RUBBER, 3.0f, 3200)
+                .unlockedBy("has_latex", has(Registrar.RUBBER_PRECURSOR))
+                .save(consumer, RLUtility.makeRL(SpiroMod.MOD_ID, "spiro_vulcanize_rubber_in_blast_furnace"));
     }
 
     private void woodCraftingHandler(WoodCollection set, RecipeOutput consumer)

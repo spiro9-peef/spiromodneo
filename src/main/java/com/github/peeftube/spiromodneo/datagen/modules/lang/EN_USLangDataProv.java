@@ -75,6 +75,15 @@ public class EN_USLangDataProv extends LanguageProvider
         add(Registrar.MANUAL_CRUSHER.get(), "Manual Crusher");
         add(Registrar.TAPPER.get(), "Tapper");
 
+        add(Registrar.RUBBER_PRECURSOR.get(), "Prepared Latex");
+        add(Registrar.NATURAL_RUBBER.get(), "Natural Rubber");
+        add(Registrar.COPPER_WIRE.get(), "Copper Wiring");
+        add(Registrar.SHIELDED_COPPER_WIRE.get(), "Shielded Copper Wiring");
+
+        add(Registrar.IRON_STICK.get(), "Iron Rod");
+        add(Registrar.LEAD_STICK.get(), "Lead Rod");
+        add(Registrar.STEEL_ROD.get(), "Steel Rod");
+
         // Creative tabs
         add(Registrar.TAB_TITLE_KEY_FORMULAIC + ".minerals_tab", "Ores and Raw Minerals");
     }

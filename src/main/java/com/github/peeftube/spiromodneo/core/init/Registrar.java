@@ -27,6 +27,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BarrelBlockEntity;
@@ -74,6 +75,10 @@ public class Registrar
         RECIPE_TYPES.register(bus);
         CREATIVE_MODE_TABS.register(bus);
     }
+
+    // Stock behavior = true
+    public static GameRules.Key<GameRules.BooleanValue> PEACEFUL_IS_PEACEFUL =
+            GameRules.register("truePeaceful", GameRules.Category.PLAYER, GameRules.BooleanValue.create(true));
 
     // Loot modifier serializers are being put up here just for ease of access.
     public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> LOOTMOD_SERIALIZERS =
@@ -193,6 +198,15 @@ public class Registrar
 
     public static final DeferredItem<Item> CAOUTCHOUC = ITEMS.registerSimpleItem("caoutchouc");
     public static final DeferredItem<Item> MAPLE_SAP = ITEMS.registerSimpleItem("maple_sap");
+
+    public static final DeferredItem<Item> RUBBER_PRECURSOR = ITEMS.registerSimpleItem("rubber_precursor");
+    public static final DeferredItem<Item> NATURAL_RUBBER = ITEMS.registerSimpleItem("natural_rubber");
+    public static final DeferredItem<Item> COPPER_WIRE = ITEMS.registerSimpleItem("copper_wire");
+    public static final DeferredItem<Item> SHIELDED_COPPER_WIRE = ITEMS.registerSimpleItem("shielded_copper_wire");
+
+    public static final DeferredItem<Item> IRON_STICK = ITEMS.registerSimpleItem("iron_stick");
+    public static final DeferredItem<Item> LEAD_STICK = ITEMS.registerSimpleItem("lead_stick");
+    public static final DeferredItem<Item> STEEL_ROD = ITEMS.registerSimpleItem("steel_rod");
 
     public static final DeferredBlock<Block> TAPPER = BLOCKS.register("tapper",
             () -> new TapperBlock(RAW_ORE.get().noCollission().strength(0.5f, 0f)));
