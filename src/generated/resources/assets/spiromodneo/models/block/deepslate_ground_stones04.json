@@ -1,0 +1,6 @@
+{
+  "parent": "spiromodneo:block/ground_stones04_import",
+  "textures": {
+    "0": "minecraft:block/deepslate_top"
+  }
+}

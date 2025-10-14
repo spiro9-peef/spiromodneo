@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=east,model_variation=0": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones01",
+      "y": 90
+    },
+    "facing=east,model_variation=1": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones02",
+      "y": 90
+    },
+    "facing=east,model_variation=2": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones03",
+      "y": 90
+    },
+    "facing=east,model_variation=3": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones04",
+      "y": 90
+    },
+    "facing=north,model_variation=0": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones01"
+    },
+    "facing=north,model_variation=1": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones02"
+    },
+    "facing=north,model_variation=2": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones03"
+    },
+    "facing=north,model_variation=3": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones04"
+    },
+    "facing=south,model_variation=0": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones01",
+      "y": 180
+    },
+    "facing=south,model_variation=1": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones02",
+      "y": 180
+    },
+    "facing=south,model_variation=2": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones03",
+      "y": 180
+    },
+    "facing=south,model_variation=3": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones04",
+      "y": 180
+    },
+    "facing=west,model_variation=0": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones01",
+      "y": 270
+    },
+    "facing=west,model_variation=1": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones02",
+      "y": 270
+    },
+    "facing=west,model_variation=2": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones03",
+      "y": 270
+    },
+    "facing=west,model_variation=3": {
+      "model": "spiromodneo:block/mossy_cobbled_endstone_ground_stones04",
+      "y": 270
+    }
+  }
+}

@@ -29,6 +29,8 @@ public class SpiroTags
         public static TagKey<Block> RED_SANDSTONE_ORE_REPLACEABLES = tag("red_sandstone_ore_replaceables");
         public static TagKey<Block> BASALT_ORE_REPLACEABLES = tag("basalt_ore_replaceables");
 
+        public static TagKey<Block> SUPPORTS_GROUND_STONES = tag("can_support_ground_stone");
+
         public static TagKey<Block> SUPPORTS_TAPPER = tag("can_support_tapper");
 
         public static TagKey<Block> tag(String name) { return BlockTags.create(RLUtility.makeRL(name)); }
@@ -72,6 +74,9 @@ public class SpiroTags
 
         public static TagKey<Biome> IS_VANILLA_AND_CAN_HAVE_MAPLE = tag("is_vanilla_and_can_have_maple");
         public static TagKey<Biome> IS_VANILLA_AND_CAN_HAVE_RUBBER_01 = tag("is_vanilla_and_can_have_rubber_01");
+
+        public static TagKey<Biome> YELLOW_SAND_BIOME = tag("yellow_sands");
+        public static TagKey<Biome> RED_SAND_BIOME = tag("red_sands");
 
         public static TagKey<Biome> tag(String name) { return TagKey.create(Registries.BIOME, RLUtility.makeRL(name)); }
         public static TagKey<Biome> forgeTag(String name) { return TagKey.create(Registries.BIOME, RLUtility.makeRL("forge", name)); }

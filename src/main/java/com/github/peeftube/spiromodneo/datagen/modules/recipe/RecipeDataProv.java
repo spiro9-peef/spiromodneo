@@ -492,6 +492,10 @@ public class RecipeDataProv extends RecipeProvider implements IConditionBuilder
                 StoneBlockType.BASE,
                 StoneVariantType.DEFAULT,
                 StoneSubBlockType.PRESSURE_PLATE).getBlock().get();
+        Block baseGround = set.bulkData().getCouplingForKeys(
+                StoneBlockType.BASE,
+                StoneVariantType.DEFAULT,
+                StoneSubBlockType.GROUND_STONES).getBlock().get();
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, baseSlab, 6)
                 .pattern("XXX")
@@ -556,6 +560,29 @@ public class RecipeDataProv extends RecipeProvider implements IConditionBuilder
                         basePlateIsVanilla ? ResourceLocation.withDefaultNamespace(matName + "_pressure_plate") :
                         RLUtility.makeRL(SpiroMod.MOD_ID, "spiro_" + matName + "_craft_"
                                 + matName + "_pressure_plate"));
+
+            if (set.material() != StoneMaterial.STONE)
+            {
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, baseGround, 4)
+                    .pattern(" X ")
+                    .pattern("sss")
+                    .define('X', set.getBaseStone().get())
+                    .define('s', Registrar.SMALL_STONE.get())
+                    .unlockedBy("has_small_stone", has(Registrar.SMALL_STONE.get()))
+                    .save(consumer,
+                            RLUtility.makeRL(SpiroMod.MOD_ID,
+                                    "spiro_" + matName + "_craft_" + matName + "_ground_stones"));
+            }
+            else
+            {
+                ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, baseGround, 3)
+                    .pattern("sss")
+                    .define('s', Registrar.SMALL_STONE.get())
+                    .unlockedBy("has_small_stone", has(Registrar.SMALL_STONE.get()))
+                    .save(consumer,
+                            RLUtility.makeRL(SpiroMod.MOD_ID,
+                                    "spiro_craft_" + matName + "_ground_stones"));
+            }
         }
 
         // Encapsulated for ease of sectioning: COBBLE
@@ -749,6 +776,35 @@ public class RecipeDataProv extends RecipeProvider implements IConditionBuilder
                         mossCobbleName + "_wall_from_" + mossCobbleName + "_stonecutting") :
                         RLUtility.makeRL(SpiroMod.MOD_ID, "spiro_" + mossCobbleName + "_cut_into_"
                                 + mossCobbleName + "_wall"));
+
+        Block cobbleGround = set.bulkData().getCouplingForKeys(
+                        StoneBlockType.COBBLE,
+                        StoneVariantType.DEFAULT,
+                        StoneSubBlockType.GROUND_STONES).getBlock().get();
+        Block mossCobbleGround = set.bulkData().getCouplingForKeys(
+                        StoneBlockType.COBBLE,
+                        StoneVariantType.MOSSY,
+                        StoneSubBlockType.GROUND_STONES).getBlock().get();
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, cobbleGround, 4)
+            .pattern(" X ")
+            .pattern("sss")
+            .define('X', set.getCobble().get())
+            .define('s', Registrar.SMALL_STONE.get())
+            .unlockedBy("has_small_stone", has(Registrar.SMALL_STONE.get()))
+            .save(consumer,
+                    RLUtility.makeRL(SpiroMod.MOD_ID,
+                            "spiro_" + cobbleName + "_craft_" + cobbleName + "_ground_stones"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, mossCobbleGround, 4)
+            .pattern(" X ")
+            .pattern("sss")
+            .define('X', set.getMossyCobble().get())
+            .define('s', Registrar.SMALL_STONE.get())
+            .unlockedBy("has_small_stone", has(Registrar.SMALL_STONE.get()))
+            .save(consumer,
+                    RLUtility.makeRL(SpiroMod.MOD_ID,
+                            "spiro_" + mossCobbleName + "_craft_" + mossCobbleName + "_ground_stones"));
         }
 
         // Encapsulated for ease of sectioning: BRICKS

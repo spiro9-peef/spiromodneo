@@ -43,6 +43,9 @@ public class BiomeModifiersData
 
     public static final ResourceKey<BiomeModifier> RUBBER_IN_JUNGLE = key("rubber_trees_in_vanilla_jungles");
 
+    public static final ResourceKey<BiomeModifier> OVERWORLD_GROUNDSTONES = key("ground_stones_in_overworld");
+    public static final ResourceKey<BiomeModifier> NETHER_GROUNDSTONES = key("ground_stones_in_nether");
+
     public static void bootstrap(final BootstrapContext<BiomeModifier> context)
     {
         final var biomes   = context.lookup(Registries.BIOME);
@@ -153,6 +156,18 @@ public class BiomeModifiersData
                 tag(biomes, SpiroTags.Biomes.IS_VANILLA_AND_CAN_HAVE_RUBBER_01),
                 features(features,
                         PlacedFeaturesData.RUBBER_TREES_01),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(OVERWORLD_GROUNDSTONES, new BiomeModifiers.AddFeaturesBiomeModifier(
+                tag(biomes, BiomeTags.IS_OVERWORLD),
+                features(features, PlacedFeaturesData.GROUND_STONES),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(NETHER_GROUNDSTONES, new BiomeModifiers.AddFeaturesBiomeModifier(
+                tag(biomes, BiomeTags.IS_NETHER),
+                features(features, PlacedFeaturesData.GROUND_STONES),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
     }

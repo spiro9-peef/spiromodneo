@@ -2,6 +2,7 @@ package com.github.peeftube.spiromodneo.datagen.modules.models;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.core.init.content.blocks.GroundStoneBlock;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.TappableWoodBlock;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.TapperBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
@@ -110,6 +111,9 @@ public class BlockstateDataProv extends BlockStateProvider
         BlockModelBuilder bm = models().withExistingParent(name(b), RLUtility.makeRL(SpiroMod.MOD_ID, template + "_import"));
         getVariantBuilder(b).partialState().setModels(new ConfiguredModel(bm));
     }
+
+    protected BlockModelBuilder externalModelImporter01(String mName, String template)
+    { return models().withExistingParent(mName, RLUtility.makeRL(SpiroMod.MOD_ID, template + "_import")); }
 
     protected BlockModelBuilder finder(String name, String namespace, String path)
     { return models().withExistingParent(name, RLUtility.makeRL(namespace, path)); }
@@ -791,7 +795,55 @@ public class BlockstateDataProv extends BlockStateProvider
                                     .with(PressurePlateBlock.POWERED, Boolean.TRUE)
                                         .setModels(new ConfiguredModel(builders.getLast()));
                             }
+                            case GROUND_STONES ->
+                            {
+                                builders.add(externalModelImporter01(key + "01", "ground_stones01")
+                                        .texture("0", tex2));
+                                builders.add(externalModelImporter01(key + "02", "ground_stones02")
+                                        .texture("0", tex2));
+                                builders.add(externalModelImporter01(key + "03", "ground_stones03")
+                                        .texture("0", tex2));
+                                builders.add(externalModelImporter01(key + "04", "ground_stones04")
+                                        .texture("0", tex2));
 
+                                VariantBlockStateBuilder builder = getVariantBuilder(b);
+
+                                for (Direction d : Direction.values())
+                                {
+                                    if (d != Direction.UP && d != Direction.DOWN)
+                                    {
+                                        int y = 0;
+
+                                        switch (d)
+                                        {
+                                            case EAST -> { y = 90; }
+                                            case SOUTH -> { y = 180; }
+                                            case WEST -> { y = 270; }
+                                        }
+
+                                        builder = builder.partialState()
+                                                .with(GroundStoneBlock.VARIANT, 0)
+                                                .with(GroundStoneBlock.FACING, d)
+                                                .setModels(new ConfiguredModel(builders.getFirst(),
+                                                        0, y, false))
+                                                .partialState()
+                                                .with(GroundStoneBlock.VARIANT, 1)
+                                                .with(GroundStoneBlock.FACING, d)
+                                                .setModels(new ConfiguredModel(builders.get(1),
+                                                        0, y, false))
+                                                .partialState()
+                                                .with(GroundStoneBlock.VARIANT, 2)
+                                                .with(GroundStoneBlock.FACING, d)
+                                                .setModels(new ConfiguredModel(builders.get(2),
+                                                        0, y, false))
+                                                .partialState()
+                                                .with(GroundStoneBlock.VARIANT, 3)
+                                                .with(GroundStoneBlock.FACING, d)
+                                                .setModels(new ConfiguredModel(builders.get(3),
+                                                        0, y, false));
+                                    }
+                                }
+                            }
                         }
                     }
                 }

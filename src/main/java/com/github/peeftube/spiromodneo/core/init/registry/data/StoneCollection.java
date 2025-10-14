@@ -78,4 +78,25 @@ public record StoneCollection(StoneMaterial material, StoneData bulkData, TagCou
                    .get(StoneBlockType.COBBLE).get(StoneVariantType.MOSSY).get(StoneSubBlockType.DEFAULT)
                    .getBlock();
     }
+
+    public Supplier<? extends Block> getBaseStoneGround()
+    {
+        return this.bulkData().bulkData()
+                   .get(StoneBlockType.BASE).get(StoneVariantType.DEFAULT).get(StoneSubBlockType.GROUND_STONES)
+                .getBlock();
+    }
+
+    public Supplier<? extends Block> getCobbleGround()
+    {
+        return this.bulkData().bulkData()
+                   .get(StoneBlockType.COBBLE).get(StoneVariantType.DEFAULT).get(StoneSubBlockType.GROUND_STONES)
+                   .getBlock();
+    }
+
+    public Supplier<? extends Block> getMossyCobbleGround()
+    {
+        return this.bulkData().bulkData()
+                   .get(StoneBlockType.COBBLE).get(StoneVariantType.MOSSY).get(StoneSubBlockType.GROUND_STONES)
+                   .getBlock();
+    }
 }

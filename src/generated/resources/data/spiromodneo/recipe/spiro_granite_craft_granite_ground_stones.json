@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "X": {
+      "item": "minecraft:granite"
+    },
+    "s": {
+      "item": "spiromodneo:small_stone"
+    }
+  },
+  "pattern": [
+    " X ",
+    "sss"
+  ],
+  "result": {
+    "count": 4,
+    "id": "spiromodneo:granite_ground_stones"
+  }
+}

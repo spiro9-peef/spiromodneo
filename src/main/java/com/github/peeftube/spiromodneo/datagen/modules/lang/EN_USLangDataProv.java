@@ -423,6 +423,7 @@ public class EN_USLangDataProv extends LanguageProvider
 
         outputString = k2 != StoneSubBlockType.DEFAULT ?
                 k2 == StoneSubBlockType.PRESSURE_PLATE ? outputString + " Pressure Plate" :
+                k2 == StoneSubBlockType.GROUND_STONES ? "Small " + outputString + " on Ground" :
                 outputString + " " + capitalize(k2.toString().toLowerCase()) :
                 outputString;
 

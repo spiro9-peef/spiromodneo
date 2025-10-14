@@ -142,6 +142,7 @@ public class BlockTagDataProv extends BlockTagsProvider
     private void grassTags(GrassLikeCollection set)
     {
         TagKey<Block> tag = set.tags().getBlockTag();
+        tag(SpiroTags.Blocks.SUPPORTS_GROUND_STONES).addTag(tag);
 
         for (Soil s : Soil.values())
         {
@@ -158,6 +159,10 @@ public class BlockTagDataProv extends BlockTagsProvider
     {
         TagKey<Block> tag = set.tags().getBlockTag();
         tag(tag).add(set.getBaseStone().get());
+        tag(SpiroTags.Blocks.SUPPORTS_GROUND_STONES)
+                .add(set.getBaseStone().get())
+                .add(set.getCobble().get())
+                .add(set.getMossyCobble().get());
 
         StoneData     data = set.bulkData();
         StoneMaterial mat  = set.material();
@@ -202,6 +207,7 @@ public class BlockTagDataProv extends BlockTagsProvider
     {
         TagKey<Block> tag = set.getOreBT();
         TagKey<Block> stockTag = set.getMat().getAOT();
+        tag(SpiroTags.Blocks.SUPPORTS_GROUND_STONES).addTag(tag);
 
         OreMaterial m = set.getMat();
 

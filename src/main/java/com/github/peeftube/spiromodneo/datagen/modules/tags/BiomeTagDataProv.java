@@ -48,5 +48,13 @@ public class BiomeTagDataProv extends BiomeTagsProvider
 
         tag(SpiroTags.Biomes.IS_VANILLA_AND_CAN_HAVE_RUBBER_01)
                 .add(Biomes.JUNGLE);
+
+        tag(SpiroTags.Biomes.YELLOW_SAND_BIOME)
+                .add(Biomes.DESERT)
+                .add(Biomes.BEACH)
+                .add(Biomes.SNOWY_BEACH);
+
+        tag(SpiroTags.Biomes.RED_SAND_BIOME)
+                .addTag(BiomeTags.IS_BADLANDS);
     }
 }

@@ -148,13 +148,17 @@ public class BlockLootTables extends BlockLootSubProvider
                                         .containsKey(ExistingStoneCouplings
                                                 .getKey(set.material(), type0, type1, type2)))
                                         {
+                                            Block self = set.bulkData().getCouplingForKeys(
+                                                    type0, type1, type2).getBlock().get();
+
                                             switch (type2)
                                             {
                                                 case DEFAULT -> add(set.getBaseStone().get(), stoneDropTable01(
                                                         set.getBaseStone().get(), set.getCobble().get()));
 
-                                                default -> dropSelf(set.bulkData()
-                                                       .getCouplingForKeys(type0, type1, type2).getBlock().get());
+                                                case GROUND_STONES -> add(self, groundStoneTable(self));
+
+                                                default -> dropSelf(self);
                                             }
                                         }
                                     }
@@ -180,11 +184,13 @@ public class BlockLootTables extends BlockLootSubProvider
                                         .containsKey(ExistingStoneCouplings
                                                 .getKey(set.material(), type0, type1, type2)))
                                         {
+                                            Block self = set.bulkData().getCouplingForKeys(
+                                                    type0, type1, type2).getBlock().get();
+
                                             switch(type2)
                                             {
-                                                default ->
-                                                { dropSelf(set.bulkData().getCouplingForKeys(
-                                                        type0, type1, type2).getBlock().get()); }
+                                                case GROUND_STONES -> add(self, groundStoneTable(self));
+                                                default -> dropSelf(self);
                                             }
                                         }
                                     }
@@ -268,6 +274,16 @@ public class BlockLootTables extends BlockLootSubProvider
                     .apply(ApplyBonusCount.addOreBonusCount(regLookup.getOrThrow(Enchantments.FORTUNE))));
 
         return builder;
+    }
+
+    protected LootTable.Builder groundStoneTable(Block b)
+    {
+        HolderLookup.RegistryLookup<Enchantment> regLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+
+        return this.createSilkTouchDispatchTable(b,
+                this.applyExplosionDecay(b, LootItem.lootTableItem(Registrar.SMALL_STONE.get()))
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
+                        .apply(ApplyBonusCount.addOreBonusCount(regLookup.getOrThrow(Enchantments.FORTUNE))));
     }
 
     protected LootTable.Builder oreTable01(Block b0, StoneMaterial s, Item item, NumberProvider dropAmtRange)

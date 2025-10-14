@@ -109,6 +109,8 @@ public class PlacedFeaturesData
 
     public static final ResourceKey<PlacedFeature> RUBBER_TREES_01 = registerKey("rubber_trees_01");
 
+    public static final ResourceKey<PlacedFeature> GROUND_STONES = registerKey("ground_stones");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context)
     {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -494,6 +496,8 @@ public class PlacedFeaturesData
                         PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
                         PlacementUtils.countExtra(50, 0.1F, 1)
                 ));
+
+        register(context, GROUND_STONES, configuredFeatures.getOrThrow(ConfigFeaturesData.GROUND_STONES));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name)

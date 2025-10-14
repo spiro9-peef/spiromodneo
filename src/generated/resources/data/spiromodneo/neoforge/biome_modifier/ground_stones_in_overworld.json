@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "spiromodneo:ground_stones",
+  "step": "vegetal_decoration"
+}

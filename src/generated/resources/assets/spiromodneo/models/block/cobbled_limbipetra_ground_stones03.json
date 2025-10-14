@@ -1,0 +1,6 @@
+{
+  "parent": "spiromodneo:block/ground_stones03_import",
+  "textures": {
+    "0": "spiromodneo:block/cobbled_limbipetra"
+  }
+}

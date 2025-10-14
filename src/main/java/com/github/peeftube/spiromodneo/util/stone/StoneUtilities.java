@@ -1,6 +1,7 @@
 package com.github.peeftube.spiromodneo.util.stone;
 
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.core.init.content.blocks.GroundStoneBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.StoneMaterial;
 import com.github.peeftube.spiromodneo.util.GenericBlockItemCoupling;
 import net.minecraft.world.item.Item;
@@ -194,9 +195,18 @@ public interface StoneUtilities
                 Supplier<Item> i = Registrar.regSimpleBlockItem((DeferredBlock<Block>) b);
                 return new GenericBlockItemCoupling(b, i);
             }
+            if (kv.contains("ground_stones"))
+            {
+                Supplier<Block> b = Registrar.regBlock(kv, () -> new GroundStoneBlock(
+                        Properties.ofFullCopy(mat.getOreBase().getOreBase().get()).noCollission().destroyTime(0.01f)
+                ));
+                Supplier<Item> i = Registrar.regSimpleBlockItem((DeferredBlock<Block>) b);
+                return new GenericBlockItemCoupling(b, i);
+            }
 
             boolean isNotSubBlockVariant = !(kv.contains("slab") || kv.contains("stairs") ||
-                    kv.contains("button") || kv.contains("pressure_plate") || kv.endsWith("_wall"));
+                    kv.contains("button") || kv.contains("pressure_plate") || kv.endsWith("_wall") ||
+                    kv.contains("ground_stones"));
             if (isNotSubBlockVariant)
             {
                 boolean isBaseStoneOrColumn = !(kv.contains("smooth") || kv.contains("polished") ||

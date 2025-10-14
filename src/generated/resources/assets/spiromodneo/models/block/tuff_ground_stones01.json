@@ -1,0 +1,6 @@
+{
+  "parent": "spiromodneo:block/ground_stones01_import",
+  "textures": {
+    "0": "minecraft:block/tuff"
+  }
+}
