@@ -54,6 +54,7 @@ public class BlockTagDataProv extends BlockTagsProvider
 
         // Grass & soil
         for (GrassLikeCollection grass : GrassLikeCollection.GRASS_COLLECTIONS) { grassTags(grass); }
+        for (Soil s : Soil.values()) { tag(s.getTag()).add(s.getSoil().get()); }
 
         // Tappable wood handler is pretty easy to do so it's separate from normal wood
         for (TappableWoodCollection tapWood : TappableWoodCollection.TAPPABLE_WOOD_COLLECTIONS)
@@ -149,6 +150,9 @@ public class BlockTagDataProv extends BlockTagsProvider
             if (s == Soil.SOUL_SOIL)
             { tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(set.bulkData().get(s).getBlock().get()); }
 
+            if (set.type() == GrassLike.GRASS)
+            { tag(BlockTags.BAMBOO_PLANTABLE_ON).add(set.bulkData().get(s).getBlock().get()); }
+
             tag(s.getTag()).add(set.bulkData().get(s).getBlock().get());
             tag(tag).add(set.bulkData().get(s).getBlock().get());
             tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(set.bulkData().get(s).getBlock().get());
@@ -159,6 +163,11 @@ public class BlockTagDataProv extends BlockTagsProvider
     {
         TagKey<Block> tag = set.tags().getBlockTag();
         tag(tag).add(set.getBaseStone().get());
+
+        // This may break things but whatever
+        tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(set.material().getOreBase().getOreBase().get());
+        tag(BlockTags.NETHER_CARVER_REPLACEABLES).add(set.material().getOreBase().getOreBase().get());
+
         tag(SpiroTags.Blocks.SUPPORTS_GROUND_STONES)
                 .add(set.getBaseStone().get())
                 .add(set.getCobble().get())

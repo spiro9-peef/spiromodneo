@@ -4,9 +4,11 @@ import com.github.peeftube.spiromodneo.client.renderer.blockentity.ExtensibleChe
 import com.github.peeftube.spiromodneo.core.init.InitializeBlockRenderTypes;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.content.worldgen.region.NetherColdRegion;
+import com.github.peeftube.spiromodneo.core.init.content.worldgen.region.OverworldAlternativeRegion1;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Soil;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherScreen;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.custombiome.NetherColdRegionSourceRules;
+import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.custombiome.OverworldCustomRegionSourceRules;
 import com.github.peeftube.spiromodneo.util.RLUtility;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
@@ -78,9 +80,14 @@ public class SpiroMod
         event.enqueueWork(() ->
         {
             Regions.register(new NetherColdRegion(RLUtility.makeRL("spiro_cold_nether_region"), 1));
+            Regions.register(new OverworldAlternativeRegion1
+                    (RLUtility.makeRL("spiro_alt_region01"), 3));
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, MOD_ID,
                     NetherColdRegionSourceRules.rules());
+
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID,
+                    OverworldCustomRegionSourceRules.rules());
         });
 
         // Some common setup code

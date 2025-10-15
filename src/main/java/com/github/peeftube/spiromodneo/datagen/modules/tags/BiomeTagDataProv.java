@@ -22,6 +22,12 @@ public class BiomeTagDataProv extends BiomeTagsProvider
     @Override
     protected void addTags(HolderLookup.Provider lookup)
     {
+        tag(BiomeTags.IS_OVERWORLD)
+                .add(NeoBiomes.OVERWORLD_RUBBER_FOREST);
+
+        tag(BiomeTags.IS_JUNGLE)
+                .add(NeoBiomes.OVERWORLD_RUBBER_FOREST);
+
         tag(SpiroTags.Biomes.RUBY_SPAWNABLE)
                 .addTags(BiomeTags.IS_JUNGLE)
                 .add(Biomes.LUSH_CAVES);
@@ -48,6 +54,9 @@ public class BiomeTagDataProv extends BiomeTagsProvider
 
         tag(SpiroTags.Biomes.IS_VANILLA_AND_CAN_HAVE_RUBBER_01)
                 .add(Biomes.JUNGLE);
+
+        tag(SpiroTags.Biomes.IS_MINE_AND_CAN_HAVE_RUBBER)
+                .add(NeoBiomes.OVERWORLD_RUBBER_FOREST);
 
         tag(SpiroTags.Biomes.YELLOW_SAND_BIOME)
                 .add(Biomes.DESERT)

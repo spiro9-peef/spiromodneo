@@ -2,6 +2,7 @@ package com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.core.init.content.worldgen.biome.NeoBiomes;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Soil;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.world.level.biome.Biomes;

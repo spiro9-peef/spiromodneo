@@ -12,6 +12,8 @@ import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -108,6 +110,7 @@ public class PlacedFeaturesData
     public static final ResourceKey<PlacedFeature> MAPLE_TREES_01 = registerKey("maple_trees_01");
 
     public static final ResourceKey<PlacedFeature> RUBBER_TREES_01 = registerKey("rubber_trees_01");
+    public static final ResourceKey<PlacedFeature> RUBBER_TREES_02 = registerKey("rubber_trees_02");
 
     public static final ResourceKey<PlacedFeature> GROUND_STONES = registerKey("ground_stones");
 
@@ -494,7 +497,22 @@ public class PlacedFeaturesData
                         BiomeFilter.biome(),
                         SurfaceWaterDepthFilter.forMaxDepth(0),
                         PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
-                        PlacementUtils.countExtra(50, 0.1F, 1)
+                        PlacementUtils.countExtra(50, 0.1F, 10)
+                ));
+        register(context, RUBBER_TREES_02,
+                configuredFeatures.getOrThrow(ConfigFeaturesData.RUBBER_TREES_02),
+                List.of(
+                        InSquarePlacement.spread(),
+                        BiomeFilter.biome(),
+                        SurfaceWaterDepthFilter.forMaxDepth(0),
+                        PlacementUtils.HEIGHTMAP_OCEAN_FLOOR,
+                        CountPlacement.of(new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder()
+                                .add(ConstantInt.of(50), 5)
+                                .add(ConstantInt.of(70), 2)
+                                .add(ConstantInt.of(90), 1)
+                                .add(ConstantInt.of(110), 1)
+                                .add(ConstantInt.of(130), 1)
+                                .build()))
                 ));
 
         register(context, GROUND_STONES, configuredFeatures.getOrThrow(ConfigFeaturesData.GROUND_STONES));

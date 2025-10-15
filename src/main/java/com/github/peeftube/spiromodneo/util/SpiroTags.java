@@ -75,6 +75,8 @@ public class SpiroTags
         public static TagKey<Biome> IS_VANILLA_AND_CAN_HAVE_MAPLE = tag("is_vanilla_and_can_have_maple");
         public static TagKey<Biome> IS_VANILLA_AND_CAN_HAVE_RUBBER_01 = tag("is_vanilla_and_can_have_rubber_01");
 
+        public static TagKey<Biome> IS_MINE_AND_CAN_HAVE_RUBBER = tag("is_my_mod_and_can_have_rubber");
+
         public static TagKey<Biome> YELLOW_SAND_BIOME = tag("yellow_sands");
         public static TagKey<Biome> RED_SAND_BIOME = tag("red_sands");
 

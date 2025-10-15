@@ -109,6 +109,7 @@ public class ConfigFeaturesData
     public static final ResourceKey<ConfiguredFeature<?, ?>> MAPLE_TREES_01 = registerKey("maple_trees_01");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUBBER_TREES_01 = registerKey("rubber_trees_01");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RUBBER_TREES_02 = registerKey("rubber_trees_02");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> GROUND_STONES = registerKey("ground_stones");
 
@@ -337,9 +338,9 @@ public class ConfigFeaturesData
         register(context, RUBBER_TREES_01, Feature.RANDOM_SELECTOR,
                 new RandomFeatureConfiguration(List.of(
                         new WeightedPlacedFeature(
-                                placedFeatures.getOrThrow(TreePlacements.FANCY_OAK_CHECKED), 0.1F),
+                                placedFeatures.getOrThrow(TreePlacements.FANCY_OAK_CHECKED), 0.05F),
                         new WeightedPlacedFeature(
-                                placedFeatures.getOrThrow(TreePlacements.JUNGLE_BUSH), 0.5F),
+                                placedFeatures.getOrThrow(TreePlacements.JUNGLE_BUSH), 0.3F),
                         new WeightedPlacedFeature(
                                 placedFeatures.getOrThrow(PlacedFeaturesData.RUBBERWOOD_HUGE), 0.025F),
                         new WeightedPlacedFeature(
@@ -347,6 +348,20 @@ public class ConfigFeaturesData
                         new WeightedPlacedFeature(
                                 placedFeatures.getOrThrow(TreePlacements.MEGA_JUNGLE_TREE_CHECKED), (float) 1 / 3)),
                         placedFeatures.getOrThrow(TreePlacements.JUNGLE_TREE_CHECKED)));
+
+        register(context, RUBBER_TREES_02, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(TreePlacements.FANCY_OAK_CHECKED), 0.05F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(TreePlacements.JUNGLE_BUSH), (float) 1 / 3),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.RUBBERWOOD_HUGE), 0.125F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(TreePlacements.JUNGLE_TREE_CHECKED), (float) 1 / 3),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(TreePlacements.MEGA_JUNGLE_TREE_CHECKED), (float) 1 / 6)),
+                        placedFeatures.getOrThrow(PlacedFeaturesData.RUBBERWOOD)));
 
         register(context, GROUND_STONES, Registrar.GROUND_STONE_FEATURE.get(), new NoneFeatureConfiguration());
     }

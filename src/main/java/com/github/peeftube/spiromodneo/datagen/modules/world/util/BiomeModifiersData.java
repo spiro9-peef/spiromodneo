@@ -9,6 +9,7 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.OrePlacements;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
@@ -42,6 +43,8 @@ public class BiomeModifiersData
     public static final ResourceKey<BiomeModifier> MAPLE_IN_FOREST = key("maple_trees_in_vanilla_forests");
 
     public static final ResourceKey<BiomeModifier> RUBBER_IN_JUNGLE = key("rubber_trees_in_vanilla_jungles");
+
+    public static final ResourceKey<BiomeModifier> RUBBER_FOREST_FOLIAGE = key("rubber_forest_foliage");
 
     public static final ResourceKey<BiomeModifier> OVERWORLD_GROUNDSTONES = key("ground_stones_in_overworld");
     public static final ResourceKey<BiomeModifier> NETHER_GROUNDSTONES = key("ground_stones_in_nether");
@@ -159,16 +162,23 @@ public class BiomeModifiersData
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
 
+        context.register(RUBBER_FOREST_FOLIAGE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                tag(biomes, SpiroTags.Biomes.IS_MINE_AND_CAN_HAVE_RUBBER),
+                features(features,
+                        PlacedFeaturesData.RUBBER_TREES_01, PlacedFeaturesData.RUBBER_TREES_02),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
         context.register(OVERWORLD_GROUNDSTONES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 tag(biomes, BiomeTags.IS_OVERWORLD),
                 features(features, PlacedFeaturesData.GROUND_STONES),
-                GenerationStep.Decoration.VEGETAL_DECORATION
+                GenerationStep.Decoration.TOP_LAYER_MODIFICATION
         ));
 
         context.register(NETHER_GROUNDSTONES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 tag(biomes, BiomeTags.IS_NETHER),
                 features(features, PlacedFeaturesData.GROUND_STONES),
-                GenerationStep.Decoration.VEGETAL_DECORATION
+                GenerationStep.Decoration.TOP_LAYER_MODIFICATION
         ));
     }
 

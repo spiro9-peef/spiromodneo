@@ -1,5 +1,5 @@
 {
-  "feature": "spiromodneo:rubber_trees_01",
+  "feature": "spiromodneo:rubber_trees_02",
   "placement": [
     {
       "type": "minecraft:in_square"
@@ -22,10 +22,22 @@
         "distribution": [
           {
             "data": 50,
-            "weight": 9
+            "weight": 5
           },
           {
-            "data": 60,
+            "data": 70,
+            "weight": 2
+          },
+          {
+            "data": 90,
+            "weight": 1
+          },
+          {
+            "data": 110,
+            "weight": 1
+          },
+          {
+            "data": 130,
             "weight": 1
           }
         ]

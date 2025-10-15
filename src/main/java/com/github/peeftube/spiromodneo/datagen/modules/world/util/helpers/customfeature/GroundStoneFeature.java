@@ -1,6 +1,7 @@
 package com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature;
 
 import com.github.peeftube.spiromodneo.core.init.content.blocks.GroundStoneBlock;
+import com.github.peeftube.spiromodneo.core.init.content.worldgen.biome.NeoBiomes;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -74,10 +75,17 @@ public class GroundStoneFeature extends Feature<NoneFeatureConfiguration>
                                                     CALCITE_SET.getBaseStoneGround().get().defaultBlockState();
                         }
 
-                        if (level.getBiome(mbp2).is(Tags.Biomes.IS_BIRCH_FOREST))
+                        if (level.getBiome(mbp2).is(Biomes.DRIPSTONE_CAVES))
                         {
                             pickState =
-                                    altStateFlag0 ? DRIPSTONE_SET.getBaseStoneGround().get().defaultBlockState() :
+                                    !altStateFlag0 ? DRIPSTONE_SET.getBaseStoneGround().get().defaultBlockState() :
+                                                    pickState;
+                        }
+
+                        if (level.getBiome(mbp2).is(NeoBiomes.OVERWORLD_RUBBER_FOREST))
+                        {
+                            pickState =
+                                    !altStateFlag0 ? BASALT_SET.getBaseStoneGround().get().defaultBlockState() :
                                                     pickState;
                         }
 

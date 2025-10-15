@@ -15,6 +15,14 @@ public class NeoBiomes
     public static final ResourceKey<Biome> NETHER_LIMBO_GARDEN =
             registerKey("spiro_nether_limbo_garden");
 
+    /**
+     * A strange alternative to the jungle biome, with trees that bleed white
+     * and layers of smooth basalt. Perhaps something here will prove of use? <p>
+     * "It's sticky!"
+     */
+    public static final ResourceKey<Biome> OVERWORLD_RUBBER_FOREST =
+            registerKey("spiro_overworld_rubber_forest");
+
     private static ResourceKey<Biome> registerKey(String name)
     { return ResourceKey.create(Registries.BIOME, RLUtility.makeRL(name)); }
 }

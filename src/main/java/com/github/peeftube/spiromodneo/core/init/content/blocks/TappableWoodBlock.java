@@ -1,5 +1,6 @@
 package com.github.peeftube.spiromodneo.core.init.content.blocks;
 
+import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Tappable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -51,7 +52,7 @@ public class TappableWoodBlock extends WoodBlock
         boolean isEast = !level.getBlockState(pos.offset(Direction.EAST.getNormal())).is(Blocks.AIR);
         boolean isWest = !level.getBlockState(pos.offset(Direction.WEST.getNormal())).is(Blocks.AIR);
 
-        if (random.nextInt(7) == 0)
+        if (random.nextInt(7) == 0 && state.is(Registrar.TAPPER))
         {
             if (state.getValue(NORTH) && isNorth)
             { level.setBlock(pos.offset(Direction.NORTH.getNormal()),
