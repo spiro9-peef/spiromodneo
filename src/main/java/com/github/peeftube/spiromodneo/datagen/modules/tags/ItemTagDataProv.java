@@ -41,7 +41,8 @@ public class ItemTagDataProv extends ItemTagsProvider
         // Crafting Materials
         tag(SpiroTags.Items.STRING_LIKE) // Loose materials should go first
                 .add(Items.STRING)
-                .add(Registrar.SINEW.get());
+                .add(Registrar.SINEW.get())
+                .add(Registrar.PLANT_FIBRE.get());
 
         tag(SpiroTags.Items.STEEL_MIXTURES)
                 .add(Registrar.STEEL_MIXTURE.get())

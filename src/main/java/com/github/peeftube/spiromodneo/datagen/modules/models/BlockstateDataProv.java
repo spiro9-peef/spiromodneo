@@ -7,12 +7,20 @@ import com.github.peeftube.spiromodneo.core.init.content.blocks.TappableWoodBloc
 import com.github.peeftube.spiromodneo.core.init.content.blocks.TapperBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.util.RLUtility;
+import com.github.peeftube.spiromodneo.util.moss.MossType;
 import com.github.peeftube.spiromodneo.util.ore.OreCoupling;
 import com.github.peeftube.spiromodneo.util.stone.*;
 import com.github.peeftube.spiromodneo.util.wood.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.PropertyDispatch;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.*;
@@ -22,6 +30,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import static com.github.peeftube.spiromodneo.util.stone.StoneSetPresets.getPresets;
 
@@ -35,13 +44,37 @@ public class BlockstateDataProv extends BlockStateProvider
     {
         for (MetalCollection metal : MetalCollection.METAL_COLLECTIONS) { metalSetDesign(metal); }
         for (OreCollection ore : OreCollection.ORE_COLLECTIONS) { oreSetDesign(ore); }
-        for (StoneCollection stone : StoneCollection.STONE_COLLECTIONS) { stoneSetDesign(stone, this.models().existingFileHelper); }
+        for (StoneCollection stone : StoneCollection.STONE_COLLECTIONS)
+            { stoneSetDesign(stone, this.models().existingFileHelper); }
         for (GrassLikeCollection grass : GrassLikeCollection.GRASS_COLLECTIONS) { grassSetDesign(grass); }
-        for (WoodCollection wood : WoodCollection.WOOD_COLLECTIONS) { woodSetDesign(wood, this.models().existingFileHelper); }
+        for (WoodCollection wood : WoodCollection.WOOD_COLLECTIONS)
+            { woodSetDesign(wood, this.models().existingFileHelper); }
+        for (VariableWoodCollection wood : VariableWoodCollection.VARIABLE_WOOD_COLLECTIONS)
+            { variableWoodSetDesign(wood, this.models().existingFileHelper); }
+        for (MossCollection moss : MossCollection.MOSS_COLLECTIONS)
+            { mossSetDesign(moss, this.models().existingFileHelper); }
 
         externalModelAssociation01(Registrar.MANUAL_CRUSHER.get(), "manual_crusher");
 
         tapper(Registrar.TAPPER.get());
+
+        getVariantBuilder(Registrar.PHANTOM_BERRY_BUSH.get())
+                .partialState().with(BlockStateProperties.AGE_3, 0).setModels(
+                        new ConfiguredModel(models()
+                                .cross("phantom_berry_bush_stage0",
+                                        RLUtility.makeRL("block/phantom_berry_bush_stage0"))))
+                .partialState().with(BlockStateProperties.AGE_3, 1).setModels(
+                        new ConfiguredModel(models()
+                                .cross("phantom_berry_bush_stage1",
+                                        RLUtility.makeRL("block/phantom_berry_bush_stage1"))))
+                .partialState().with(BlockStateProperties.AGE_3, 2).setModels(
+                        new ConfiguredModel(models()
+                                .cross("phantom_berry_bush_stage2",
+                                        RLUtility.makeRL("block/phantom_berry_bush_stage2"))))
+                .partialState().with(BlockStateProperties.AGE_3, 3).setModels(
+                        new ConfiguredModel(models()
+                                .cross("phantom_berry_bush_stage3",
+                                        RLUtility.makeRL("block/phantom_berry_bush_stage3"))));
     }
 
     private void tapper(Block tapper)
@@ -117,6 +150,69 @@ public class BlockstateDataProv extends BlockStateProvider
 
     protected BlockModelBuilder finder(String name, String namespace, String path)
     { return models().withExistingParent(name, RLUtility.makeRL(namespace, path)); }
+
+    private void mossSetDesign(MossCollection set, ExistingFileHelper eFH)
+    {
+        MossBlock b = (MossBlock) set.bulkData().get(MossType.MOSS_BLOCK).getBlock().get();
+        CarpetBlock c = (CarpetBlock) set.bulkData().get(MossType.MOSS_CARPET).getBlock().get();
+
+        if (!set.material().equals(MossMaterial.MOSS))
+        {
+            /** getVariantBuilder(b).partialState().setModels(
+                    new ConfiguredModel(models().cubeAll(name(b), RLUtility.makeRL("recolorable_moss_block")))
+            ); */
+            getVariantBuilder(b).partialState().setModels(
+                    new ConfiguredModel(models().withExistingParent(name(b), RLUtility.invokeRL("cube"))
+                            .texture("testtex", RLUtility.makeRL("block/recolorable_moss_block")).element()
+                            .face(Direction.SOUTH).texture("#testtex").tintindex(0).end()
+                            .face(Direction.NORTH).texture("#testtex").tintindex(0).end()
+                            .face(Direction.EAST).texture("#testtex").tintindex(0).end()
+                            .face(Direction.WEST).texture("#testtex").tintindex(0).end()
+                            .face(Direction.UP).texture("#testtex").tintindex(0).end()
+                            .face(Direction.DOWN).texture("#testtex").tintindex(0).end().end())
+            );
+            /** getVariantBuilder(c).partialState().setModels(
+                    new ConfiguredModel(models().carpet(name(c), RLUtility.makeRL("recolorable_moss_block")))
+            ); */
+            getVariantBuilder(c).partialState().setModels(
+                    new ConfiguredModel(models().withExistingParent(name(c), RLUtility.invokeRL("carpet"))
+                            .texture("testtex", RLUtility.makeRL("block/recolorable_moss_block")).element()
+                            .face(Direction.SOUTH).texture("#testtex").tintindex(0).end()
+                            .face(Direction.NORTH).texture("#testtex").tintindex(0).end()
+                            .face(Direction.EAST).texture("#testtex").tintindex(0).end()
+                            .face(Direction.WEST).texture("#testtex").tintindex(0).end()
+                            .face(Direction.UP).texture("#testtex").tintindex(0).end()
+                            .face(Direction.DOWN).texture("#testtex").tintindex(0).end()
+                            .from(0, 0, 0).to(16, 1, 16).end())
+            );
+        }
+    }
+
+    private void variableWoodSetDesign(VariableWoodCollection set, ExistingFileHelper eFH)
+    {
+        Block bLeaf = set.leaves().getBlock().get();
+        Block bSapling = set.sapling().getBlock().get();
+        String setName = set.material().getName();
+        boolean isFungal = set.wood().type().isLikeNetherFungus();
+
+        String leavesFix = isFungal ? "_wart_block" : "_leaves";
+        String saplingFix = isFungal ? "_fungus" : "_sapling";
+
+        getVariantBuilder(bSapling).partialState().setModels(
+                new ConfiguredModel(externalModelImporter01(setName + saplingFix, "cross2_wtint")
+                        .texture("cross",
+                                blockTexture(set.wood().bulkData().livingWood()
+                                        .get(LivingWoodBlockType.SAPLING).getBlock().get()))
+                        .texture("cross2",
+                                RLUtility.makeRL("block/overlays/" +
+                                        set.wood().type().getName() + "_sapling_colormask")),
+                        0, 0, true));
+        getVariantBuilder(bLeaf).partialState().setModels(
+                new ConfiguredModel(models().withExistingParent(
+                        setName + leavesFix, RLUtility.invokeRL("block/leaves"))
+                        .texture("all", blockTexture(set.wood().bulkData().livingWood()
+                                .get(LivingWoodBlockType.LEAVES).getBlock().get()))));
+    }
 
     private void woodSetDesign(WoodCollection set, ExistingFileHelper eFH)
     {
@@ -202,14 +298,14 @@ public class BlockstateDataProv extends BlockStateProvider
                         }
                         case WOOD, STRIPPED_WOOD ->
                         {
+                            boolean strip = t == LivingWoodBlockType.STRIPPED_WOOD;
+                            Block log = strip ?
+                                    set.bulkData().livingWood()
+                                            .get(LivingWoodBlockType.STRIPPED_LOG).getBlock().get() :
+                                    set.getBaseLog().get();
+
                             if (b instanceof TappableWoodBlock w)
                             {
-                                boolean strip = t == LivingWoodBlockType.STRIPPED_WOOD;
-                                Block log = strip ?
-                                        set.bulkData().livingWood()
-                                           .get(LivingWoodBlockType.STRIPPED_LOG).getBlock().get() :
-                                        set.getBaseLog().get();
-
                                 BlockModelBuilder vert = models().cubeColumn(name(w),
                                         blockTexture(log), blockTexture(log));
                                 BlockModelBuilder horiz = models().cubeColumnHorizontal(name(w) + "_horiz",
@@ -258,8 +354,8 @@ public class BlockstateDataProv extends BlockStateProvider
                                         .condition(TappableWoodBlock.WEST, true)
                                         .condition(TappableWoodBlock.TAPPED, true).end();
                             }
-                            else axisBlock((RotatedPillarBlock) b, blockTexture(set.getBaseLog().get()),
-                                    blockTexture(set.getBaseLog().get()));
+                            else axisBlock((RotatedPillarBlock) b, blockTexture(log),
+                                    blockTexture(log));
                         }
                         case SAPLING ->
                             getVariantBuilder(b).partialState().setModels(

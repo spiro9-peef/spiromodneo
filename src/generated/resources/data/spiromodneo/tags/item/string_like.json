@@ -1,6 +1,7 @@
 {
   "values": [
     "minecraft:string",
-    "spiromodneo:sinew"
+    "spiromodneo:sinew",
+    "spiromodneo:plant_fibre"
   ]
 }

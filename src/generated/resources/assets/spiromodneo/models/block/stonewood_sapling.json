@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "spiromodneo:block/stonewood_sapling"
+  }
+}

@@ -2,6 +2,14 @@
   "feature": "spiromodneo:gold_ore_buried",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 1,
+        "min_inclusive": 0
+      }
+    },
+    {
       "type": "minecraft:height_range",
       "height": {
         "type": "minecraft:uniform",
@@ -18,14 +26,6 @@
     },
     {
       "type": "minecraft:in_square"
-    },
-    {
-      "type": "minecraft:count",
-      "count": {
-        "type": "minecraft:uniform",
-        "max_inclusive": 1,
-        "min_inclusive": 0
-      }
     }
   ]
 }

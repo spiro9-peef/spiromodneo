@@ -1,5 +1,8 @@
 {
   "values": [
-    "#spiromodneo:needs_sharpwood_tool"
+    "#spiromodneo:needs_sharpwood_tool",
+    "#spiromodneo:needs_flint_tool",
+    "#spiromodneo:needs_gold_tool",
+    "#spiromodneo:needs_steel_tool"
   ]
 }

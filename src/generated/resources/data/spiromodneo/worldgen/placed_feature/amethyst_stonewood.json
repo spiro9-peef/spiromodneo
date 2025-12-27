@@ -1,0 +1,17 @@
+{
+  "feature": "spiromodneo:amethyst_stonewood",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "spiromodneo:amethyst_stonewood_sapling",
+          "Properties": {
+            "stage": "0"
+          }
+        }
+      }
+    }
+  ]
+}

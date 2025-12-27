@@ -4,23 +4,21 @@ import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
+import com.github.peeftube.spiromodneo.util.moss.MossType;
 import com.github.peeftube.spiromodneo.util.ore.OreCoupling;
 import com.github.peeftube.spiromodneo.util.stone.*;
 import com.github.peeftube.spiromodneo.util.wood.LivingWoodBlockType;
 import com.github.peeftube.spiromodneo.util.wood.ManufacturedWoodType;
 import com.github.peeftube.spiromodneo.util.wood.PlankBlockSubType;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -68,10 +66,24 @@ public class BlockTagDataProv extends BlockTagsProvider
 
         // Wood
         for (WoodCollection wood : WoodCollection.WOOD_COLLECTIONS) { woodTags(wood); }
+        for (VariableWoodCollection wood : VariableWoodCollection.VARIABLE_WOOD_COLLECTIONS) { variableWoodTags(wood); }
+
+        // Moss should be relatively easy so we'll do it inline as well
+        for (MossCollection moss : MossCollection.MOSS_COLLECTIONS)
+        {
+            if (!moss.material().equals(MossMaterial.MOSS))
+            {
+                tag(BlockTags.DIRT)
+                        .add(moss.bulkData().get(MossType.MOSS_BLOCK).getBlock().get());
+            }
+        }
 
         // Tool level setup
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
-                .addTag(SpiroTags.Blocks.NEEDS_SHARPWOOD_TOOL);
+                .addTag(SpiroTags.Blocks.NEEDS_SHARPWOOD_TOOL)
+                .addTag(SpiroTags.Blocks.NEEDS_FLINT_TOOL)
+                .addTag(SpiroTags.Blocks.NEEDS_GOLD_TOOL)
+                .addTag(SpiroTags.Blocks.NEEDS_STEEL_TOOL);
 
         tag(SpiroTags.Blocks.NEEDS_SHARPWOOD_TOOL)
                 .add(Blocks.GRAVEL); // Gravel should not be mined until sharp wood is reached.
@@ -108,6 +120,12 @@ public class BlockTagDataProv extends BlockTagsProvider
                 .addTag(SpiroTags.Blocks.NEEDS_STEEL_TOOL);
         tag(SpiroTags.Blocks.INCORRECT_FOR_STEEL)
                 .addTag(BlockTags.NEEDS_DIAMOND_TOOL);
+    }
+
+    private void variableWoodTags(VariableWoodCollection set)
+    {
+        TagKey<Block> leavesTag = set.wood().bulkData().leafTags().getBlockTag();
+        tag(leavesTag).add(set.leaves().getBlock().get());
     }
 
     private void woodTags(WoodCollection set)
@@ -172,6 +190,14 @@ public class BlockTagDataProv extends BlockTagsProvider
                 .add(set.getBaseStone().get())
                 .add(set.getCobble().get())
                 .add(set.getMossyCobble().get());
+
+        if (!set.material().equals(StoneMaterial.NETHERRACK) && !set.material().equals(StoneMaterial.LIMBIPETRA))
+        {
+            tag(SpiroTags.Blocks.SUPPORTS_STONE_PLANTABLE_SAPLINGS)
+                    .add(set.getBaseStone().get())
+                    .add(set.getCobble().get())
+                    .add(set.getMossyCobble().get());
+        }
 
         StoneData     data = set.bulkData();
         StoneMaterial mat  = set.material();

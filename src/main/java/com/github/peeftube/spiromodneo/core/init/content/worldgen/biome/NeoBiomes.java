@@ -23,6 +23,48 @@ public class NeoBiomes
     public static final ResourceKey<Biome> OVERWORLD_RUBBER_FOREST =
             registerKey("spiro_overworld_rubber_forest");
 
+    /**
+     * A strange alternative to the lush caves biome, with a vague bioluminescence
+     * and strange stone trees. Foliage here takes on a blue-ish hue. <p>
+     * There are also berry bushes here with a ghostly appearance. <p>
+     * "It's... blue?"
+     */
+    public static final ResourceKey<Biome> AZURE_CAVERNS =
+            registerKey("spiro_azure_caverns");
+
+    /**
+     * A strange alternative to the lush caves biome, with a vague bioluminescence
+     * and strange stone trees. Foliage here takes on a vaguely purple hue. <p>
+     * "It glistens like amethyst!"
+     */
+    public static final ResourceKey<Biome> AMETHYST_CAVERNS =
+            registerKey("spiro_amethyst_caverns");
+
+    /**
+     * A strange alternative to the lush caves biome, with a vague bioluminescence
+     * and strange stone trees. Foliage here takes on a lush green hue. <p>
+     * "It's like an underground forest!"
+     */
+    public static final ResourceKey<Biome> VERDANT_CAVERNS =
+            registerKey("spiro_verdant_caverns");
+
+    /**
+     * A strange alternative to the lush caves biome, with a vague bioluminescence
+     * and strange stone trees. Foliage here takes on a golden hue. <p>
+     * Additionally, gold is easier to find here. <p>
+     * "You see, Mr. Steve... I love goooooooold!"
+     */
+    public static final ResourceKey<Biome> GILDED_CAVERNS =
+            registerKey("spiro_gilded_caverns");
+
+    /**
+     * A strange alternative to the lush caves biome, with a vague bioluminescence
+     * and strange stone trees. Foliage here takes on a reddish hue. <p>
+     * "This is just a bootleg Nether!"
+     */
+    public static final ResourceKey<Biome> RUBY_CAVERNS =
+            registerKey("spiro_ruby_caverns");
+
     private static ResourceKey<Biome> registerKey(String name)
     { return ResourceKey.create(Registries.BIOME, RLUtility.makeRL(name)); }
 }

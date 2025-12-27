@@ -23,5 +23,52 @@ public class OverworldStrangeRegion1 extends Region
     @Override
     public void addBiomes(Registry<Biome> reg, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper)
     {
+        VanillaParameterOverlayBuilder builder = new VanillaParameterOverlayBuilder();
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.ICY)
+                .humidity(ParameterUtils.Humidity.HUMID)
+                .continentalness(ParameterUtils.Continentalness.FULL_RANGE)
+                .erosion(ParameterUtils.Erosion.FULL_RANGE)
+                .depth(Climate.Parameter.span(0.325F, 0.95F))
+                .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
+                .build().forEach(point -> builder.add(point, NeoBiomes.AMETHYST_CAVERNS));
+
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.COOL)
+                .humidity(ParameterUtils.Humidity.HUMID)
+                .continentalness(ParameterUtils.Continentalness.FULL_RANGE)
+                .erosion(ParameterUtils.Erosion.FULL_RANGE)
+                .depth(Climate.Parameter.span(0.325F, 0.95F))
+                .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
+                .build().forEach(point -> builder.add(point, NeoBiomes.AZURE_CAVERNS));
+
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.NEUTRAL)
+                .humidity(ParameterUtils.Humidity.HUMID)
+                .continentalness(ParameterUtils.Continentalness.FULL_RANGE)
+                .erosion(ParameterUtils.Erosion.FULL_RANGE)
+                .depth(Climate.Parameter.span(0.325F, 0.95F))
+                .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
+                .build().forEach(point -> builder.add(point, NeoBiomes.VERDANT_CAVERNS));
+
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.WARM)
+                .humidity(ParameterUtils.Humidity.HUMID)
+                .continentalness(ParameterUtils.Continentalness.FULL_RANGE)
+                .erosion(ParameterUtils.Erosion.FULL_RANGE)
+                .depth(Climate.Parameter.span(0.325F, 0.95F))
+                .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
+                .build().forEach(point -> builder.add(point, NeoBiomes.GILDED_CAVERNS));
+
+        new ParameterUtils.ParameterPointListBuilder()
+                .temperature(ParameterUtils.Temperature.HOT)
+                .humidity(ParameterUtils.Humidity.HUMID)
+                .continentalness(ParameterUtils.Continentalness.FULL_RANGE)
+                .erosion(ParameterUtils.Erosion.FULL_RANGE)
+                .depth(Climate.Parameter.span(0.325F, 0.95F))
+                .weirdness(ParameterUtils.Weirdness.FULL_RANGE)
+                .build().forEach(point -> builder.add(point, NeoBiomes.RUBY_CAVERNS));
+
+        builder.build().forEach(mapper::accept);
     }
 }

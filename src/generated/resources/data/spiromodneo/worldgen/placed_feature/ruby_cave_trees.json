@@ -1,0 +1,28 @@
+{
+  "feature": "spiromodneo:ruby_cave_trees",
+  "placement": [
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "absolute": 48
+        },
+        "min_inclusive": {
+          "above_bottom": 0
+        }
+      }
+    },
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 14,
+        "min_inclusive": 2
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

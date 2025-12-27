@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:block/cube",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#b"
+        },
+        "east": {
+          "texture": "#s"
+        },
+        "north": {
+          "texture": "#f"
+        },
+        "south": {
+          "texture": "#s"
+        },
+        "up": {
+          "texture": "#t"
+        },
+        "west": {
+          "texture": "#f"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "textures": {
+    "b": "spiromodneo:block/stonewood_planks",
+    "f": "spiromodneo:block/stonewood_crafting_table_front",
+    "particle": "spiromodneo:block/stonewood_crafting_table_front",
+    "s": "spiromodneo:block/stonewood_crafting_table_side",
+    "t": "spiromodneo:block/stonewood_crafting_table_top"
+  }
+}

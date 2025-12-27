@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#spiromodneo:is_amethyst_cavern",
+  "features": [
+    "spiromodneo:amethyst_cavern_veg",
+    "spiromodneo:amethyst_cave_trees"
+  ],
+  "step": "vegetal_decoration"
+}

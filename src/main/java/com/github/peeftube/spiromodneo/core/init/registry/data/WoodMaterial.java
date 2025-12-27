@@ -19,6 +19,8 @@ public enum WoodMaterial
     // Modded types
     ASHEN_OAK("ashen_oak", CustomTreeGrowers.ASHEN_OAK),
     ASHEN_BIRCH("ashen_birch", CustomTreeGrowers.ASHEN_BIRCH),
+    STONEWOOD("stonewood", CustomTreeGrowers.STONEWOOD,
+            false, false, true),
 
     // Modded tappables
     RUBBERWOOD("rubberwood", CustomTreeGrowers.RUBBERWOOD),
@@ -28,18 +30,29 @@ public enum WoodMaterial
     private final boolean netherFungusLike;
     private final boolean mangroveLike;
     private final TreeGrower treeGrower;
+    private final boolean stonePlantable;
 
     WoodMaterial(String name, TreeGrower treeGrower)
-    { this.name = name; this.treeGrower = treeGrower; this.netherFungusLike = false; this.mangroveLike = false; }
+    { this.name = name; this.treeGrower = treeGrower;
+        this.netherFungusLike = false; this.mangroveLike = false; this.stonePlantable = false; }
 
     WoodMaterial(String name, TreeGrower treeGrower, boolean isNetherFungusLike)
-    { this.name = name; this.treeGrower = treeGrower; this.netherFungusLike = isNetherFungusLike; this.mangroveLike = false; }
+    { this.name = name; this.treeGrower = treeGrower;
+        this.netherFungusLike = isNetherFungusLike; this.mangroveLike = false; this.stonePlantable = false; }
 
     WoodMaterial(String name, TreeGrower treeGrower, boolean isNetherFungusLike, boolean isMangroveLike)
-    { this.name = name; this.treeGrower = treeGrower; this.netherFungusLike = isNetherFungusLike; this.mangroveLike = isMangroveLike; }
+    { this.name = name; this.treeGrower = treeGrower;
+        this.netherFungusLike = isNetherFungusLike; this.mangroveLike = isMangroveLike; this.stonePlantable = false; }
+
+    WoodMaterial(String name, TreeGrower treeGrower, boolean isNetherFungusLike, boolean isMangroveLike,
+                 boolean stonePlantable)
+    { this.name = name; this.treeGrower = treeGrower;
+        this.netherFungusLike = isNetherFungusLike; this.mangroveLike = isMangroveLike;
+        this.stonePlantable = stonePlantable; }
 
     public String getName() { return name; }
     public boolean isLikeNetherFungus() { return netherFungusLike; }
     public boolean isLikeMangroves() { return mangroveLike; }
     public TreeGrower getGrower() { return treeGrower; }
+    public boolean isStonePlantable() { return stonePlantable; }
 }

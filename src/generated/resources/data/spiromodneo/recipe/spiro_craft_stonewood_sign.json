@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "spiromodneo:stonewood_planks"
+    }
+  },
+  "pattern": [
+    "XXX",
+    "XXX",
+    " I "
+  ],
+  "result": {
+    "count": 3,
+    "id": "spiromodneo:stonewood_sign"
+  }
+}

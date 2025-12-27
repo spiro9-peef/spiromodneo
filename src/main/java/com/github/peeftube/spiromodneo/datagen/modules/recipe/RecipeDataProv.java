@@ -1976,6 +1976,11 @@ public class RecipeDataProv extends RecipeProvider implements IConditionBuilder
 
     private void stringLikeHandler(RecipeOutput consumer)
     {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, Items.GREEN_WOOL)
+                        .requires(Registrar.PLANT_FIBRE.get(), 9)
+                        .unlockedBy("has_plant_fibre", has(Registrar.PLANT_FIBRE.get()))
+                        .save(consumer, RLUtility.makeRL(SpiroMod.MOD_ID, "spiro_plant_wool"));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.BOW)
                            .pattern(" /S")
                            .pattern("/ S")

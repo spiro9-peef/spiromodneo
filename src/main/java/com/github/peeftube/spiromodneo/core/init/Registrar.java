@@ -1,6 +1,7 @@
 package com.github.peeftube.spiromodneo.core.init;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
+import com.github.peeftube.spiromodneo.core.init.content.blocks.ExtensibleBerryBushBlock;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.ManualCrusherBlock;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.TapperBlock;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.entity.ExtensibleChestBlockEntity;
@@ -15,6 +16,7 @@ import com.github.peeftube.spiromodneo.util.MinMax;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.github.peeftube.spiromodneo.util.equipment.CustomArmorMaterial;
 import com.github.peeftube.spiromodneo.util.loot.SwapLootStackModifier;
+import com.github.peeftube.spiromodneo.util.wood.LivingWoodBlockType;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -22,6 +24,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.datafix.fixes.References;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -29,11 +32,13 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.SignBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.neoforged.bus.api.IEventBus;
@@ -138,6 +143,7 @@ public class Registrar
     public static final StoneCollection LIMBIPETRA_SET = StoneCollection.registerCollection(StoneMaterial.LIMBIPETRA);
 
     public static final DeferredItem<Item> SINEW = ITEMS.registerSimpleItem("sinew");
+    public static final DeferredItem<Item> PLANT_FIBRE = ITEMS.registerSimpleItem("plant_fibre");
 
     public static final DeferredItem<Item> SMALL_STONE = ITEMS.registerSimpleItem("small_stone");
 
@@ -258,10 +264,10 @@ public class Registrar
             new int[]{3, 5, 3, 2, 7}, SoundEvents.ARMOR_EQUIP_IRON, 4, 2.0F, 1.5F,
             () -> getIngotFromMetal(STEEL_METAL));
 
-    /** Copper equipment collection. */
+    /** Sharpwood equipment collection. */
     public static final EquipmentCollection SHARPWOOD_EQUIPMENT =
             EquipmentCollection.registerCollection(EquipmentMaterial.SHARPWOOD);
-    /** Copper equipment collection. */
+    /** Flint equipment collection. */
     public static final EquipmentCollection FLINT_EQUIPMENT =
             EquipmentCollection.registerCollection(EquipmentMaterial.FLINT);
     /** Copper equipment collection. */
@@ -320,11 +326,46 @@ public class Registrar
     public static final WoodCollection MANGROVE_WOOD = WoodCollection.registerCollection(WoodMaterial.MANGROVE);
     public static final WoodCollection ASHEN_OAK_WOOD = WoodCollection.registerCollection(WoodMaterial.ASHEN_OAK);
     public static final WoodCollection ASHEN_BIRCH_WOOD = WoodCollection.registerCollection(WoodMaterial.ASHEN_BIRCH);
+    public static final WoodCollection STONEWOOD = WoodCollection.registerCollection(WoodMaterial.STONEWOOD);
 
     public static final TappableWoodCollection RUBBER_WOOD =
             TappableWoodCollection.registerCollection(TappableWoodMaterial.RUBBERWOOD);
     public static final TappableWoodCollection MAPLE_WOOD =
             TappableWoodCollection.registerCollection(TappableWoodMaterial.MAPLE);
+
+    public static final VariableWoodCollection AZURE_STONEWOOD =
+            VariableWoodCollection.registerCollection(VariableWoodMaterial.AZURE_STONEWOOD, 11);
+    public static final VariableWoodCollection RUBY_STONEWOOD =
+            VariableWoodCollection.registerCollection(VariableWoodMaterial.RUBY_STONEWOOD, 11);
+    public static final VariableWoodCollection VERDANT_STONEWOOD =
+            VariableWoodCollection.registerCollection(VariableWoodMaterial.VERDANT_STONEWOOD, 11);
+    public static final VariableWoodCollection GILDED_STONEWOOD =
+            VariableWoodCollection.registerCollection(VariableWoodMaterial.GILDED_STONEWOOD, 11);
+    public static final VariableWoodCollection AMETHYST_STONEWOOD =
+            VariableWoodCollection.registerCollection(VariableWoodMaterial.AMETHYST_STONEWOOD, 11);
+
+    public static final MossCollection GENERIC_MOSS =
+            MossCollection.registerCollection(MossMaterial.MOSS);
+    public static final MossCollection AZURE_GLOWMOSS =
+            MossCollection.registerCollection(MossMaterial.AZURE_GLOWMOSS, 6);
+    public static final MossCollection RUBY_GLOWMOSS =
+            MossCollection.registerCollection(MossMaterial.RUBY_GLOWMOSS, 6);
+    public static final MossCollection VERDANT_GLOWMOSS =
+            MossCollection.registerCollection(MossMaterial.VERDANT_GLOWMOSS, 6);
+    public static final MossCollection GILDED_GLOWMOSS =
+            MossCollection.registerCollection(MossMaterial.GILDED_GLOWMOSS, 6);
+    public static final MossCollection AMETHYST_GLOWMOSS =
+            MossCollection.registerCollection(MossMaterial.AMETHYST_GLOWMOSS, 6);
+
+    public static final DeferredBlock<Block> PHANTOM_BERRY_BUSH = BLOCKS.register("phantom_berry_bush",
+            () -> new ExtensibleBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)
+                    .lightLevel(s -> {
+                        if (s.getValue(BlockStateProperties.AGE_3) < 2) return 6;
+                        else if (s.getValue(BlockStateProperties.AGE_3) == 2) return 10;
+                        else return 14;
+                    }), "phantom_berries", new Item.Properties().food(
+                            new FoodProperties.Builder().nutrition(2).saturationModifier(0.15f).build()),
+                    true));
 
     // Going to try setting the order of features lower, maybe this will fix weird bugs I'm having
     public static final DeferredHolder<Feature<?>, GroundStoneFeature> GROUND_STONE_FEATURE =
@@ -333,11 +374,36 @@ public class Registrar
     // Language key for creative tabs
     public static final String TAB_TITLE_KEY_FORMULAIC = "itemGroup." + SpiroMod.MOD_ID;
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MINERALS_TAB = CREATIVE_MODE_TABS.register("minerals_tab",
-            () -> CreativeModeTab.builder().title(Component.translatable(TAB_TITLE_KEY_FORMULAIC + ".minerals_tab"))
-                                 .withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> RUBY_ORES.getRawOre().getRawItem().get().getDefaultInstance())
-                                 .displayItems((parameters, output) -> { output.acceptAll(CTProcessor.precacheMineralsTab()); })
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MINERALS_TAB =
+            CREATIVE_MODE_TABS.register("minerals_tab", () ->
+                    CreativeModeTab.builder()
+                            .title(Component.translatable(TAB_TITLE_KEY_FORMULAIC + ".minerals_tab"))
+                                 .withTabsBefore(CreativeModeTabs.COMBAT).icon(() ->
+                                        RUBY_ORES.getRawOre().getRawItem().get().getDefaultInstance())
+                                 .displayItems((parameters, output) ->
+                                        { output.acceptAll(CTProcessor.precacheMineralsTab()); })
                                  .build());
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WOODS_TAB =
+            CREATIVE_MODE_TABS.register("woods_tab", () ->
+                    CreativeModeTab.builder()
+                            .title(Component.translatable(TAB_TITLE_KEY_FORMULAIC + ".woods_tab"))
+                                .withTabsBefore(MINERALS_TAB.getKey()).icon(() ->
+                                    RUBBER_WOOD.wood().bulkData().livingWood().get(LivingWoodBlockType.LOG)
+                                            .getItem().get().asItem().getDefaultInstance())
+                                .displayItems((parameters, output) ->
+                                    { output.acceptAll(CTProcessor.precacheWoodsTab()); })
+                            .build());
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> STONE_TAB =
+            CREATIVE_MODE_TABS.register("stone_tab", () ->
+                    CreativeModeTab.builder()
+                            .title(Component.translatable(TAB_TITLE_KEY_FORMULAIC + ".stone_tab"))
+                                .withTabsBefore(WOODS_TAB.getKey()).icon(() ->
+                                    CALCITE_SET.getBaseStone().get().asItem().getDefaultInstance())
+                                .displayItems((parameters, output) ->
+                                    { output.acceptAll(CTProcessor.precacheStoneTab()); })
+                            .build());
 
     public static final Item getIngotFromMetal(MetalCollection metal)
     { return metal.ingotData().getIngot().get(); }

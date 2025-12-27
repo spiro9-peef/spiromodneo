@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "textures": {
+    "bottom": "spiromodneo:block/stonewood_door_bottom",
+    "top": "spiromodneo:block/stonewood_door_top"
+  }
+}

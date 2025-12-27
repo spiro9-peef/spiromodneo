@@ -76,4 +76,7 @@ public record WoodCollection(WoodMaterial type, WoodData bulkData) implements Wo
     { return this.bulkData.signs().get(SignType.HANGING).getSign().get(); }
     public Block getWallHangingSignAsBlock()
     { return this.bulkData.signs().get(SignType.HANGING).getWallSign().get(); }
+
+    public boolean isVariableType()
+    { return this.bulkData().isVariableWoodType(); }
 }

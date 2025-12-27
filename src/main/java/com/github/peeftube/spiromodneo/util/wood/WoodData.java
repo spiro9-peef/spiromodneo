@@ -12,6 +12,7 @@ public record WoodData(String name,
                        TagCoupling plankTags,
                        Map<ManufacturedWoodType, GenericBlockItemCoupling> manufacturables,
                        Map<SignType, SignBlockItemTriad> signs/*, TODO: add support for boats
-                       Supplier<? extends Item> boat, Supplier<? extends Item> boatWithChest */)
+                       Supplier<? extends Item> boat, Supplier<? extends Item> boatWithChest */,
+                       boolean isVariableWoodType)
 {
 }

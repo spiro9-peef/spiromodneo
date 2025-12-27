@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:chain"
+    },
+    "X": {
+      "item": "spiromodneo:stripped_stonewood_log"
+    }
+  },
+  "pattern": [
+    "# #",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "count": 6,
+    "id": "spiromodneo:stonewood_hanging_sign"
+  }
+}

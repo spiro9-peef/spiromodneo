@@ -10,6 +10,7 @@ import com.github.peeftube.spiromodneo.util.wood.ManufacturedWoodType;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.ChunkRenderTypeSet;
 
@@ -28,6 +29,21 @@ public class InitializeBlockRenderTypes
 
         // Wood set handling.
         for (WoodCollection wood : WoodCollection.WOOD_COLLECTIONS) { woodSettings(wood); }
+        for (VariableWoodCollection w : VariableWoodCollection.VARIABLE_WOOD_COLLECTIONS) { variableWoodSettings(w); }
+
+        // Berry bushes?
+        ItemBlockRenderTypes.setRenderLayer(Registrar.PHANTOM_BERRY_BUSH.get(),
+                ChunkRenderTypeSet.of(RenderType.CUTOUT));
+    }
+
+    protected static void variableWoodSettings(VariableWoodCollection set)
+    {
+        ItemBlockRenderTypes.setRenderLayer(
+                set.leaves().getBlock().get(),
+                ChunkRenderTypeSet.of(RenderType.TRANSLUCENT));
+        ItemBlockRenderTypes.setRenderLayer(
+                set.sapling().getBlock().get(),
+                ChunkRenderTypeSet.of(RenderType.TRANSLUCENT));
     }
 
     protected static void woodSettings(WoodCollection set)

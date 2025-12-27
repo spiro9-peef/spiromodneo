@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_table",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:blocks/tall_seagrass"
+    }
+  ],
+  "table": "spiromodneo:mobs/plant_fibre_drops_heavy"
+}
