@@ -280,10 +280,10 @@ public class SpiroMod
             float timeOffset = (System.currentTimeMillis() % 100000L) * 0.002f;
 
             float scale = 1.0f / 1024.0f;
-            float nX = (p.getX() * timeOffset) * scale;
+            float nX = (p.getX() + timeOffset) * scale;
             float nY = p.getY() * scale;
-            float nZ = (p.getZ() * timeOffset) * scale;
-            double r = (((r0 * 0.5) + (r1 * 0.275) + (r2 * 0.225)) + (1.0 + n2.GetNoise(nX, nY, nZ) * 0.8)) 2;
+            float nZ = (p.getZ() + timeOffset) * scale;
+            double r = (((r0 * 0.5) + (r1 * 0.275) + (r2 * 0.225)) + (1.0 + n2.GetNoise(nX, nY, nZ) * 1.7)) / 2;
 
             int modR = Math.clamp((int)(isoR * r), 0, 255);
             int modG = Math.clamp((int)(isoG * r), 0, 255);
