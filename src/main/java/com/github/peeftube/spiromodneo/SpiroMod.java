@@ -249,7 +249,7 @@ public class SpiroMod
             FastNoiseLite n0 = new FastNoiseLite();
             n0.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n0.SetSeed(c);
-            double x0 = n0.GetNoise(p.getX(), p.getY(), p.getZ());
+            double x0 = 1.0 + (n0.GetNoise(p.getX(), p.getY(), p.getZ()) * 0.1);
 
             int modR = Math.clamp((int)(isoR * x0), 0, 255);
             int modG = Math.clamp((int)(isoG * x0), 0, 255);
