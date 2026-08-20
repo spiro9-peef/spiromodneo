@@ -122,7 +122,13 @@ public class TappableWoodBlock extends WoodBlock
 
             if (toRun)
             {
-                Direction d = level.getBlockState(neighborPos).getValue(TapperBlock.FACING);
+                // Credit to Google Gemini for figuring this part out!
+                Direction d = Direction.getNearest(
+                        neighborPos.getX() - pos.getX(),
+                        neighborPos.getY() - pos.getY(),
+                        neighborPos.getZ() - pos.getZ());
+                // Gemini citation ends.
+
                 switch (d)
                 {
                     case SOUTH -> state = state.setValue(SOUTH, false).setValue(TAPPED, false);
