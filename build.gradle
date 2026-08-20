@@ -23,6 +23,13 @@ repositories {
     maven { url = 'https://maven.minecraftforge.net/' }
 
     maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+
+    maven {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
@@ -140,6 +147,8 @@ dependencies {
     // implementation project(":myproject")
 
     implementation "com.github.glitchfiend:TerraBlender-neoforge:${minecraft_version}-${terrablender_version}"
+    implementation "curse.maven:platform-${cf_platform_pid}:${cf_platform_fid}"
+    implementation "curse.maven:vanillabackport-${cf_vanillaback_pid}:${cf_vanillaback_fid}"
 
     // Used to optionally implement pixelmon. For now, we don't want this in.
     // implementation("maven.modrinth:pixelmon:${pixelmon_version}")
