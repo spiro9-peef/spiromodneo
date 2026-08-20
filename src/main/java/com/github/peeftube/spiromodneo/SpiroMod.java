@@ -147,28 +147,18 @@ public class SpiroMod
         {
             for (Soil s : Soil.values())
             {
-                if (s != Soil.DIRT)
-                {
-                    event.register((st, l, p, i) ->
-                            {
-                                if (l != null && p != null)
-                                { return noiseBasedColorMod(BiomeColors.getAverageGrassColor(l, p), p); }
-                                else { return GrassColor.getDefaultColor(); }
-                            },
-                            Registrar.GRASS_TYPE.bulkData().get(s).getBlock().get(),
-                            Registrar.VITALIUM_TYPE.bulkData().get(s).getBlock().get());
-                }
-                else
-                {
-                    event.register((st, l, p, i) ->
-                            {
-                                if (l != null && p != null)
-                                { return noiseBasedColorMod(BiomeColors.getAverageGrassColor(l, p), p); }
-                                else { return GrassColor.getDefaultColor(); }
-                            },
-                            Registrar.GRASS_TYPE.bulkData().get(s).getBlock().get(),
-                            Registrar.VITALIUM_TYPE.bulkData().get(s).getBlock().get());
-                }
+                event.register((st, l, p, i) ->
+                        {
+                            if (l != null && p != null)
+                            { return noiseBasedColorMod(BiomeColors.getAverageGrassColor(l, p), p); }
+                            else { return GrassColor.getDefaultColor(); }
+                        },
+                        Blocks.SHORT_GRASS,
+                        Blocks.TALL_GRASS,
+                        Blocks.FERN,
+                        Blocks.LARGE_FERN,
+                        Registrar.GRASS_TYPE.bulkData().get(s).getBlock().get(),
+                        Registrar.VITALIUM_TYPE.bulkData().get(s).getBlock().get());
             }
 
             event.register((st, l, p, i) ->
