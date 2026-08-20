@@ -271,12 +271,19 @@ public class SpiroMod
             n2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n2.SetSeed(posHash);
 
-            float nX2 = p.getX() * (scale1 * 3);
-            float nY2 = p.getY() * (scale1 * 3);
-            float nZ2 = p.getZ() * (scale1 * 3);
+            float nX2 = p.getX() * (scale1 * 8);
+            float nY2 = p.getY() * (scale1 * 8);
+            float nZ2 = p.getZ() * (scale1 * 8);
             double r2 = 1.0 + (n2.GetNoise(nX2, nY2, nZ2) * 0.2);
 
-            double r = (r0 * 0.5) + (r1 * 0.35) + (r2 * 0.15);
+            // Slow down time so the wind drifts at a natural pace
+            float timeOffset = (System.currentTimeMillis() % 100000L) * 0.002f;
+
+            float scale = 1.0f / 1024.0f;
+            float nX = (p.getX() * timeOffset) * scale;
+            float nY = p.getY() * scale;
+            float nZ = (p.getZ() * timeOffset) * scale;
+            double r = (((r0 * 0.5) + (r1 * 0.275) + (r2 * 0.225)) + (1.0 + n2.GetNoise(nX, nY, nZ) * 0.8)) / 2;
 
             int modR = Math.clamp((int)(isoR * r), 0, 255);
             int modG = Math.clamp((int)(isoG * r), 0, 255);
