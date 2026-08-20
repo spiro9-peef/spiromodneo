@@ -131,10 +131,10 @@ public class TappableWoodBlock extends WoodBlock
 
                 switch (d)
                 {
-                    case SOUTH -> state = state.setValue(SOUTH, false).setValue(TAPPED, false);
-                    case NORTH -> state = state.setValue(NORTH, false).setValue(TAPPED, false);
-                    case EAST -> state = state.setValue(EAST, false).setValue(TAPPED, false);
-                    case WEST -> state = state.setValue(WEST, false).setValue(TAPPED, false);
+                    case SOUTH -> state = state.setValue(SOUTH, false);
+                    case NORTH -> state = state.setValue(NORTH, false);
+                    case EAST -> state = state.setValue(EAST, false);
+                    case WEST -> state = state.setValue(WEST, false);
                 }
 
                 level.setBlock(pos, state, 3);

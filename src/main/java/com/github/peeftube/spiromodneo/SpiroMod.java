@@ -12,9 +12,12 @@ import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.custom
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.custombiome.OverworldCustomRegionSourceRules;
 import com.github.peeftube.spiromodneo.util.RLUtility;
 import com.github.peeftube.spiromodneo.util.moss.MossType;
+import external.com.github.auburn.fastnoiselite.FastNoiseLite;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -148,7 +151,8 @@ public class SpiroMod
                 {
                     event.register((st, l, p, i) ->
                             {
-                                if (l != null && p != null) { return BiomeColors.getAverageGrassColor(l, p); }
+                                if (l != null && p != null)
+                                { return noiseBasedColorMod(BiomeColors.getAverageGrassColor(l, p), p); }
                                 else { return GrassColor.getDefaultColor(); }
                             },
                             Registrar.GRASS_TYPE.bulkData().get(s).getBlock().get(),
@@ -158,50 +162,67 @@ public class SpiroMod
                 {
                     event.register((st, l, p, i) ->
                             {
-                                if (l != null && p != null) { return BiomeColors.getAverageGrassColor(l, p); }
+                                if (l != null && p != null)
+                                { return noiseBasedColorMod(BiomeColors.getAverageGrassColor(l, p), p); }
                                 else { return GrassColor.getDefaultColor(); }
                             },
+                            Registrar.GRASS_TYPE.bulkData().get(s).getBlock().get(),
                             Registrar.VITALIUM_TYPE.bulkData().get(s).getBlock().get());
                 }
             }
 
             event.register((st, l, p, i) ->
-            { return FoliageColor.getBirchColor(); }, Registrar.ASHEN_BIRCH_WOOD.getBaseLeaves().get());
+                    p != null ? noiseBasedColorMod(FoliageColor.getBirchColor(), p) : FoliageColor.getBirchColor(),
+
+                    Blocks.BIRCH_LEAVES,
+                    Registrar.ASHEN_BIRCH_WOOD.getBaseLeaves().get());
 
             event.register((st, l, p, i) ->
                     {
-                        if (l != null && p != null) { return BiomeColors.getAverageFoliageColor(l, p); }
+                        if (l != null && p != null)
+                        { return noiseBasedColorMod(BiomeColors.getAverageFoliageColor(l, p), p); }
                         else { return FoliageColor.getDefaultColor(); }
                     },
+                    Blocks.ACACIA_LEAVES,
+                    Blocks.DARK_OAK_LEAVES,
+                    Blocks.JUNGLE_LEAVES,
+                    Blocks.MANGROVE_LEAVES,
+                    Blocks.OAK_LEAVES,
+                    Blocks.SPRUCE_LEAVES,
                     Registrar.ASHEN_OAK_WOOD.getBaseLeaves().get(),
                     Registrar.RUBBER_WOOD.wood().getBaseLeaves().get(),
                     Registrar.MAPLE_WOOD.wood().getBaseLeaves().get());
 
-            event.register((st, l, p, i) -> -10784593,
+            event.register((st, l, p, i) ->
+                            p != null ? noiseBasedColorMod(-10784593, p) : -10784593,
                     Registrar.AZURE_STONEWOOD.leaves().getBlock().get(),
                     Registrar.AZURE_STONEWOOD.sapling().getBlock().get(),
                     Registrar.AZURE_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
                     Registrar.AZURE_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
 
-            event.register((st, l, p, i) -> -5744252,
+            event.register((st, l, p, i) ->
+                            p != null ? noiseBasedColorMod(-5744252, p) : -5744252,
                     Registrar.RUBY_STONEWOOD.leaves().getBlock().get(),
                     Registrar.RUBY_STONEWOOD.sapling().getBlock().get(),
                     Registrar.RUBY_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
                     Registrar.RUBY_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
 
-            event.register((st, l, p, i) -> -10835342,
+            event.register((st, l, p, i) ->
+                            p != null ? noiseBasedColorMod(-10835342, p) : -10835342,
                     Registrar.VERDANT_STONEWOOD.leaves().getBlock().get(),
                     Registrar.VERDANT_STONEWOOD.sapling().getBlock().get(),
                     Registrar.VERDANT_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
                     Registrar.VERDANT_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
 
-            event.register((st, l, p, i) -> -6052521,
+            event.register((st, l, p, i) ->
+                            p != null ? noiseBasedColorMod(-6052521, p) : -6052521,
                     Registrar.GILDED_STONEWOOD.leaves().getBlock().get(),
                     Registrar.GILDED_STONEWOOD.sapling().getBlock().get(),
                     Registrar.GILDED_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
                     Registrar.GILDED_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
 
-            event.register((st, l, p, i) -> -7906643,
+            event.register((st, l, p, i) ->
+                            p != null ? noiseBasedColorMod(-7906643, p) : -7906643,
                     Registrar.AMETHYST_STONEWOOD.leaves().getBlock().get(),
                     Registrar.AMETHYST_STONEWOOD.sapling().getBlock().get(),
                     Registrar.AMETHYST_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
@@ -216,6 +237,25 @@ public class SpiroMod
 
             event.registerBlockEntityRenderer(Registrar.SIGN_ENTITYTYPE.get(), SignRenderer::new);
             event.registerBlockEntityRenderer(Registrar.HANGING_SIGN_ENTITYTYPE.get(), HangingSignRenderer::new);
+        }
+
+        private static int noiseBasedColorMod(int c, BlockPos p)
+        {
+            int isoR = (c >> 16) & 0xFF;
+            int isoG = (c >> 8) & 0xFF;
+            int isoB = c & 0xFF;
+            int isoA = (c >> 24) & 0xFF; // Usually 255 or 0xFF for opaque blocks
+
+            FastNoiseLite n0 = new FastNoiseLite();
+            n0.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+            n0.SetSeed(c);
+            double x0 = n0.GetNoise(p.getX(), p.getY(), p.getZ());
+
+            int modR = Math.clamp((int)(isoR * x0), 0, 255);
+            int modG = Math.clamp((int)(isoG * x0), 0, 255);
+            int modB = Math.clamp((int)(isoB * x0), 0, 255);
+
+            return (isoA << 24) | (modR << 16) | (modG << 8) | modB;
         }
     }
 }
