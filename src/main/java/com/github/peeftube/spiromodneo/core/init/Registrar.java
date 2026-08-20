@@ -12,7 +12,7 @@ import com.github.peeftube.spiromodneo.core.init.creative.CTProcessor;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherMenu;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.GroundStoneFeature;
-import com.github.peeftube.spiromodneo.util.MinMax;
+import com.github.peeftube.spiromodneo.util.MathUtils;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.github.peeftube.spiromodneo.util.equipment.CustomArmorMaterial;
 import com.github.peeftube.spiromodneo.util.loot.SwapLootStackModifier;
@@ -283,25 +283,25 @@ public class Registrar
     public static final OreCollection COAL_ORES = OreCollection.registerCollection(OreMaterial.COAL);
     public static final OreCollection IRON_ORES = OreCollection.registerCollection(OreMaterial.IRON);
     public static final OreCollection COPPER_ORES = OreCollection.registerCollection(OreMaterial.COPPER,
-            new MinMax(2, 5));
+            new MathUtils.MinMax(2, 5));
     public static final OreCollection GOLD_ORES = OreCollection.registerCollection(OreMaterial.GOLD);
     public static final OreCollection LAPIS_ORES = OreCollection.registerCollection(OreMaterial.LAPIS,
-            new MinMax(2, 5));
+            new MathUtils.MinMax(2, 5));
     public static final OreCollection REDSTONE_ORES = OreCollection.registerCollection(OreMaterial.REDSTONE,
-            new MinMax(2, 5));
+            new MathUtils.MinMax(2, 5));
     public static final OreCollection DIAMOND_ORES = OreCollection.registerCollection(OreMaterial.DIAMOND);
     public static final OreCollection EMERALD_ORES = OreCollection.registerCollection(OreMaterial.EMERALD);
     public static final OreCollection QUARTZ_ORES = OreCollection.registerCollection(OreMaterial.QUARTZ,
-            new MinMax(2, 5));
+            new MathUtils.MinMax(2, 5));
     public static final OreCollection RUBY_ORES = OreCollection.registerCollection(OreMaterial.RUBY);
     public static final OreCollection LEAD_ORES = OreCollection.registerCollection(OreMaterial.LEAD,
-            new MinMax(1, 3));
+            new MathUtils.MinMax(1, 3));
     public static final OreCollection METHANE_ICE_ORES = OreCollection.registerCollection(OreMaterial.METHANE_ICE,
-            new MinMax(1, 3), FuelOreData.asFuel(120.0f)); // 120s = 2400t, 150% of coal/charcoal
+            new MathUtils.MinMax(1, 3), FuelOreData.asFuel(120.0f)); // 120s = 2400t, 150% of coal/charcoal
     public static final OreCollection CRIMSONITE_ORES = OreCollection.registerCollection(OreMaterial.CRIMSONITE,
-            new MinMax(2, 5));
+            new MathUtils.MinMax(2, 5));
     public static final OreCollection STRAVIMITE_ORES = OreCollection.registerCollection(OreMaterial.STRAVIMITE,
-            new MinMax(2, 5), 10);
+            new MathUtils.MinMax(2, 5), 10);
 
     public static final GrassLikeCollection GRASS_TYPE =
             GrassLikeCollection.registerCollection(GrassLike.GRASS);

@@ -1,7 +1,7 @@
 package com.github.peeftube.spiromodneo.core.init.registry.data;
 
 import com.github.peeftube.spiromodneo.core.init.Registrar;
-import com.github.peeftube.spiromodneo.util.MinMax;
+import com.github.peeftube.spiromodneo.util.MathUtils;
 import com.github.peeftube.spiromodneo.util.TagCoupling;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.github.peeftube.spiromodneo.util.ore.*;
@@ -27,21 +27,21 @@ public record OreCollection(OreMaterial material, Map<StoneMaterial, OreCoupling
     public static List<OreCollection> ORE_COLLECTIONS = new ArrayList<>();
 
     public static OreCollection registerCollection(OreMaterial material)
-    { return registerCollection(material, 0, new MinMax(1, 1), FuelOreData.nonFuel()); }
+    { return registerCollection(material, 0, new MathUtils.MinMax(1, 1), FuelOreData.nonFuel()); }
 
     public static OreCollection registerCollection(OreMaterial material, int li)
-    { return registerCollection(material, li, new MinMax(1, 1), FuelOreData.nonFuel()); }
+    { return registerCollection(material, li, new MathUtils.MinMax(1, 1), FuelOreData.nonFuel()); }
 
-    public static OreCollection registerCollection(OreMaterial material, MinMax minMax)
+    public static OreCollection registerCollection(OreMaterial material, MathUtils.MinMax minMax)
     { return registerCollection(material, 0, minMax, FuelOreData.nonFuel()); }
 
-    public static OreCollection registerCollection(OreMaterial material, MinMax minMax, int li)
+    public static OreCollection registerCollection(OreMaterial material, MathUtils.MinMax minMax, int li)
     { return registerCollection(material, li, minMax, FuelOreData.nonFuel()); }
 
-    public static OreCollection registerCollection(OreMaterial material, MinMax minMax, FuelOreData fuel)
+    public static OreCollection registerCollection(OreMaterial material, MathUtils.MinMax minMax, FuelOreData fuel)
     { return registerCollection(material, 0, minMax, fuel); }
 
-    public static OreCollection registerCollection(OreMaterial material, int lightEmissionLevel, MinMax minMax,
+    public static OreCollection registerCollection(OreMaterial material, int lightEmissionLevel, MathUtils.MinMax minMax,
             FuelOreData fuel)
     {
         String oreName = material.get() + "_ore";
@@ -83,8 +83,8 @@ public record OreCollection(OreMaterial material, Map<StoneMaterial, OreCoupling
         TagKey<Item> itemTag = SpiroTags.Items.tag(tagkey);
         TagCoupling  tags    = new TagCoupling(blockTag, itemTag);
 
-        NumberProvider oreDrops = (MinMax.getMin() == MinMax.getMax()) ? ConstantValue.exactly(MinMax.getMin()) :
-                UniformGenerator.between(MinMax.getMin(), MinMax.getMax());
+        NumberProvider oreDrops = (MathUtils.MinMax.getMin() == MathUtils.MinMax.getMax()) ? ConstantValue.exactly(MathUtils.MinMax.getMin()) :
+                UniformGenerator.between(MathUtils.MinMax.getMin(), MathUtils.MinMax.getMax());
 
         OreCollection collection = new OreCollection(material, mappings, OreUtilities.determineRawOre(material, li),
                 tags, oreDrops, fuel);

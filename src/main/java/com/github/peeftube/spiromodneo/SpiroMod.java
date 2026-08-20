@@ -12,6 +12,7 @@ import com.github.peeftube.spiromodneo.core.init.registry.data.Soil;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherScreen;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.custombiome.NetherColdRegionSourceRules;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.custombiome.OverworldCustomRegionSourceRules;
+import com.github.peeftube.spiromodneo.util.MathUtils;
 import com.github.peeftube.spiromodneo.util.RLUtility;
 import com.github.peeftube.spiromodneo.util.moss.MossType;
 import external.com.github.auburn.fastnoiselite.FastNoiseLite;
@@ -182,13 +183,18 @@ public class SpiroMod
                     Blocks.MANGROVE_LEAVES,
                     Blocks.OAK_LEAVES,
                     Blocks.SPRUCE_LEAVES,
-                    ModBlocks.PALE_OAK_LEAVES.get(),
-                    ModBlocks.PALE_MOSS_BLOCK.get(),
-                    ModBlocks.PALE_MOSS_CARPET.get(),
-                    ModBlocks.PALE_HANGING_MOSS.get(),
                     Registrar.ASHEN_OAK_WOOD.getBaseLeaves().get(),
                     Registrar.RUBBER_WOOD.wood().getBaseLeaves().get(),
                     Registrar.MAPLE_WOOD.wood().getBaseLeaves().get());
+
+            event.register((st, l, p, i) ->
+                            p != null ? noiseBasedColorMod(-1, p) : -1,
+                    Blocks.MOSS_BLOCK,
+                    Blocks.MOSS_CARPET,
+                    ModBlocks.PALE_OAK_LEAVES.get(),
+                    ModBlocks.PALE_MOSS_BLOCK.get(),
+                    ModBlocks.PALE_MOSS_CARPET.get(),
+                    ModBlocks.PALE_HANGING_MOSS.get());
 
             event.register((st, l, p, i) ->
                             p != null ? noiseBasedColorMod(-10784593, p) : -10784593,
@@ -246,33 +252,23 @@ public class SpiroMod
             FastNoiseLite n0 = new FastNoiseLite();
             n0.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n0.SetSeed(1202412885);
+            n0.SetFrequency(MathUtils.getFracInv(1024.0f));
 
-            float scale0 = 1024.0f;
-            float nX0 = p.getX() * scale0;
-            float nY0 = p.getY() * scale0;
-            float nZ0 = p.getZ() * scale0;
-            double r0 = (n0.GetNoise(nX0, nY0, nZ0) * 0.25);
+            double r0 = (n0.GetNoise(p.getX(), p.getY(), p.getZ()) * 0.25);
 
             FastNoiseLite n1 = new FastNoiseLite();
             n1.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n1.SetSeed(13265943);
+            n1.SetFrequency(MathUtils.getFracInv(768.0f));
 
-            float scale1 = 768.0f;
-            float nX1 = p.getX() * scale1;
-            float nY1 = p.getY() * scale1;
-            float nZ1 = p.getZ() * scale1;
-            double r1 = (n1.GetNoise(nX1, nY1, nZ1) * 0.13);
+            double r1 = (n1.GetNoise(p.getX(), p.getY(), p.getZ()) * 0.125);
 
-            int posHash = (p.getX() * 73856093) ^ (p.getY() * 19349663) ^ (p.getZ() * 83492791);
             FastNoiseLite n2 = new FastNoiseLite();
             n2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n2.SetSeed(-236501);
+            n2.SetFrequency(MathUtils.getFracInv(384.0f));
 
-            float scale2 = 384.0f;
-            float nX2 = p.getX() * scale2;
-            float nY2 = p.getY() * scale2;
-            float nZ2 = p.getZ() * scale2;
-            double r2 = (n2.GetNoise(nX2, nY2, nZ2) * 0.07);
+            double r2 = (n2.GetNoise(p.getX(), p.getY(), p.getZ()) * 0.0625);
 
             double r = 1.0 + r0 + r1 + r2;
 
