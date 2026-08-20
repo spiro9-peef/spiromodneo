@@ -250,7 +250,7 @@ public class SpiroMod
             n0.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n0.SetSeed(1202412885);
 
-            float scale0 = 1.0f / 64.0f;
+            float scale0 = 1.0f / 32.0f;
             float nX0 = p.getX() * scale0;
             float nY0 = p.getY() * scale0;
             float nZ0 = p.getZ() * scale0;
@@ -260,7 +260,7 @@ public class SpiroMod
             n1.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n1.SetSeed(13265943);
 
-            float scale1 = 1.0f / 32.0f;
+            float scale1 = 1.0f / 16.0f;
             float nX1 = p.getX() * scale1;
             float nY1 = p.getY() * scale1;
             float nZ1 = p.getZ() * scale1;
@@ -279,13 +279,13 @@ public class SpiroMod
             // Slow down time so the wind drifts at a natural pace
             float timeOffset = (System.currentTimeMillis() % 100000L) * 0.002f;
 
-            float scale = 1.0f / 1024.0f;
+            float scale = 1.0f / 256.0f; // Should be bigger to feel like rolling winds
             float nX = (p.getX() + timeOffset) * scale;
             float nY = p.getY() * scale;
-            float nZ = (p.getZ() + timeOffset) * scale;
-            double rW = n0.GetNoise(nX, nY, nZ) * 0.333; // Faux wind multiplier
+            float nZ = (p.getZ() + timeOffset) * (scale * 1.33f); // 133% scale to give an uneven scroll
+            double rW = n0.GetNoise(nX, nY, nZ) * 0.675; // Faux wind multiplier
 
-            double rF = (r0 * 0.5) + (r1 * 0.275) + (r2 * 0.225);
+            double rF = (((r0 * 0.75) + (r1 * 0.4) + (r2 * 0.35)) + ((r0 + r1 + r2) / 2)) / 1.75;
             double r = rF + rW;
 
             int modR = Math.clamp((int)(isoR * r), 0, 255);
