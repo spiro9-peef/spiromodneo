@@ -1,5 +1,6 @@
 package com.github.peeftube.spiromodneo.core.init.content.blocks;
 
+import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Tappable;
 import net.minecraft.core.BlockPos;
@@ -54,34 +55,34 @@ public class TappableWoodBlock extends WoodBlock
 
         if (random.nextInt(7) == 0)
         {
-            if (state.getValue(NORTH) && isNorth &&
+            if ((state.getValue(NORTH) || isNorth) &&
                     level.getBlockState(pos.offset(Direction.NORTH.getNormal())).is(Registrar.TAPPER.get()))
             { level.setBlock(pos.offset(Direction.NORTH.getNormal()),
                     level.getBlockState(pos.offset(Direction.NORTH.getNormal()))
                    .setValue(TapperBlock.FILL, Math.clamp(
                    level.getBlockState(pos.offset(Direction.NORTH.getNormal())).getValue(TapperBlock.FILL) + 1, 0, 3))
-                   .setValue(TapperBlock.OUTPUT, this.tapOutput), 0); }
-            if (state.getValue(EAST) && isEast &&
+                   .setValue(TapperBlock.OUTPUT, this.tapOutput), 3); }
+            if ((state.getValue(EAST) || isEast) &&
                     level.getBlockState(pos.offset(Direction.EAST.getNormal())).is(Registrar.TAPPER.get()))
             { level.setBlock(pos.offset(Direction.EAST.getNormal()),
                     level.getBlockState(pos.offset(Direction.EAST.getNormal()))
                    .setValue(TapperBlock.FILL, Math.clamp(
                    level.getBlockState(pos.offset(Direction.EAST.getNormal())).getValue(TapperBlock.FILL) + 1, 0, 3))
-                   .setValue(TapperBlock.OUTPUT, this.tapOutput), 0); }
-            if (state.getValue(WEST) && isWest &&
+                   .setValue(TapperBlock.OUTPUT, this.tapOutput), 3); }
+            if ((state.getValue(WEST) || isWest) &&
                     level.getBlockState(pos.offset(Direction.WEST.getNormal())).is(Registrar.TAPPER.get()))
             { level.setBlock(pos.offset(Direction.WEST.getNormal()),
                     level.getBlockState(pos.offset(Direction.WEST.getNormal()))
                    .setValue(TapperBlock.FILL, Math.clamp(
                    level.getBlockState(pos.offset(Direction.WEST.getNormal())).getValue(TapperBlock.FILL) + 1, 0, 3))
-                   .setValue(TapperBlock.OUTPUT, this.tapOutput), 0); }
-            if (state.getValue(SOUTH) && isSouth &&
+                   .setValue(TapperBlock.OUTPUT, this.tapOutput), 3); }
+            if ((state.getValue(SOUTH) || isSouth) &&
                     level.getBlockState(pos.offset(Direction.SOUTH.getNormal())).is(Registrar.TAPPER.get()))
             { level.setBlock(pos.offset(Direction.SOUTH.getNormal()),
                     level.getBlockState(pos.offset(Direction.SOUTH.getNormal()))
                    .setValue(TapperBlock.FILL, Math.clamp(
                    level.getBlockState(pos.offset(Direction.SOUTH.getNormal())).getValue(TapperBlock.FILL) + 1, 0, 3))
-                    .setValue(TapperBlock.OUTPUT, this.tapOutput), 0); }
+                    .setValue(TapperBlock.OUTPUT, this.tapOutput), 3); }
         }
 
         if (!isNorth) level.setBlock(pos, state.setValue(NORTH, false), 3);
@@ -113,6 +114,25 @@ public class TappableWoodBlock extends WoodBlock
             level.setBlock(pos, state, 3);
             level.setBlock(neighborPos,
                     level.getBlockState(neighborPos).setValue(TapperBlock.OUTPUT, tapOutput), 3);
+        }
+        else
+        {
+            // Random chance to auto-heal.
+            boolean toRun = SpiroMod.RNG.nextInt(7) == 0;
+
+            if (toRun)
+            {
+                Direction d = level.getBlockState(neighborPos).getValue(TapperBlock.FACING);
+                switch (d)
+                {
+                    case SOUTH -> state = state.setValue(SOUTH, false).setValue(TAPPED, false);
+                    case NORTH -> state = state.setValue(NORTH, false).setValue(TAPPED, false);
+                    case EAST -> state = state.setValue(EAST, false).setValue(TAPPED, false);
+                    case WEST -> state = state.setValue(WEST, false).setValue(TAPPED, false);
+                }
+
+                level.setBlock(pos, state, 3);
+            }
         }
 
         super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
