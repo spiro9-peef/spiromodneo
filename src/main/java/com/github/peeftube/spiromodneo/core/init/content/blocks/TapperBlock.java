@@ -67,7 +67,7 @@ public class TapperBlock extends HorizontalDirectionalBlock
             else
             {
                 player.addItem(new ItemStack(value.getItem(), state.getValue(FILL)));
-                level.setBlock(pos, state.setValue(FILL, 0), 0);
+                level.setBlock(pos, state.setValue(FILL, 0), 3);
             }
         }
 
@@ -103,8 +103,8 @@ public class TapperBlock extends HorizontalDirectionalBlock
                     state = state.setValue(FILL, state.getValue(FILL) == 3 ? 3 : state.getValue(FILL) + 1);
                 }
 
-                checked = checked.setValue(propertyForCheck, true)
-                       .setValue(TappableWoodBlock.TAPPED, true);
+                level.setBlock(pos.offset(toCheck.getNormal()), checked.setValue(propertyForCheck, true)
+                       .setValue(TappableWoodBlock.TAPPED, true), 3);
             }
         }
 

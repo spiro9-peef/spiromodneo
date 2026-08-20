@@ -47,32 +47,36 @@ public class TappableWoodBlock extends WoodBlock
     @Override
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
     {
-        boolean isNorth = !level.getBlockState(pos.offset(Direction.NORTH.getNormal())).is(Blocks.AIR);
-        boolean isSouth = !level.getBlockState(pos.offset(Direction.SOUTH.getNormal())).is(Blocks.AIR);
-        boolean isEast = !level.getBlockState(pos.offset(Direction.EAST.getNormal())).is(Blocks.AIR);
-        boolean isWest = !level.getBlockState(pos.offset(Direction.WEST.getNormal())).is(Blocks.AIR);
+        boolean isNorth = level.getBlockState(pos.offset(Direction.NORTH.getNormal())).is(Registrar.TAPPER.get());
+        boolean isSouth = level.getBlockState(pos.offset(Direction.SOUTH.getNormal())).is(Registrar.TAPPER.get());
+        boolean isEast = level.getBlockState(pos.offset(Direction.EAST.getNormal())).is(Registrar.TAPPER.get());
+        boolean isWest = level.getBlockState(pos.offset(Direction.WEST.getNormal())).is(Registrar.TAPPER.get());
 
-        if (random.nextInt(7) == 0 && state.is(Registrar.TAPPER))
+        if (random.nextInt(7) == 0)
         {
-            if (state.getValue(NORTH) && isNorth)
+            if (state.getValue(NORTH) && isNorth &&
+                    level.getBlockState(pos.offset(Direction.NORTH.getNormal())).is(Registrar.TAPPER.get()))
             { level.setBlock(pos.offset(Direction.NORTH.getNormal()),
                     level.getBlockState(pos.offset(Direction.NORTH.getNormal()))
                    .setValue(TapperBlock.FILL, Math.clamp(
                    level.getBlockState(pos.offset(Direction.NORTH.getNormal())).getValue(TapperBlock.FILL) + 1, 0, 3))
                    .setValue(TapperBlock.OUTPUT, this.tapOutput), 0); }
-            if (state.getValue(EAST) && isEast)
+            if (state.getValue(EAST) && isEast &&
+                    level.getBlockState(pos.offset(Direction.EAST.getNormal())).is(Registrar.TAPPER.get()))
             { level.setBlock(pos.offset(Direction.EAST.getNormal()),
                     level.getBlockState(pos.offset(Direction.EAST.getNormal()))
                    .setValue(TapperBlock.FILL, Math.clamp(
                    level.getBlockState(pos.offset(Direction.EAST.getNormal())).getValue(TapperBlock.FILL) + 1, 0, 3))
                    .setValue(TapperBlock.OUTPUT, this.tapOutput), 0); }
-            if (state.getValue(WEST) && isWest)
+            if (state.getValue(WEST) && isWest &&
+                    level.getBlockState(pos.offset(Direction.WEST.getNormal())).is(Registrar.TAPPER.get()))
             { level.setBlock(pos.offset(Direction.WEST.getNormal()),
                     level.getBlockState(pos.offset(Direction.WEST.getNormal()))
                    .setValue(TapperBlock.FILL, Math.clamp(
                    level.getBlockState(pos.offset(Direction.WEST.getNormal())).getValue(TapperBlock.FILL) + 1, 0, 3))
                    .setValue(TapperBlock.OUTPUT, this.tapOutput), 0); }
-            if (state.getValue(SOUTH) && isSouth)
+            if (state.getValue(SOUTH) && isSouth &&
+                    level.getBlockState(pos.offset(Direction.SOUTH.getNormal())).is(Registrar.TAPPER.get()))
             { level.setBlock(pos.offset(Direction.SOUTH.getNormal()),
                     level.getBlockState(pos.offset(Direction.SOUTH.getNormal()))
                    .setValue(TapperBlock.FILL, Math.clamp(
@@ -80,13 +84,13 @@ public class TappableWoodBlock extends WoodBlock
                     .setValue(TapperBlock.OUTPUT, this.tapOutput), 0); }
         }
 
-        if (!isNorth) level.setBlock(pos, state.setValue(NORTH, false), 0);
-        if (!isSouth) level.setBlock(pos, state.setValue(SOUTH, false), 0);
-        if (!isEast) level.setBlock(pos, state.setValue(EAST, false), 0);
-        if (!isWest) level.setBlock(pos, state.setValue(WEST, false), 0);
+        if (!isNorth) level.setBlock(pos, state.setValue(NORTH, false), 3);
+        if (!isSouth) level.setBlock(pos, state.setValue(SOUTH, false), 3);
+        if (!isEast) level.setBlock(pos, state.setValue(EAST, false), 3);
+        if (!isWest) level.setBlock(pos, state.setValue(WEST, false), 3);
 
         if (!isNorth && !isSouth && !isEast && !isWest)
-            level.setBlock(pos, state.setValue(TAPPED, false), 0);
+            level.setBlock(pos, state.setValue(TAPPED, false), 3);
 
         super.randomTick(state, level, pos, random);
     }
@@ -106,8 +110,9 @@ public class TappableWoodBlock extends WoodBlock
                 case WEST -> state = state.setValue(WEST, true).setValue(TAPPED, true);
             }
 
-            level.setBlock(pos, state, 0);
-            level.getBlockState(neighborPos).setValue(TapperBlock.OUTPUT, tapOutput);
+            level.setBlock(pos, state, 3);
+            level.setBlock(neighborPos,
+                    level.getBlockState(neighborPos).setValue(TapperBlock.OUTPUT, tapOutput), 3);
         }
 
         super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
