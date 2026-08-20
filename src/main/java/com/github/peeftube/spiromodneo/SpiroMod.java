@@ -1,5 +1,7 @@
 package com.github.peeftube.spiromodneo;
 
+import com.blackgear.vanillabackport.common.registries.ModBlocks;
+import com.blackgear.vanillabackport.core.neoforge.VanillaBackportNeoForge;
 import com.github.peeftube.spiromodneo.client.renderer.blockentity.ExtensibleChestRenderer;
 import com.github.peeftube.spiromodneo.core.init.InitializeBlockRenderTypes;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
@@ -157,6 +159,7 @@ public class SpiroMod
                         Blocks.TALL_GRASS,
                         Blocks.FERN,
                         Blocks.LARGE_FERN,
+                        ModBlocks.BUSH.get(),
                         Registrar.GRASS_TYPE.bulkData().get(s).getBlock().get(),
                         Registrar.VITALIUM_TYPE.bulkData().get(s).getBlock().get());
             }
@@ -179,6 +182,10 @@ public class SpiroMod
                     Blocks.MANGROVE_LEAVES,
                     Blocks.OAK_LEAVES,
                     Blocks.SPRUCE_LEAVES,
+                    ModBlocks.PALE_OAK_LEAVES.get(),
+                    ModBlocks.PALE_MOSS_BLOCK.get(),
+                    ModBlocks.PALE_MOSS_CARPET.get(),
+                    ModBlocks.PALE_HANGING_MOSS.get(),
                     Registrar.ASHEN_OAK_WOOD.getBaseLeaves().get(),
                     Registrar.RUBBER_WOOD.wood().getBaseLeaves().get(),
                     Registrar.MAPLE_WOOD.wood().getBaseLeaves().get());
