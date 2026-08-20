@@ -266,16 +266,17 @@ public class SpiroMod
             float nZ1 = p.getZ() * scale1;
             double r1 = 1.0 + (n1.GetNoise(nX1, nY1, nZ1) * 0.5);
 
+            int posHash = (p.getX() * 73856093) ^ (p.getY() * 19349663) ^ (p.getZ() * 83492791);
             FastNoiseLite n2 = new FastNoiseLite();
             n2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-            n2.SetSeed(c);
+            n2.SetSeed(posHash);
 
             float nX2 = p.getX() * (scale1 * 3);
             float nY2 = p.getY() * (scale1 * 3);
             float nZ2 = p.getZ() * (scale1 * 3);
             double r2 = 1.0 + (n2.GetNoise(nX2, nY2, nZ2) * 0.2);
 
-            double r = (r0 + r1 + r2) / 3;
+            double r = (r0 * 0.5) + (r1 * 0.35) + (r2 * 0.15);
 
             int modR = Math.clamp((int)(isoR * r), 0, 255);
             int modG = Math.clamp((int)(isoG * r), 0, 255);
