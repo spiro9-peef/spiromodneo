@@ -248,12 +248,38 @@ public class SpiroMod
 
             FastNoiseLite n0 = new FastNoiseLite();
             n0.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
-            n0.SetSeed(c);
-            double x0 = 1.0 + (n0.GetNoise(p.getX(), p.getY(), p.getZ()) * 0.1);
+            n0.SetSeed(1202412885);
 
-            int modR = Math.clamp((int)(isoR * x0), 0, 255);
-            int modG = Math.clamp((int)(isoG * x0), 0, 255);
-            int modB = Math.clamp((int)(isoB * x0), 0, 255);
+            float scale0 = 1.0f / 64.0f;
+            float nX0 = p.getX() * scale0;
+            float nY0 = p.getY() * scale0;
+            float nZ0 = p.getZ() * scale0;
+            double r0 = 1.0 + (n0.GetNoise(nX0, nY0, nZ0) * 0.9);
+
+            FastNoiseLite n1 = new FastNoiseLite();
+            n1.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+            n1.SetSeed(13265943);
+
+            float scale1 = 1.0f / 32.0f;
+            float nX1 = p.getX() * scale1;
+            float nY1 = p.getY() * scale1;
+            float nZ1 = p.getZ() * scale1;
+            double r1 = 1.0 + (n1.GetNoise(nX1, nY1, nZ1) * 0.5);
+
+            FastNoiseLite n2 = new FastNoiseLite();
+            n2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
+            n2.SetSeed(c);
+
+            float nX2 = p.getX() * (scale1 * 3);
+            float nY2 = p.getY() * (scale1 * 3);
+            float nZ2 = p.getZ() * (scale1 * 3);
+            double r2 = 1.0 + (n2.GetNoise(nX2, nY2, nZ2) * 0.2);
+
+            double r = (r0 + r1 + r2) / 3;
+
+            int modR = Math.clamp((int)(isoR * r), 0, 255);
+            int modG = Math.clamp((int)(isoG * r), 0, 255);
+            int modB = Math.clamp((int)(isoB * r), 0, 255);
 
             return (isoA << 24) | (modR << 16) | (modG << 8) | modB;
         }
