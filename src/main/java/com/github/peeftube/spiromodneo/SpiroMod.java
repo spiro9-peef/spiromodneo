@@ -283,7 +283,10 @@ public class SpiroMod
             float nX = (p.getX() + timeOffset) * scale;
             float nY = p.getY() * scale;
             float nZ = (p.getZ() + timeOffset) * scale;
-            double r = (((r0 * 0.5) + (r1 * 0.275) + (r2 * 0.225)) + (1.0 + n2.GetNoise(nX, nY, nZ) * 1.7)) / 2;
+            double rW = n2.GetNoise(nX, nY, nZ) * 0.333; // Faux wind multiplier
+
+            double rF = (r0 * 0.5) + (r1 * 0.275) + (r2 * 0.225);
+            double r = rF + rW;
 
             int modR = Math.clamp((int)(isoR * r), 0, 255);
             int modG = Math.clamp((int)(isoG * r), 0, 255);
