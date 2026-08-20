@@ -254,7 +254,7 @@ public class SpiroMod
             float nX0 = p.getX() * scale0;
             float nY0 = p.getY() * scale0;
             float nZ0 = p.getZ() * scale0;
-            double r0 = 1.0 + (n0.GetNoise(nX0, nY0, nZ0) * 0.9);
+            double r0 = (n0.GetNoise(nX0, nY0, nZ0) * 0.8);
 
             FastNoiseLite n1 = new FastNoiseLite();
             n1.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
@@ -264,17 +264,17 @@ public class SpiroMod
             float nX1 = p.getX() * scale1;
             float nY1 = p.getY() * scale1;
             float nZ1 = p.getZ() * scale1;
-            double r1 = 1.0 + (n1.GetNoise(nX1, nY1, nZ1) * 0.5);
+            double r1 = (n1.GetNoise(nX1, nY1, nZ1) * 0.5);
 
             int posHash = (p.getX() * 73856093) ^ (p.getY() * 19349663) ^ (p.getZ() * 83492791);
             FastNoiseLite n2 = new FastNoiseLite();
             n2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n2.SetSeed(posHash);
 
-            float nX2 = p.getX() * (scale1 * 8);
-            float nY2 = p.getY() * (scale1 * 8);
-            float nZ2 = p.getZ() * (scale1 * 8);
-            double r2 = 1.0 + (n2.GetNoise(nX2, nY2, nZ2) * 0.2);
+            float nX2 = p.getX() * (scale1 * 6);
+            float nY2 = p.getY() * (scale1 * 6);
+            float nZ2 = p.getZ() * (scale1 * 6);
+            double r2 = (n2.GetNoise(nX2, nY2, nZ2) * 0.2);
 
             // Slow down time so the wind drifts at a natural pace
             float timeOffset = (System.currentTimeMillis() % 100000L) * 0.002f;
@@ -283,10 +283,10 @@ public class SpiroMod
             float nX = (p.getX() + timeOffset) * scale;
             float nY = p.getY() * scale;
             float nZ = (p.getZ() + timeOffset) * (scale * 1.33f); // 133% scale to give an uneven scroll
-            double rW = n0.GetNoise(nX, nY, nZ) * 0.675; // Faux wind multiplier
+            double rW = n0.GetNoise(nX, nY, nZ) * 0.275; // Faux wind multiplier
 
-            double rF = (((r0 * 0.75) + (r1 * 0.4) + (r2 * 0.35)) + ((r0 + r1 + r2) / 2)) / 1.75;
-            double r = rF + rW;
+            double rF = 1.0 + r0 + r1 + r2;
+            double r = rF * (1.0 + rW);
 
             int modR = Math.clamp((int)(isoR * r), 0, 255);
             int modG = Math.clamp((int)(isoG * r), 0, 255);
