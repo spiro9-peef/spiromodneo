@@ -28,24 +28,43 @@ public class BiomeTagDataProv extends BiomeTagsProvider
         tag(BiomeTags.IS_JUNGLE)
                 .add(NeoBiomes.OVERWORLD_RUBBER_FOREST);
 
+        tag(SpiroTags.Biomes.IS_LUSH_CAVES_LIKE)
+                .add(Biomes.LUSH_CAVES)
+                .add(NeoBiomes.AZURE_CAVERNS)
+                .add(NeoBiomes.RUBY_CAVERNS)
+                .add(NeoBiomes.VERDANT_CAVERNS)
+                .add(NeoBiomes.GILDED_CAVERNS)
+                .add(NeoBiomes.AMETHYST_CAVERNS);
+        
+        tag(SpiroTags.Biomes.IS_AZURE_CAVE_BIOME)
+                .add(NeoBiomes.AZURE_CAVERNS);
+        tag(SpiroTags.Biomes.IS_RUBY_CAVE_BIOME)
+                .add(NeoBiomes.RUBY_CAVERNS);
+        tag(SpiroTags.Biomes.IS_VERDANT_CAVE_BIOME)
+                .add(NeoBiomes.VERDANT_CAVERNS);
+        tag(SpiroTags.Biomes.IS_GILDED_CAVE_BIOME)
+                .add(NeoBiomes.GILDED_CAVERNS);
+        tag(SpiroTags.Biomes.IS_AMETHYST_CAVE_BIOME)
+                .add(NeoBiomes.AMETHYST_CAVERNS);
+
         tag(SpiroTags.Biomes.RUBY_SPAWNABLE)
-                .addTags(BiomeTags.IS_JUNGLE)
-                .add(Biomes.LUSH_CAVES);
+                .addTag(BiomeTags.IS_JUNGLE)
+                .addTag(SpiroTags.Biomes.IS_LUSH_CAVES_LIKE);
 
         tag(SpiroTags.Biomes.LIMBO_GARDEN)
                 .add(NeoBiomes.NETHER_LIMBO_GARDEN);
         tag(SpiroTags.Biomes.getColdNetherTag())
-                .addTags(SpiroTags.Biomes.LIMBO_GARDEN);
+                .addTag(SpiroTags.Biomes.LIMBO_GARDEN);
         tag(SpiroTags.Biomes.IS_CUSTOM_NETHER)
-                .addTags(SpiroTags.Biomes.getColdNetherTag());
+                .addTag(SpiroTags.Biomes.getColdNetherTag());
         tag(SpiroTags.Biomes.IS_CRIMSON_NETHER)
                 .add(Biomes.CRIMSON_FOREST);
         tag(SpiroTags.Biomes.IS_WARPED_NETHER)
                 .add(Biomes.WARPED_FOREST);
         tag(BiomeTags.IS_NETHER)
-                .addTags(SpiroTags.Biomes.IS_CUSTOM_NETHER)
-                .addTags(SpiroTags.Biomes.IS_CRIMSON_NETHER)
-                .addTags(SpiroTags.Biomes.IS_WARPED_NETHER);
+                .addTag(SpiroTags.Biomes.IS_CUSTOM_NETHER)
+                .addTag(SpiroTags.Biomes.IS_CRIMSON_NETHER)
+                .addTag(SpiroTags.Biomes.IS_WARPED_NETHER);
 
         tag(SpiroTags.Biomes.IS_VANILLA_AND_CAN_HAVE_MAPLE)
                 .add(Biomes.FOREST)

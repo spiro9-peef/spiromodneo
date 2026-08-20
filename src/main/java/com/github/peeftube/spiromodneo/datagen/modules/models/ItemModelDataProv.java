@@ -2,11 +2,13 @@ package com.github.peeftube.spiromodneo.datagen.modules.models;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.core.init.content.blocks.ExtensibleBerryBushBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.util.DataCheckResult;
 import com.github.peeftube.spiromodneo.util.RLUtility;
 import com.github.peeftube.spiromodneo.util.equipment.ArmorSet;
 import com.github.peeftube.spiromodneo.util.equipment.ToolSet;
+import com.github.peeftube.spiromodneo.util.moss.MossType;
 import com.github.peeftube.spiromodneo.util.ore.OreCoupling;
 import com.github.peeftube.spiromodneo.util.stone.*;
 import com.github.peeftube.spiromodneo.util.wood.LivingWoodBlockType;
@@ -42,6 +44,7 @@ public class ItemModelDataProv extends ItemModelProvider
         // ============================================================================================================
         // Normal items
         itemParser(Registrar.SINEW);
+        itemParser(Registrar.PLANT_FIBRE);
         itemParser(Registrar.SMALL_STONE);
         itemParser(Registrar.SHARPENED_STICK);
         itemParser(Registrar.BUNDLE_OF_SHARP_STICKS);
@@ -63,14 +66,40 @@ public class ItemModelDataProv extends ItemModelProvider
         for (EquipmentCollection equip : EquipmentCollection.EQUIP_COLLECTIONS) { equipmentSetDesign(equip); }
 
         // ============================================================================================================
+        // Special
+        ExtensibleBerryBushBlock ebPhantom = (ExtensibleBerryBushBlock) Registrar.PHANTOM_BERRY_BUSH.get();
+        itemParser(ebPhantom.getBerry());
+
+        // ============================================================================================================
         // Block items
         for (MetalCollection metal : MetalCollection.METAL_COLLECTIONS) { metalSetDesign(metal); }
         for (OreCollection ore : OreCollection.ORE_COLLECTIONS) { oreSetDesign(ore); }
         for (StoneCollection stone : StoneCollection.STONE_COLLECTIONS) { stoneSetDesign(stone); }
         for (GrassLikeCollection grass : GrassLikeCollection.GRASS_COLLECTIONS) { grassSetDesign(grass); }
         for (WoodCollection wood : WoodCollection.WOOD_COLLECTIONS) { woodSetDesign(wood); }
+        for (VariableWoodCollection w : VariableWoodCollection.VARIABLE_WOOD_COLLECTIONS) { variableWoodSetDesign(w); }
+        for (MossCollection moss : MossCollection.MOSS_COLLECTIONS) { mossSetDesign(moss); }
         blockParser(Registrar.MANUAL_CRUSHER_ITEM);
         itemParser(Registrar.TAPPER_ITEM); // This is parsed as an item because it has an item texture.
+    }
+
+    private void mossSetDesign(MossCollection set)
+    {
+        if (!set.material().equals(MossMaterial.MOSS))
+        {
+            couplingParser((DeferredBlock<Block>) set.bulkData().get(MossType.MOSS_BLOCK).getBlock(),
+                    (DeferredItem<Item>) set.bulkData().get(MossType.MOSS_BLOCK).getItem());
+            couplingParser((DeferredBlock<Block>) set.bulkData().get(MossType.MOSS_CARPET).getBlock(),
+                    (DeferredItem<Item>) set.bulkData().get(MossType.MOSS_CARPET).getItem());
+        }
+    }
+
+    private void variableWoodSetDesign(VariableWoodCollection set)
+    {
+        couplingParser((DeferredBlock<Block>) set.leaves().getBlock(),
+                (DeferredItem<Item>) set.leaves().getItem());
+        couplingParser((DeferredBlock<Block>) set.sapling().getBlock(),
+                (DeferredItem<Item>) set.sapling().getItem());
     }
 
     private void woodSetDesign(WoodCollection set)

@@ -5,14 +5,20 @@ import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Soil;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.TargetRuleData;
 import com.github.peeftube.spiromodneo.util.RLUtility;
+import com.github.peeftube.spiromodneo.util.moss.MossType;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.TreePlacements;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
@@ -23,12 +29,14 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlac
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaJungleFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.BeehiveDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.MegaJungleTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
@@ -111,11 +119,63 @@ public class ConfigFeaturesData
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUBBER_TREES_01 = registerKey("rubber_trees_01");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUBBER_TREES_02 = registerKey("rubber_trees_02");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> STONEWOOD =
+            registerKey("stonewood");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_STONEWOOD =
+            registerKey("azure_stonewood");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_STONEWOOD =
+            registerKey("ruby_stonewood");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> VERDANT_STONEWOOD =
+            registerKey("verdant_stonewood");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GILDED_STONEWOOD =
+            registerKey("gilded_stonewood");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_STONEWOOD =
+            registerKey("amethyst_stonewood");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_GLOW_MOSS_VEGETATION =
+            registerKey("azure_glow_moss_vegetation");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_GLOW_MOSS_VEGETATION =
+            registerKey("ruby_glow_moss_vegetation");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> VERDANT_GLOW_MOSS_VEGETATION =
+            registerKey("verdant_glow_moss_vegetation");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GILDED_GLOW_MOSS_VEGETATION =
+            registerKey("gilded_glow_moss_vegetation");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_GLOW_MOSS_VEGETATION =
+            registerKey("amethyst_glow_moss_vegetation");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_GLOW_MOSS_PATCH =
+            registerKey("azure_glow_moss_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_GLOW_MOSS_PATCH_BONEMEAL =
+            registerKey("azure_glow_moss_patch_bonemeal");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_GLOW_MOSS_PATCH =
+            registerKey("ruby_glow_moss_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_GLOW_MOSS_PATCH_BONEMEAL =
+            registerKey("ruby_glow_moss_patch_bonemeal");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> VERDANT_GLOW_MOSS_PATCH =
+            registerKey("verdant_glow_moss_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> VERDANT_GLOW_MOSS_PATCH_BONEMEAL =
+            registerKey("verdant_glow_moss_patch_bonemeal");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GILDED_GLOW_MOSS_PATCH =
+            registerKey("gilded_glow_moss_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GILDED_GLOW_MOSS_PATCH_BONEMEAL =
+            registerKey("gilded_glow_moss_patch_bonemeal");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_GLOW_MOSS_PATCH =
+            registerKey("amethyst_glow_moss_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_GLOW_MOSS_PATCH_BONEMEAL =
+            registerKey("amethyst_glow_moss_patch_bonemeal");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_CAVE_TREES = registerKey("azure_cave_trees");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_CAVE_TREES = registerKey("ruby_cave_trees");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> VERDANT_CAVE_TREES = registerKey("verdant_cave_trees");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GILDED_CAVE_TREES = registerKey("gilded_cave_trees");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_CAVE_TREES = registerKey("amethyst_cave_trees");
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> GROUND_STONES = registerKey("ground_stones");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context)
     {
         HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
+        HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
         blocks = context.lookup(Registries.BLOCK);
 
         register(context, COAL_ORE, Feature.ORE,
@@ -362,6 +422,273 @@ public class ConfigFeaturesData
                         new WeightedPlacedFeature(
                                 placedFeatures.getOrThrow(TreePlacements.MEGA_JUNGLE_TREE_CHECKED), (float) 1 / 6)),
                         placedFeatures.getOrThrow(PlacedFeaturesData.RUBBERWOOD)));
+
+        register(context, STONEWOOD, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Registrar.STONEWOOD.getBaseLog().get()),
+                        new StraightTrunkPlacer(6, 8, 0),
+                        BlockStateProvider.simple(Registrar.STONEWOOD.getBaseLeaves().get()),
+                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                        new TwoLayersFeatureSize(1, 0, 1))
+                .dirt(BlockStateProvider.simple(Blocks.STONE))
+                .ignoreVines().build());
+        register(context, AZURE_STONEWOOD, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Registrar.AZURE_STONEWOOD.wood().getBaseLog().get()),
+                        new StraightTrunkPlacer(6, 8, 0),
+                        BlockStateProvider.simple(Registrar.AZURE_STONEWOOD.leaves().getBlock().get()),
+                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                        new TwoLayersFeatureSize(1, 0, 1))
+                .dirt(BlockStateProvider.simple(Blocks.STONE))
+                .ignoreVines().build());
+        register(context, RUBY_STONEWOOD, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Registrar.RUBY_STONEWOOD.wood().getBaseLog().get()),
+                        new StraightTrunkPlacer(6, 8, 0),
+                        BlockStateProvider.simple(Registrar.RUBY_STONEWOOD.leaves().getBlock().get()),
+                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                        new TwoLayersFeatureSize(1, 0, 1))
+                .dirt(BlockStateProvider.simple(Blocks.STONE))
+                .ignoreVines().build());
+        register(context, VERDANT_STONEWOOD, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Registrar.VERDANT_STONEWOOD.wood().getBaseLog().get()),
+                        new StraightTrunkPlacer(6, 8, 0),
+                        BlockStateProvider.simple(Registrar.VERDANT_STONEWOOD.leaves().getBlock().get()),
+                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                        new TwoLayersFeatureSize(1, 0, 1))
+                .dirt(BlockStateProvider.simple(Blocks.STONE))
+                .ignoreVines().build());
+        register(context, GILDED_STONEWOOD, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Registrar.GILDED_STONEWOOD.wood().getBaseLog().get()),
+                        new StraightTrunkPlacer(6, 8, 0),
+                        BlockStateProvider.simple(Registrar.GILDED_STONEWOOD.leaves().getBlock().get()),
+                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                        new TwoLayersFeatureSize(1, 0, 1))
+                .dirt(BlockStateProvider.simple(Blocks.STONE))
+                .ignoreVines().build());
+        register(context, AMETHYST_STONEWOOD, Feature.TREE,
+                new TreeConfiguration.TreeConfigurationBuilder(
+                        BlockStateProvider.simple(Registrar.AMETHYST_STONEWOOD.wood().getBaseLog().get()),
+                        new StraightTrunkPlacer(6, 8, 0),
+                        BlockStateProvider.simple(Registrar.AMETHYST_STONEWOOD.leaves().getBlock().get()),
+                        new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
+                        new TwoLayersFeatureSize(1, 0, 1))
+                .dirt(BlockStateProvider.simple(Blocks.STONE))
+                .ignoreVines().build());
+
+        register(context, AZURE_GLOW_MOSS_VEGETATION, Feature.SIMPLE_BLOCK,
+                new SimpleBlockConfiguration(
+                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                .add(Registrar.AZURE_GLOWMOSS.bulkData()
+                                        .get(MossType.MOSS_CARPET).getBlock().get().defaultBlockState(), 25)
+                                .add(Blocks.SHORT_GRASS.defaultBlockState(), 50)
+                                .add(Registrar.PHANTOM_BERRY_BUSH.get().defaultBlockState(), 20)
+                                .add(Blocks.TALL_GRASS.defaultBlockState(), 10))));
+        register(context, RUBY_GLOW_MOSS_VEGETATION, Feature.SIMPLE_BLOCK,
+                new SimpleBlockConfiguration(
+                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                .add(Registrar.RUBY_GLOWMOSS.bulkData()
+                                        .get(MossType.MOSS_CARPET).getBlock().get().defaultBlockState(), 25)
+                                .add(Blocks.SHORT_GRASS.defaultBlockState(), 50)
+                                .add(Blocks.TALL_GRASS.defaultBlockState(), 10))));
+        register(context, VERDANT_GLOW_MOSS_VEGETATION, Feature.SIMPLE_BLOCK,
+                new SimpleBlockConfiguration(
+                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                .add(Registrar.VERDANT_GLOWMOSS.bulkData()
+                                        .get(MossType.MOSS_CARPET).getBlock().get().defaultBlockState(), 25)
+                                .add(Blocks.SHORT_GRASS.defaultBlockState(), 50)
+                                .add(Blocks.TALL_GRASS.defaultBlockState(), 10))));
+        register(context, GILDED_GLOW_MOSS_VEGETATION, Feature.SIMPLE_BLOCK,
+                new SimpleBlockConfiguration(
+                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                .add(Registrar.GILDED_GLOWMOSS.bulkData()
+                                        .get(MossType.MOSS_CARPET).getBlock().get().defaultBlockState(), 25)
+                                .add(Blocks.SHORT_GRASS.defaultBlockState(), 50)
+                                .add(Blocks.TALL_GRASS.defaultBlockState(), 10))));
+        register(context, AMETHYST_GLOW_MOSS_VEGETATION, Feature.SIMPLE_BLOCK,
+                new SimpleBlockConfiguration(
+                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                .add(Registrar.AMETHYST_GLOWMOSS.bulkData()
+                                        .get(MossType.MOSS_CARPET).getBlock().get().defaultBlockState(), 25)
+                                .add(Blocks.SHORT_GRASS.defaultBlockState(), 50)
+                                .add(Blocks.TALL_GRASS.defaultBlockState(), 10))));
+
+        register(context, AZURE_GLOW_MOSS_PATCH, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.AZURE_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(AZURE_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.8F,
+                        UniformInt.of(4, 7), 0.3F
+                ));
+        register(context, AZURE_GLOW_MOSS_PATCH_BONEMEAL, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.AZURE_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(AZURE_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.6F,
+                        UniformInt.of(1, 2), 0.75F
+                ));
+
+        register(context, RUBY_GLOW_MOSS_PATCH, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.RUBY_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(RUBY_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.8F,
+                        UniformInt.of(4, 7), 0.3F
+                ));
+        register(context, RUBY_GLOW_MOSS_PATCH_BONEMEAL, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.RUBY_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(RUBY_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.6F,
+                        UniformInt.of(1, 2), 0.75F
+                ));
+
+        register(context, VERDANT_GLOW_MOSS_PATCH, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.VERDANT_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(VERDANT_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.8F,
+                        UniformInt.of(4, 7), 0.3F
+                ));
+        register(context, VERDANT_GLOW_MOSS_PATCH_BONEMEAL, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.VERDANT_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(VERDANT_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.6F,
+                        UniformInt.of(1, 2), 0.75F
+                ));
+
+        register(context, GILDED_GLOW_MOSS_PATCH, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.GILDED_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(GILDED_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.8F,
+                        UniformInt.of(4, 7), 0.3F
+                ));
+        register(context, GILDED_GLOW_MOSS_PATCH_BONEMEAL, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.GILDED_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(GILDED_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.6F,
+                        UniformInt.of(1, 2), 0.75F
+                ));
+
+        register(context, AMETHYST_GLOW_MOSS_PATCH, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.AMETHYST_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(AMETHYST_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.8F,
+                        UniformInt.of(4, 7), 0.3F
+                ));
+        register(context, AMETHYST_GLOW_MOSS_PATCH_BONEMEAL, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.simple(Registrar.AMETHYST_GLOWMOSS.bulkData()
+                                .get(MossType.MOSS_BLOCK).getBlock().get()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(AMETHYST_GLOW_MOSS_VEGETATION)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.6F,
+                        UniformInt.of(1, 2), 0.75F
+                ));
+
+        register(context, AZURE_CAVE_TREES, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.RUBY_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.VERDANT_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.GILDED_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.AMETHYST_STONEWOOD), 0.005F)),
+                        placedFeatures.getOrThrow(PlacedFeaturesData.AZURE_STONEWOOD)));
+
+        register(context, RUBY_CAVE_TREES, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.AZURE_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.VERDANT_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.GILDED_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.AMETHYST_STONEWOOD), 0.005F)),
+                        placedFeatures.getOrThrow(PlacedFeaturesData.RUBY_STONEWOOD)));
+
+        register(context, VERDANT_CAVE_TREES, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.AZURE_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.RUBY_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.GILDED_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.AMETHYST_STONEWOOD), 0.005F)),
+                        placedFeatures.getOrThrow(PlacedFeaturesData.VERDANT_STONEWOOD)));
+
+        register(context, GILDED_CAVE_TREES, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.AZURE_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.RUBY_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.VERDANT_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.AMETHYST_STONEWOOD), 0.005F)),
+                        placedFeatures.getOrThrow(PlacedFeaturesData.GILDED_STONEWOOD)));
+
+        register(context, AMETHYST_CAVE_TREES, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.AZURE_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.RUBY_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.VERDANT_STONEWOOD), 0.005F),
+                        new WeightedPlacedFeature(
+                                placedFeatures.getOrThrow(PlacedFeaturesData.GILDED_STONEWOOD), 0.005F)),
+                        placedFeatures.getOrThrow(PlacedFeaturesData.AMETHYST_STONEWOOD)));
 
         register(context, GROUND_STONES, Registrar.GROUND_STONE_FEATURE.get(), new NoneFeatureConfiguration());
     }

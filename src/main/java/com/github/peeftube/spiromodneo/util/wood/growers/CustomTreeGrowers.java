@@ -37,4 +37,22 @@ public class CustomTreeGrowers
             Optional.of(ConfigFeaturesData.RUBBERWOOD),
             Optional.empty()
     );
+    public static TreeGrower STONEWOOD = new TreeGrower(
+            "stonewood", Optional.empty(), Optional.of(ConfigFeaturesData.STONEWOOD),
+            Optional.empty());
+    public static TreeGrower AZURE_STONEWOOD = new TreeGrower(
+            "azure_stonewood", Optional.empty(), Optional.of(ConfigFeaturesData.AZURE_STONEWOOD),
+            Optional.empty());
+    public static TreeGrower RUBY_STONEWOOD = new TreeGrower(
+            "ruby_stonewood", Optional.empty(), Optional.of(ConfigFeaturesData.RUBY_STONEWOOD),
+            Optional.empty());
+    public static TreeGrower VERDANT_STONEWOOD = new TreeGrower(
+            "verdant_stonewood", Optional.empty(), Optional.of(ConfigFeaturesData.VERDANT_STONEWOOD),
+            Optional.empty());
+    public static TreeGrower GILDED_STONEWOOD = new TreeGrower(
+            "gilded_stonewood", Optional.empty(), Optional.of(ConfigFeaturesData.GILDED_STONEWOOD),
+            Optional.empty());
+    public static TreeGrower AMETHYST_STONEWOOD = new TreeGrower(
+            "amethyst_stonewood", Optional.empty(), Optional.of(ConfigFeaturesData.AMETHYST_STONEWOOD),
+            Optional.empty());
 }

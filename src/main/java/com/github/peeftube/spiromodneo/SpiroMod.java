@@ -5,11 +5,13 @@ import com.github.peeftube.spiromodneo.core.init.InitializeBlockRenderTypes;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.content.worldgen.region.NetherColdRegion;
 import com.github.peeftube.spiromodneo.core.init.content.worldgen.region.OverworldAlternativeRegion1;
+import com.github.peeftube.spiromodneo.core.init.content.worldgen.region.OverworldStrangeRegion1;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Soil;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherScreen;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.custombiome.NetherColdRegionSourceRules;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.custombiome.OverworldCustomRegionSourceRules;
 import com.github.peeftube.spiromodneo.util.RLUtility;
+import com.github.peeftube.spiromodneo.util.moss.MossType;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
@@ -82,6 +84,8 @@ public class SpiroMod
             Regions.register(new NetherColdRegion(RLUtility.makeRL("spiro_cold_nether_region"), 1));
             Regions.register(new OverworldAlternativeRegion1
                     (RLUtility.makeRL("spiro_alt_region01"), 3));
+            Regions.register(new OverworldStrangeRegion1
+                    (RLUtility.makeRL("spiro_strange_region01"), 1));
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, MOD_ID,
                     NetherColdRegionSourceRules.rules());
@@ -172,6 +176,36 @@ public class SpiroMod
                     Registrar.ASHEN_OAK_WOOD.getBaseLeaves().get(),
                     Registrar.RUBBER_WOOD.wood().getBaseLeaves().get(),
                     Registrar.MAPLE_WOOD.wood().getBaseLeaves().get());
+
+            event.register((st, l, p, i) -> -10784593,
+                    Registrar.AZURE_STONEWOOD.leaves().getBlock().get(),
+                    Registrar.AZURE_STONEWOOD.sapling().getBlock().get(),
+                    Registrar.AZURE_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
+                    Registrar.AZURE_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
+
+            event.register((st, l, p, i) -> -5744252,
+                    Registrar.RUBY_STONEWOOD.leaves().getBlock().get(),
+                    Registrar.RUBY_STONEWOOD.sapling().getBlock().get(),
+                    Registrar.RUBY_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
+                    Registrar.RUBY_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
+
+            event.register((st, l, p, i) -> -10835342,
+                    Registrar.VERDANT_STONEWOOD.leaves().getBlock().get(),
+                    Registrar.VERDANT_STONEWOOD.sapling().getBlock().get(),
+                    Registrar.VERDANT_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
+                    Registrar.VERDANT_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
+
+            event.register((st, l, p, i) -> -6052521,
+                    Registrar.GILDED_STONEWOOD.leaves().getBlock().get(),
+                    Registrar.GILDED_STONEWOOD.sapling().getBlock().get(),
+                    Registrar.GILDED_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
+                    Registrar.GILDED_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
+
+            event.register((st, l, p, i) -> -7906643,
+                    Registrar.AMETHYST_STONEWOOD.leaves().getBlock().get(),
+                    Registrar.AMETHYST_STONEWOOD.sapling().getBlock().get(),
+                    Registrar.AMETHYST_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
+                    Registrar.AMETHYST_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
         }
 
         @SubscribeEvent

@@ -2,11 +2,11 @@
   "feature": "minecraft:patch_grass",
   "placement": [
     {
-      "type": "minecraft:biome"
-    },
-    {
       "type": "minecraft:count_on_every_layer",
       "count": 16
+    },
+    {
+      "type": "minecraft:biome"
     }
   ]
 }

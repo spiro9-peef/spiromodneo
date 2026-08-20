@@ -3,6 +3,7 @@ package com.github.peeftube.spiromodneo.util.wood;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.*;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Tappable;
+import com.github.peeftube.spiromodneo.core.init.registry.data.VariableWoodMaterial;
 import com.github.peeftube.spiromodneo.core.init.registry.data.WoodMaterial;
 import com.github.peeftube.spiromodneo.util.GenericBlockItemCoupling;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
@@ -13,7 +14,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -971,7 +971,45 @@ public interface WoodUtilities
             }
         }
 
+        boolean isVariableWoodType = mat.equals(WoodMaterial.STONEWOOD);
+
         return new WoodData(mat.getName(), livingDataContent, logTags, leafTags, aliveTags,
-                plankDataContent, plankTags, manufacturableContent, signContent);
+                plankDataContent, plankTags, manufacturableContent, signContent, isVariableWoodType);
+    }
+
+    /** Populates the leaves section of the variable wood collection record. */
+    static GenericBlockItemCoupling pVariableLeaves(VariableWoodMaterial mat, int li)
+    {
+        Supplier<? extends Block> b = Registrar.regBlock(mat.getName() + "_leaves",
+                () -> new LeavesBlock(
+                        BlockBehaviour.Properties.of().sound(SoundType.GRASS)
+                     .lightLevel(s -> li).noOcclusion().isSuffocating(Blocks::never)
+                    .randomTicks().strength(0.2F).isViewBlocking(Blocks::never)
+                    .pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never)));
+        Supplier<? extends Item> i = Registrar.regSimpleBlockItem((DeferredBlock<? extends Block>) b);
+
+        return new GenericBlockItemCoupling(b, i);
+    }
+
+    /** Populates the sapling section of the variable wood collection record. */
+    static GenericBlockItemCoupling pVariableSapling(VariableWoodMaterial mat, int li)
+    {
+        Supplier<? extends Block> b =
+                mat.getWood().type().isStonePlantable() ?
+                Registrar.regBlock(mat.getName() + "_sapling",
+                () -> new StonePlantableSaplingBlock(mat.getGrower(),
+                        BlockBehaviour.Properties.of().sound(SoundType.GRASS)
+                     .lightLevel(s -> li).noOcclusion().isSuffocating(Blocks::never)
+                    .randomTicks().strength(0.2F).isViewBlocking(Blocks::never)
+                    .pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never))) :
+                Registrar.regBlock(mat.getName() + "_sapling",
+                () -> new SaplingBlock(mat.getGrower(),
+                        BlockBehaviour.Properties.of().sound(SoundType.GRASS)
+                     .lightLevel(s -> li).noOcclusion().isSuffocating(Blocks::never)
+                    .randomTicks().strength(0.2F).isViewBlocking(Blocks::never)
+                    .pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never)));
+        Supplier<? extends Item> i = Registrar.regSimpleBlockItem((DeferredBlock<? extends Block>) b);
+
+        return new GenericBlockItemCoupling(b, i);
     }
 }

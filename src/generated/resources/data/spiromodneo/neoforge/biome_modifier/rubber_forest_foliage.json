@@ -2,8 +2,8 @@
   "type": "neoforge:add_features",
   "biomes": "#spiromodneo:is_my_mod_and_can_have_rubber",
   "features": [
-    "spiromodneo:rubber_trees_01",
-    "spiromodneo:rubber_trees_02"
+    "spiromodneo:rubber_trees_02",
+    "spiromodneo:rubber_trees_01"
   ],
   "step": "vegetal_decoration"
 }

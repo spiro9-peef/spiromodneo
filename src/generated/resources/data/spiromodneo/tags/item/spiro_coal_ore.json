@@ -1,18 +1,18 @@
 {
   "values": [
-    "minecraft:deepslate_coal_ore",
-    "spiromodneo:granite_coal_ore",
     "spiromodneo:basalt_coal_ore",
-    "spiromodneo:smooth_sandstone_coal_ore",
-    "spiromodneo:limbipetra_coal_ore",
-    "spiromodneo:calcite_coal_ore",
-    "spiromodneo:diorite_coal_ore",
-    "spiromodneo:end_coal_ore",
-    "spiromodneo:nether_coal_ore",
-    "spiromodneo:andesite_coal_ore",
-    "spiromodneo:smooth_red_sandstone_coal_ore",
-    "minecraft:coal_ore",
     "spiromodneo:tuff_coal_ore",
-    "spiromodneo:dripstone_coal_ore"
+    "spiromodneo:granite_coal_ore",
+    "spiromodneo:limbipetra_coal_ore",
+    "spiromodneo:end_coal_ore",
+    "spiromodneo:diorite_coal_ore",
+    "spiromodneo:andesite_coal_ore",
+    "spiromodneo:dripstone_coal_ore",
+    "minecraft:coal_ore",
+    "spiromodneo:nether_coal_ore",
+    "spiromodneo:smooth_red_sandstone_coal_ore",
+    "minecraft:deepslate_coal_ore",
+    "spiromodneo:calcite_coal_ore",
+    "spiromodneo:smooth_sandstone_coal_ore"
   ]
 }

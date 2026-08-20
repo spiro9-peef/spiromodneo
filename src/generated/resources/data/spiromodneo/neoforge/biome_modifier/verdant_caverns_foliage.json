@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#spiromodneo:is_verdant_cavern",
+  "features": [
+    "spiromodneo:verdant_cavern_veg",
+    "spiromodneo:verdant_cave_trees"
+  ],
+  "step": "vegetal_decoration"
+}

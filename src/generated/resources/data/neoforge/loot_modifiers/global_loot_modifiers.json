@@ -45,7 +45,16 @@
     "spiromodneo:modify_diamond_drops_for_deepslate",
     "spiromodneo:modify_emerald_drops_for_stone",
     "spiromodneo:modify_emerald_drops_for_deepslate",
-    "spiromodneo:modify_quartz_drops_for_netherrack"
+    "spiromodneo:modify_quartz_drops_for_netherrack",
+    "spiromodneo:short_grass_fibre",
+    "spiromodneo:fern_fibre",
+    "spiromodneo:tall_grass_fibre",
+    "spiromodneo:seagrass_fibre",
+    "spiromodneo:tall_seagrass_fibre",
+    "spiromodneo:kelp_fibre",
+    "spiromodneo:kelp_fibre_2",
+    "spiromodneo:cave_vines_fibre",
+    "spiromodneo:cave_vines_fibre_2"
   ],
   "replace": false
 }

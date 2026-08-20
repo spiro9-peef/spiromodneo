@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spiromodneo:block/stripped_stonewood_log_top",
+    "side": "spiromodneo:block/stripped_stonewood_log"
+  }
+}

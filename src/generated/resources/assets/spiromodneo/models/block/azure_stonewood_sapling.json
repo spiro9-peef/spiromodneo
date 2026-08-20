@@ -1,0 +1,7 @@
+{
+  "parent": "spiromodneo:block/cross2_wtint_import",
+  "textures": {
+    "cross": "spiromodneo:block/stonewood_sapling",
+    "cross2": "spiromodneo:block/overlays/stonewood_sapling_colormask"
+  }
+}

@@ -7,7 +7,6 @@ import com.github.peeftube.spiromodneo.core.init.registry.data.StoneMaterial;
 import com.github.peeftube.spiromodneo.datagen.modules.loot.subprov.OreBaseLootTables;
 import com.github.peeftube.spiromodneo.datagen.modules.loot.subprov.OtherLootTables;
 import com.github.peeftube.spiromodneo.util.loot.SwapLootStackModifier;
-import com.github.peeftube.spiromodneo.util.ore.BaseStone;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -40,6 +39,60 @@ public class LootModDataProv extends GlobalLootModifierProvider
         mobDrops();
         for (StoneCollection stone : StoneCollection.STONE_COLLECTIONS) { baseStoneDrops(stone); }
         for (OreCollection ore : OreCollection.ORE_COLLECTIONS) { oreDrops(ore); }
+
+        this.add("short_grass_fibre",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                ResourceLocation.withDefaultNamespace("blocks/short_grass")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_LITE));
+
+        this.add("fern_fibre",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                ResourceLocation.withDefaultNamespace("blocks/fern")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_LITE));
+
+        this.add("tall_grass_fibre",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                ResourceLocation.withDefaultNamespace("blocks/tall_grass")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
+
+        this.add("seagrass_fibre",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                ResourceLocation.withDefaultNamespace("blocks/seagrass")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
+
+        this.add("tall_seagrass_fibre",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                ResourceLocation.withDefaultNamespace("blocks/tall_seagrass")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_HEAVY));
+
+        this.add("kelp_fibre",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                ResourceLocation.withDefaultNamespace("blocks/kelp")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
+
+        this.add("kelp_fibre_2",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                ResourceLocation.withDefaultNamespace("blocks/kelp_plant")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
+
+        this.add("cave_vines_fibre",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                ResourceLocation.withDefaultNamespace("blocks/cave_vines")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
+
+        this.add("cave_vines_fibre_2",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                ResourceLocation.withDefaultNamespace("blocks/cave_vines_plant")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
     }
 
     private void oreDrops(OreCollection set)

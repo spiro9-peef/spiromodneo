@@ -2,7 +2,9 @@ package com.github.peeftube.spiromodneo.datagen.modules.lang;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.core.init.content.blocks.ExtensibleBerryBushBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
+import com.github.peeftube.spiromodneo.util.moss.MossType;
 import com.github.peeftube.spiromodneo.util.ore.BaseStone;
 import com.github.peeftube.spiromodneo.util.ore.OreCoupling;
 import com.github.peeftube.spiromodneo.util.stone.*;
@@ -40,11 +42,15 @@ public class EN_USLangDataProv extends LanguageProvider
         // Grass & soil
         for (GrassLikeCollection grass : GrassLikeCollection.GRASS_COLLECTIONS) { grassParser(grass); }
 
+        // Moss
+        for (MossCollection moss : MossCollection.MOSS_COLLECTIONS) { mossParser(moss); }
+
         // Stone collections
         for (StoneCollection stone : StoneCollection.STONE_COLLECTIONS) { stoneParser(stone); }
 
         // Wood collections
         for (WoodCollection wood : WoodCollection.WOOD_COLLECTIONS) { woodParser(wood); }
+        for (VariableWoodCollection wood : VariableWoodCollection.VARIABLE_WOOD_COLLECTIONS) { vWoodParser(wood); }
 
         // Equipment
         for (EquipmentCollection equip : EquipmentCollection.EQUIP_COLLECTIONS) { equipParser(equip); }
@@ -54,6 +60,7 @@ public class EN_USLangDataProv extends LanguageProvider
 
         // Other / Loose
         add(Registrar.SINEW.get(), "Animal Sinew");
+        add(Registrar.PLANT_FIBRE.get(), "Plant Fibre");
 
         add(Registrar.SMALL_STONE.get(), "Small Stone");
 
@@ -84,8 +91,54 @@ public class EN_USLangDataProv extends LanguageProvider
         add(Registrar.LEAD_STICK.get(), "Lead Rod");
         add(Registrar.STEEL_ROD.get(), "Steel Rod");
 
+        ExtensibleBerryBushBlock ebPhantom = (ExtensibleBerryBushBlock) Registrar.PHANTOM_BERRY_BUSH.get();
+        add(ebPhantom.getBerry().get(), "Phantom Berries");
+
         // Creative tabs
         add(Registrar.TAB_TITLE_KEY_FORMULAIC + ".minerals_tab", "Ores and Raw Minerals");
+        add(Registrar.TAB_TITLE_KEY_FORMULAIC + ".woods_tab", "Wood and Carpentry");
+        add(Registrar.TAB_TITLE_KEY_FORMULAIC + ".stone_tab", "Stone and Masonry");
+    }
+
+    private void mossParser(MossCollection set)
+    {
+        String setName = set.material().getName();
+        String[] mossSubs = setName.split("_");
+        setName = "";
+        int stIndex = 0;
+        for (String st : mossSubs)
+        {
+            setName = setName + (stIndex > 0 ? " " : "") +
+                    st.substring(0, 1).toUpperCase() + st.substring(1);
+            stIndex++;
+        }
+
+        if (!set.material().equals(MossMaterial.MOSS))
+        {
+            add(set.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(), setName + " Block");
+            add(set.bulkData().get(MossType.MOSS_CARPET).getBlock().get(), setName + " Carpet");
+        }
+    }
+
+    private void vWoodParser(VariableWoodCollection set)
+    {
+        boolean isNetherFungus = set.wood().type().isLikeNetherFungus();
+
+        String setName = set.material().getName().replace("_fungus", "");
+        String[] woodSubs = setName.split("_");
+        setName = "";
+        int stIndex = 0;
+        for (String st : woodSubs)
+        {
+            setName = setName + (stIndex > 0 ? " " : "") +
+                    st.substring(0, 1).toUpperCase() + st.substring(1);
+            stIndex++;
+        }
+
+        add(set.sapling().getBlock().get(),
+                setName + (isNetherFungus ? " Fungus" : " Sapling"));
+        add(set.leaves().getBlock().get(),
+                setName + (isNetherFungus ? " Wart Block" : " Leaves"));
     }
 
     private void woodParser(WoodCollection set)
@@ -122,7 +175,7 @@ public class EN_USLangDataProv extends LanguageProvider
                                 "Stripped " + setName + (isNetherFungus ? " Stem" : " Log"));
                         case WOOD -> add(set.bulkData().livingWood().get(t).getBlock().get(), wood);
                         case STRIPPED_WOOD -> add(set.bulkData().livingWood().get(t).getBlock().get(),
-                                "Stripped" + wood);
+                                "Stripped " + wood);
                         case SAPLING -> add(set.bulkData().livingWood().get(t).getBlock().get(),
                                 setName + (isNetherFungus ? " Fungus" : " Sapling"));
                         case LEAVES -> add(set.bulkData().livingWood().get(t).getBlock().get(),

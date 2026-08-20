@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spiromodneo:block/stonewood_slab"
+    },
+    "type=double": {
+      "model": "spiromodneo:block/stonewood_slab_double"
+    },
+    "type=top": {
+      "model": "spiromodneo:block/stonewood_slab_top"
+    }
+  }
+}

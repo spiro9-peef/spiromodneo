@@ -2,13 +2,16 @@ package com.github.peeftube.spiromodneo.datagen.modules.loot.subprov;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.core.init.content.blocks.ExtensibleBerryBushBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
+import com.github.peeftube.spiromodneo.util.moss.MossType;
 import com.github.peeftube.spiromodneo.util.ore.OreCoupling;
 import com.github.peeftube.spiromodneo.util.stone.*;
 import com.github.peeftube.spiromodneo.util.wood.LivingWoodBlockType;
 import com.github.peeftube.spiromodneo.util.wood.ManufacturedWoodType;
 import com.github.peeftube.spiromodneo.util.wood.PlankBlockSubType;
 import com.github.peeftube.spiromodneo.util.wood.SignType;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -17,6 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.*;
@@ -25,6 +29,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
@@ -42,10 +47,14 @@ public class BlockLootTables extends BlockLootSubProvider
     @Override
     protected void generate()
     {
+        HolderLookup.RegistryLookup<Enchantment> regLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+
         // Simple drop-self tables
         for (MetalCollection metal : MetalCollection.METAL_COLLECTIONS) { metalTables(metal); }
         for (GrassLikeCollection grass : GrassLikeCollection.GRASS_COLLECTIONS) { grassLikeTables(grass); }
         for (WoodCollection wood : WoodCollection.WOOD_COLLECTIONS) { woodTables(wood); }
+        for (VariableWoodCollection wood : VariableWoodCollection.VARIABLE_WOOD_COLLECTIONS) { variableWoodTables(wood); }
+        for (MossCollection moss : MossCollection.MOSS_COLLECTIONS) { mossTables(moss); }
         dropSelf(Registrar.MANUAL_CRUSHER.get());
         dropSelf(Registrar.TAPPER.get());
 
@@ -54,6 +63,49 @@ public class BlockLootTables extends BlockLootSubProvider
 
         // Ore tables
         for (OreCollection ore : OreCollection.ORE_COLLECTIONS) { oreTables(ore); }
+
+        // Phantom berries (copied from the sweet berry bush code)
+        ExtensibleBerryBushBlock ebPhantom = (ExtensibleBerryBushBlock) Registrar.PHANTOM_BERRY_BUSH.get();
+        this.add(Registrar.PHANTOM_BERRY_BUSH.get(),
+                b -> this.applyExplosionDecay(b,
+                        LootTable.lootTable().withPool(
+                                LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition
+                                                .hasBlockStateProperties(Registrar.PHANTOM_BERRY_BUSH.get())
+                                                .setProperties(StatePropertiesPredicate.Builder
+                                                        .properties().hasProperty(SweetBerryBushBlock.AGE, 3)))
+                                        .add(LootItem.lootTableItem(ebPhantom.getBerry().get()))
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                                        .apply(ApplyBonusCount.addUniformBonusCount(regLookup.getOrThrow(Enchantments.FORTUNE)))
+                        ).withPool(
+                                LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition
+                                                .hasBlockStateProperties(Registrar.PHANTOM_BERRY_BUSH.get())
+                                                .setProperties(StatePropertiesPredicate.Builder
+                                                        .properties().hasProperty(SweetBerryBushBlock.AGE, 2)))
+                                        .add(LootItem.lootTableItem(ebPhantom.getBerry().get()))
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                        .apply(ApplyBonusCount.addUniformBonusCount(regLookup.getOrThrow(Enchantments.FORTUNE)))
+                        )
+                )
+        );
+    }
+
+    private void mossTables(MossCollection set)
+    {
+        for (MossType t : MossType.values())
+        {
+            if (!set.material().equals(MossMaterial.MOSS))
+                dropSelf(set.bulkData().get(t).getBlock().get());
+        }
+    }
+
+    private void variableWoodTables(VariableWoodCollection set)
+    {
+        add(set.leaves().getBlock().get(),
+                createLeavesDrops(set.leaves().getBlock().get(),
+                        set.sapling().getBlock().get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        dropSelf(set.sapling().getBlock().get());
     }
 
     private void woodTables(WoodCollection set)

@@ -33,6 +33,8 @@ public class SpiroTags
 
         public static TagKey<Block> SUPPORTS_TAPPER = tag("can_support_tapper");
 
+        public static TagKey<Block> SUPPORTS_STONE_PLANTABLE_SAPLINGS = tag("special_stone_sapling_supportable");
+
         public static TagKey<Block> tag(String name) { return BlockTags.create(RLUtility.makeRL(name)); }
         public static TagKey<Block> forgeTag(String name) { return BlockTags.create(RLUtility.makeRL("forge", name)); }
     }
@@ -63,6 +65,14 @@ public class SpiroTags
 
     public static class Biomes
     {
+        public static TagKey<Biome> IS_LUSH_CAVES_LIKE = tag("is_like_lush_caves");
+        
+        public static TagKey<Biome> IS_AZURE_CAVE_BIOME = tag("is_azure_cavern");
+        public static TagKey<Biome> IS_RUBY_CAVE_BIOME = tag("is_ruby_cavern");
+        public static TagKey<Biome> IS_VERDANT_CAVE_BIOME = tag("is_verdant_cavern");
+        public static TagKey<Biome> IS_GILDED_CAVE_BIOME = tag("is_gilded_cavern");
+        public static TagKey<Biome> IS_AMETHYST_CAVE_BIOME = tag("is_amethyst_cavern");
+
         public static TagKey<Biome> RUBY_SPAWNABLE = tag("is_ruby_spawnable");
 
         public static TagKey<Biome> LIMBO_GARDEN = tag("limbo_garden");

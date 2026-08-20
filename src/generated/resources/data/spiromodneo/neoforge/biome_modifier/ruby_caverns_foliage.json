@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#spiromodneo:is_ruby_cavern",
+  "features": [
+    "spiromodneo:ruby_cavern_veg",
+    "spiromodneo:ruby_cave_trees"
+  ],
+  "step": "vegetal_decoration"
+}

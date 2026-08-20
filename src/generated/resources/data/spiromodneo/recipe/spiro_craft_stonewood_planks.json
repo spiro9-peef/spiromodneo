@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "spiromodneo:stonewood_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "spiromodneo:stonewood_planks"
+  }
+}

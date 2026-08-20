@@ -1,0 +1,17 @@
+{
+  "feature": "spiromodneo:ruby_stonewood",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "spiromodneo:ruby_stonewood_sapling",
+          "Properties": {
+            "stage": "0"
+          }
+        }
+      }
+    }
+  ]
+}

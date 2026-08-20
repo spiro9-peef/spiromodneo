@@ -49,6 +49,12 @@ public class BiomeModifiersData
     public static final ResourceKey<BiomeModifier> OVERWORLD_GROUNDSTONES = key("ground_stones_in_overworld");
     public static final ResourceKey<BiomeModifier> NETHER_GROUNDSTONES = key("ground_stones_in_nether");
 
+    public static final ResourceKey<BiomeModifier> AZURE_CAVERNS_FOLIAGE = key("azure_caverns_foliage");
+    public static final ResourceKey<BiomeModifier> RUBY_CAVERNS_FOLIAGE = key("ruby_caverns_foliage");
+    public static final ResourceKey<BiomeModifier> VERDANT_CAVERNS_FOLIAGE = key("verdant_caverns_foliage");
+    public static final ResourceKey<BiomeModifier> GILDED_CAVERNS_FOLIAGE = key("gilded_caverns_foliage");
+    public static final ResourceKey<BiomeModifier> AMETHYST_CAVERNS_FOLIAGE = key("amethyst_caverns_foliage");
+
     public static void bootstrap(final BootstrapContext<BiomeModifier> context)
     {
         final var biomes   = context.lookup(Registries.BIOME);
@@ -165,7 +171,7 @@ public class BiomeModifiersData
         context.register(RUBBER_FOREST_FOLIAGE, new BiomeModifiers.AddFeaturesBiomeModifier(
                 tag(biomes, SpiroTags.Biomes.IS_MINE_AND_CAN_HAVE_RUBBER),
                 features(features,
-                        PlacedFeaturesData.RUBBER_TREES_01, PlacedFeaturesData.RUBBER_TREES_02),
+                        PlacedFeaturesData.RUBBER_TREES_02, PlacedFeaturesData.RUBBER_TREES_01),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
 
@@ -179,6 +185,41 @@ public class BiomeModifiersData
                 tag(biomes, BiomeTags.IS_NETHER),
                 features(features, PlacedFeaturesData.GROUND_STONES),
                 GenerationStep.Decoration.TOP_LAYER_MODIFICATION
+        ));
+
+        context.register(AZURE_CAVERNS_FOLIAGE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                tag(biomes, SpiroTags.Biomes.IS_AZURE_CAVE_BIOME),
+                features(features,
+                        PlacedFeaturesData.AZURE_CAVERN_VEGETATION, PlacedFeaturesData.AZURE_CAVE_TREES),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(RUBY_CAVERNS_FOLIAGE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                tag(biomes, SpiroTags.Biomes.IS_RUBY_CAVE_BIOME),
+                features(features,
+                        PlacedFeaturesData.RUBY_CAVERN_VEGETATION, PlacedFeaturesData.RUBY_CAVE_TREES),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(VERDANT_CAVERNS_FOLIAGE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                tag(biomes, SpiroTags.Biomes.IS_VERDANT_CAVE_BIOME),
+                features(features,
+                        PlacedFeaturesData.VERDANT_CAVERN_VEGETATION, PlacedFeaturesData.VERDANT_CAVE_TREES),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(GILDED_CAVERNS_FOLIAGE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                tag(biomes, SpiroTags.Biomes.IS_GILDED_CAVE_BIOME),
+                features(features,
+                        PlacedFeaturesData.GILDED_CAVERN_VEGETATION, PlacedFeaturesData.GILDED_CAVE_TREES),
+                GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(AMETHYST_CAVERNS_FOLIAGE, new BiomeModifiers.AddFeaturesBiomeModifier(
+                tag(biomes, SpiroTags.Biomes.IS_AMETHYST_CAVE_BIOME),
+                features(features,
+                        PlacedFeaturesData.AMETHYST_CAVERN_VEGETATION, PlacedFeaturesData.AMETHYST_CAVE_TREES),
+                GenerationStep.Decoration.VEGETAL_DECORATION
         ));
     }
 

@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#spiromodneo:is_azure_cavern",
+  "features": [
+    "spiromodneo:azure_cavern_veg",
+    "spiromodneo:azure_cave_trees"
+  ],
+  "step": "vegetal_decoration"
+}

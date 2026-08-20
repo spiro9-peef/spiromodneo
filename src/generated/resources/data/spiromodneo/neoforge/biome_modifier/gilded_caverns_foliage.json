@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#spiromodneo:is_gilded_cavern",
+  "features": [
+    "spiromodneo:gilded_cavern_veg",
+    "spiromodneo:gilded_cave_trees"
+  ],
+  "step": "vegetal_decoration"
+}

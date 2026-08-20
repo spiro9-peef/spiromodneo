@@ -2,6 +2,10 @@
   "feature": "spiromodneo:methane_ice_ore_mega_nether",
   "placement": [
     {
+      "type": "minecraft:count",
+      "count": 4
+    },
+    {
       "type": "minecraft:height_range",
       "height": {
         "type": "minecraft:uniform",
@@ -18,10 +22,6 @@
     },
     {
       "type": "minecraft:in_square"
-    },
-    {
-      "type": "minecraft:count",
-      "count": 4
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "spiromodneo:block/stripped_stonewood_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spiromodneo:block/stripped_stonewood_log"
+    },
+    "axis=z": {
+      "model": "spiromodneo:block/stripped_stonewood_log_horizontal",
+      "x": 90
+    }
+  }
+}

@@ -1,18 +1,18 @@
 {
   "values": [
-    "minecraft:deepslate_lapis_ore",
-    "spiromodneo:granite_lapis_ore",
     "spiromodneo:basalt_lapis_ore",
-    "spiromodneo:smooth_sandstone_lapis_ore",
-    "spiromodneo:limbipetra_lapis_ore",
-    "spiromodneo:calcite_lapis_ore",
-    "spiromodneo:diorite_lapis_ore",
-    "spiromodneo:end_lapis_ore",
-    "spiromodneo:nether_lapis_ore",
-    "spiromodneo:andesite_lapis_ore",
-    "spiromodneo:smooth_red_sandstone_lapis_ore",
-    "minecraft:lapis_ore",
     "spiromodneo:tuff_lapis_ore",
-    "spiromodneo:dripstone_lapis_ore"
+    "spiromodneo:granite_lapis_ore",
+    "spiromodneo:limbipetra_lapis_ore",
+    "spiromodneo:end_lapis_ore",
+    "spiromodneo:diorite_lapis_ore",
+    "spiromodneo:andesite_lapis_ore",
+    "spiromodneo:dripstone_lapis_ore",
+    "minecraft:lapis_ore",
+    "spiromodneo:nether_lapis_ore",
+    "spiromodneo:smooth_red_sandstone_lapis_ore",
+    "minecraft:deepslate_lapis_ore",
+    "spiromodneo:calcite_lapis_ore",
+    "spiromodneo:smooth_sandstone_lapis_ore"
   ]
 }
