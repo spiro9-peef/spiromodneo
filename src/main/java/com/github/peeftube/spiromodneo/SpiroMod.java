@@ -249,24 +249,26 @@ public class SpiroMod
             int isoB = c & 0xFF;
             int isoA = (c >> 24) & 0xFF; // Usually 255 or 0xFF for opaque blocks
 
+            float scale = 24.0f;
+
             FastNoiseLite n0 = new FastNoiseLite();
             n0.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n0.SetSeed(1202412885);
-            n0.SetFrequency(MathUtils.getFracInv(1024.0f));
+            n0.SetFrequency(MathUtils.getFracInv(scale));
 
             double r0 = (n0.GetNoise(p.getX(), p.getY(), p.getZ()) * 0.25);
 
             FastNoiseLite n1 = new FastNoiseLite();
             n1.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n1.SetSeed(13265943);
-            n1.SetFrequency(MathUtils.getFracInv(768.0f));
+            n1.SetFrequency(MathUtils.getFracInv(scale * 0.75f));
 
             double r1 = (n1.GetNoise(p.getX(), p.getY(), p.getZ()) * 0.125);
 
             FastNoiseLite n2 = new FastNoiseLite();
             n2.SetNoiseType(FastNoiseLite.NoiseType.Perlin);
             n2.SetSeed(-236501);
-            n2.SetFrequency(MathUtils.getFracInv(384.0f));
+            n2.SetFrequency(MathUtils.getFracInv(scale * 0.375f));
 
             double r2 = (n2.GetNoise(p.getX(), p.getY(), p.getZ()) * 0.0625);
 
