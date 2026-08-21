@@ -132,6 +132,30 @@
           }
         },
         "target": {
+          "block": "spiromodneo:haemolite",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
+          "Name": "spiromodneo:basalt_redstone_ore",
+          "Properties": {
+            "lit": "false"
+          }
+        },
+        "target": {
+          "block": "spiromodneo:packed_haemolite",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
+          "Name": "spiromodneo:basalt_redstone_ore",
+          "Properties": {
+            "lit": "false"
+          }
+        },
+        "target": {
           "predicate_type": "minecraft:tag_match",
           "tag": "spiromodneo:basalt_ore_replaceables"
         }

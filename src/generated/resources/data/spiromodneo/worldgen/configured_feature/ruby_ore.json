@@ -99,6 +99,24 @@
           "Name": "spiromodneo:basalt_ruby_ore"
         },
         "target": {
+          "block": "spiromodneo:haemolite",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
+          "Name": "spiromodneo:basalt_ruby_ore"
+        },
+        "target": {
+          "block": "spiromodneo:packed_haemolite",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
+          "Name": "spiromodneo:basalt_ruby_ore"
+        },
+        "target": {
           "predicate_type": "minecraft:tag_match",
           "tag": "spiromodneo:basalt_ore_replaceables"
         }

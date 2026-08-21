@@ -96,6 +96,24 @@
       },
       {
         "state": {
+          "Name": "spiromodneo:haemolite_lapis_ore"
+        },
+        "target": {
+          "block": "spiromodneo:haemolite",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
+          "Name": "spiromodneo:packed_haemolite_lapis_ore"
+        },
+        "target": {
+          "block": "spiromodneo:packed_haemolite",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
           "Name": "spiromodneo:basalt_lapis_ore"
         },
         "target": {

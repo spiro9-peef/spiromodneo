@@ -96,22 +96,6 @@
     "spiromodneo:mossy_limbipetra_brick_wall",
     "spiromodneo:cracked_limbipetra_brick_wall",
     "spiromodneo:limbipetra_tile_wall",
-    "spiromodneo:cracked_limbipetra_tile_wall",
-    "spiromodneo:haemolite_wall",
-    "spiromodneo:cobbled_haemolite_wall",
-    "spiromodneo:mossy_cobbled_haemolite_wall",
-    "spiromodneo:haemolite_brick_wall",
-    "spiromodneo:mossy_haemolite_brick_wall",
-    "spiromodneo:cracked_haemolite_brick_wall",
-    "spiromodneo:haemolite_tile_wall",
-    "spiromodneo:cracked_haemolite_tile_wall",
-    "spiromodneo:packed_haemolite_wall",
-    "spiromodneo:cobbled_packed_haemolite_wall",
-    "spiromodneo:mossy_cobbled_packed_haemolite_wall",
-    "spiromodneo:packed_haemolite_brick_wall",
-    "spiromodneo:mossy_packed_haemolite_brick_wall",
-    "spiromodneo:cracked_packed_haemolite_brick_wall",
-    "spiromodneo:packed_haemolite_tile_wall",
-    "spiromodneo:cracked_packed_haemolite_tile_wall"
+    "spiromodneo:cracked_limbipetra_tile_wall"
   ]
 }

@@ -3,6 +3,7 @@ package com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.custo
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.content.worldgen.biome.NeoBiomes;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Soil;
+import com.github.peeftube.spiromodneo.util.SpiroTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
@@ -17,6 +18,10 @@ public class OverworldCustomRegionSourceRules
     {
         SurfaceRules.RuleSource GRASS_ON_MUD =
                 makeStateRule(Registrar.GRASS_TYPE.bulkData().get(Soil.MUD).getBlock().get());
+        SurfaceRules.RuleSource HAEMOLITE =
+                makeStateRule(Registrar.HAEMOLITE_SET.getBaseStone().get());
+        SurfaceRules.RuleSource PACKED_HAEMOLITE =
+                makeStateRule(Registrar.PACKED_HAEMOLITE_SET.getBaseStone().get());
 
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
         SurfaceRules.RuleSource grassSurface =
@@ -42,13 +47,15 @@ public class OverworldCustomRegionSourceRules
          * that the stone override doesn't render deepslate outright impossible to find. */
         SurfaceRules.RuleSource deepstoneOverrideRule = SurfaceRules.sequence(
                 // SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.BIRCH_FOREST, Biomes.OLD_GROWTH_BIRCH_FOREST), SMOOTH_BASALT),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(NeoBiomes.FLESH_CAVERNS), PACKED_HAEMOLITE),
                 DEEPSLATE
         );
 
         /** This is a per-biome materials replacer rule. It *should* run as expected.
          * Note that this will override stone but not deepslate, which needs to come first. */
         SurfaceRules.RuleSource topstoneOverrideRule = SurfaceRules.sequence(
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(NeoBiomes.OVERWORLD_RUBBER_FOREST), SMOOTH_BASALT)
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(NeoBiomes.OVERWORLD_RUBBER_FOREST), SMOOTH_BASALT),
+                SurfaceRules.ifTrue(SurfaceRules.isBiome(NeoBiomes.FLESH_CAVERNS), HAEMOLITE)
         );
 
         return SurfaceRules.sequence(

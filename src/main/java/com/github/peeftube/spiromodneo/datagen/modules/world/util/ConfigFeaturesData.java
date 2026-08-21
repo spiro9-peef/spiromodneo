@@ -177,6 +177,7 @@ public class ConfigFeaturesData
             registerKey("azure_cavern_ceiling_vines");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_CAVERN_CEILING_VINES =
             registerKey("ruby_cavern_ceiling_vines");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EVISCERA_STEMS = registerKey("eviscera_stems");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_CAVE_TREES = registerKey("azure_cave_trees");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_CAVE_TREES = registerKey("ruby_cave_trees");
@@ -699,6 +700,36 @@ public class ConfigFeaturesData
                                     .build()),
                                 rubyCaveVineWeightedStateProv), 
                                 BlockColumnConfiguration.layer(ConstantInt.of(1), rubyCaveVineRandIntStateProv)
+                        ),
+                        Direction.DOWN,
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                        true));
+
+        WeightedStateProvider evisceraStemWeightedStateProv =
+                new WeightedStateProvider(
+                SimpleWeightedRandomList.<BlockState>builder()
+                    .add(Registrar.EVISCERA_PLANT.get().defaultBlockState(), 4)
+                    .add(Registrar.EVISCERA_PLANT.get().defaultBlockState()
+                        .setValue(BlockStateProperties.BERRIES, Boolean.TRUE), 1));
+        RandomizedIntStateProvider evisceraStemRandIntStateProv =
+                new RandomizedIntStateProvider( new WeightedStateProvider(
+                SimpleWeightedRandomList.<BlockState>builder()
+                    .add(Registrar.EVISCERA.get().defaultBlockState(), 4)
+                    .add(Registrar.EVISCERA.get().defaultBlockState()
+                        .setValue(BlockStateProperties.BERRIES, Boolean.TRUE), 1)),
+            ExtensibleCaveVinesBlock.AGE,
+            UniformInt.of(23, 25));
+        register(context, EVISCERA_STEMS, Feature.BLOCK_COLUMN,
+                new BlockColumnConfiguration(
+                        List.of(
+                                BlockColumnConfiguration.layer( new WeightedListInt(
+                                    SimpleWeightedRandomList.<IntProvider>builder()
+                                    .add(UniformInt.of(0, 19), 2)
+                                    .add(UniformInt.of(0, 2), 3)
+                                    .add(UniformInt.of(0, 6), 10)
+                                    .build()),
+                                evisceraStemWeightedStateProv),
+                                BlockColumnConfiguration.layer(ConstantInt.of(1), evisceraStemRandIntStateProv)
                         ),
                         Direction.DOWN,
                         BlockPredicate.ONLY_IN_AIR_PREDICATE,

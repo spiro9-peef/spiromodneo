@@ -23,7 +23,11 @@ public class BiomeTagDataProv extends BiomeTagsProvider
     protected void addTags(HolderLookup.Provider lookup)
     {
         tag(BiomeTags.IS_OVERWORLD)
-                .add(NeoBiomes.OVERWORLD_RUBBER_FOREST);
+                .add(NeoBiomes.OVERWORLD_RUBBER_FOREST)
+                .addTag(SpiroTags.Biomes.IS_VISCERAL);
+
+        tag(SpiroTags.Biomes.IS_VISCERAL)
+                .add(NeoBiomes.FLESH_CAVERNS);
 
         tag(BiomeTags.IS_JUNGLE)
                 .add(NeoBiomes.OVERWORLD_RUBBER_FOREST);

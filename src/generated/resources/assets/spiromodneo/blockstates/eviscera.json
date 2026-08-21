@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "berries=false": {
+      "model": "spiromodneo:block/eviscera"
+    },
+    "berries=true": {
+      "model": "spiromodneo:block/eviscera_lit"
+    }
+  }
+}

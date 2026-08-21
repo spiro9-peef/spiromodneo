@@ -14,6 +14,7 @@ public enum Soil
     MUD("mud", () -> Blocks.MUD),
     NETHERRACK("netherrack", () -> Blocks.NETHERRACK),
     SOUL_SOIL("soul_soil", () -> Blocks.SOUL_SOIL);
+    // TODO: Add "blood mud"
 
     private final String name;
     private final Supplier<Block> soilBlock;

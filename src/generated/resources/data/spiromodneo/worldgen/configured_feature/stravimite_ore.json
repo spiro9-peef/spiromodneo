@@ -96,6 +96,24 @@
       },
       {
         "state": {
+          "Name": "spiromodneo:calcite_stravimite_ore"
+        },
+        "target": {
+          "block": "spiromodneo:haemolite",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
+          "Name": "spiromodneo:calcite_stravimite_ore"
+        },
+        "target": {
+          "block": "spiromodneo:packed_haemolite",
+          "predicate_type": "minecraft:block_match"
+        }
+      },
+      {
+        "state": {
           "Name": "spiromodneo:basalt_stravimite_ore"
         },
         "target": {

@@ -1,6 +1,7 @@
 package com.github.peeftube.spiromodneo.core.init.content.blocks;
 
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.util.SpiroTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -42,6 +43,9 @@ public class ExtensibleCaveVinesPlantBlock extends CaveVinesPlantBlock implement
         this.isDamageDisabled = isDamageDisabled;
     }
 
+    public ExtensibleCaveVinesType checkType()
+    { return this.type; }
+
     protected GrowingPlantHeadBlock getHeadBlock()
     {
         switch (this.type)
@@ -50,9 +54,24 @@ public class ExtensibleCaveVinesPlantBlock extends CaveVinesPlantBlock implement
             { return (GrowingPlantHeadBlock) Registrar.PHANTOM_VINES.get(); }
             case RUBY ->
             { return (GrowingPlantHeadBlock) Registrar.RUBY_VINES.get(); }
+            case VISCERAL ->
+            { return (GrowingPlantHeadBlock) Registrar.EVISCERA.get(); }
             default ->
             { return (GrowingPlantHeadBlock) Blocks.CAVE_VINES; }
         }
+    }
+
+    @Override
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
+    {
+        BlockPos blockpos = pos.relative(this.growthDirection.getOpposite());
+        BlockState blockstate = level.getBlockState(blockpos);
+        return !this.type.equals(ExtensibleCaveVinesType.VISCERAL) ?
+                this.canAttachTo(blockstate) && (blockstate.is(this.getHeadBlock()) || blockstate.is(this.getBodyBlock())
+                || blockstate.isFaceSturdy(level, blockpos, this.growthDirection)) :
+                this.canAttachTo(blockstate) && (blockstate.is(this.getHeadBlock()) || blockstate.is(this.getBodyBlock())
+                        || (blockstate.isFaceSturdy(level, blockpos, this.growthDirection) &&
+                        blockstate.is(SpiroTags.Blocks.VISCERA_SOLID)));
     }
 
     public ItemLike getBerry()

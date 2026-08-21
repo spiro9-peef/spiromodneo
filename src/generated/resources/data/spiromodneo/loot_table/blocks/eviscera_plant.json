@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "spiromodneo:eviscera_plant",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "berries": "true"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spiromodneo:bloodthorn"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "spiromodneo:blocks/eviscera_plant"
+}

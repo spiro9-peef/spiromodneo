@@ -88,6 +88,13 @@ public class BlockTagDataProv extends BlockTagsProvider
         tag(SpiroTags.Blocks.RUBY_VINES)
                 .add(Registrar.RUBY_VINES.get()).add(Registrar.RUBY_VINES_PLANT.get());
 
+        // Viscera
+        tag(SpiroTags.Blocks.EVISCERA_STEM)
+                .add(Registrar.EVISCERA.get()).add(Registrar.EVISCERA_PLANT.get());
+        tag(SpiroTags.Blocks.VISCERA)
+                .addTag(SpiroTags.Blocks.VISCERA_SOLID)
+                .addTag(SpiroTags.Blocks.EVISCERA_STEM);
+
         // Tool level setup
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
                 .addTag(SpiroTags.Blocks.NEEDS_SHARPWOOD_TOOL)
@@ -207,7 +214,8 @@ public class BlockTagDataProv extends BlockTagsProvider
                 .add(set.getCobble().get())
                 .add(set.getMossyCobble().get());
 
-        if (!set.material().equals(StoneMaterial.NETHERRACK) && !set.material().equals(StoneMaterial.LIMBIPETRA))
+        if (!set.material().equals(StoneMaterial.NETHERRACK) && !set.material().equals(StoneMaterial.LIMBIPETRA)
+        && !set.material().equals(StoneMaterial.HAEMOLITE) && !set.material().equals(StoneMaterial.PACKED_HAEMOLITE))
         {
             tag(SpiroTags.Blocks.SUPPORTS_STONE_PLANTABLE_SAPLINGS)
                     .add(set.getBaseStone().get())
@@ -231,6 +239,19 @@ public class BlockTagDataProv extends BlockTagsProvider
                     boolean isDefault      = k2 == StoneSubBlockType.DEFAULT;
                     boolean textureIsStock = getPresets().containsKey(isDefault ? key : baseKey);
                     String  ns             = getPresets().containsKey(baseKey) ? "minecraft" : SpiroMod.MOD_ID;
+
+                    if (available && (set.material().equals(StoneMaterial.HAEMOLITE)
+                            || set.material().equals(StoneMaterial.PACKED_HAEMOLITE)))
+                    {
+                        switch (k2)
+                        {
+                            // All full gore blocks should support Eviscera and equivalents.
+                            case DEFAULT ->
+                            tag(SpiroTags.Blocks.VISCERA_SOLID)
+                                    .add(knownCouplingReadBlockFromKeys(data, k0, k1, k2));
+                            default -> { return; }
+                        }
+                    }
 
                     if (available && !getPresets().containsKey(key))
                     {

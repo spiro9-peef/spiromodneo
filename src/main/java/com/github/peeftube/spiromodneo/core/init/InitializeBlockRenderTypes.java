@@ -45,6 +45,11 @@ public class InitializeBlockRenderTypes
                 ChunkRenderTypeSet.of(RenderType.CUTOUT));
         ItemBlockRenderTypes.setRenderLayer(Registrar.RUBY_VINES_PLANT.get(),
                 ChunkRenderTypeSet.of(RenderType.CUTOUT));
+
+        ItemBlockRenderTypes.setRenderLayer(Registrar.EVISCERA.get(),
+                ChunkRenderTypeSet.of(RenderType.CUTOUT));
+        ItemBlockRenderTypes.setRenderLayer(Registrar.EVISCERA_PLANT.get(),
+                ChunkRenderTypeSet.of(RenderType.CUTOUT));
     }
 
     protected static void variableWoodSettings(VariableWoodCollection set)

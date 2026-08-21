@@ -1,5 +1,6 @@
 {
   "values": [
-    "spiromodneo:spiro_overworld_rubber_forest"
+    "spiromodneo:spiro_overworld_rubber_forest",
+    "#spiromodneo:is_visceral_biome"
   ]
 }

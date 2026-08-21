@@ -58,6 +58,22 @@ public class BlockstateDataProv extends BlockStateProvider
         caveVineSetDesign("ruby_cave_vines", Registrar.RUBY_VINES_PLANT.get(),
                 Registrar.RUBY_VINES.get(), this.models().existingFileHelper);
 
+        // Doesn't follow the same rules as ordinary cave vines
+        getVariantBuilder(Registrar.EVISCERA_PLANT.get())
+                .partialState().with(BlockStateProperties.BERRIES, false).setModels(
+                        new ConfiguredModel(models().cross("eviscera_plant",
+                                RLUtility.makeRL("block/eviscera_plant"))))
+                .partialState().with(BlockStateProperties.BERRIES, true).setModels(
+                        new ConfiguredModel(models().cross("eviscera_plant_lit",
+                                RLUtility.makeRL("block/eviscera_plant_lit"))));
+        getVariantBuilder(Registrar.EVISCERA.get())
+                .partialState().with(BlockStateProperties.BERRIES, false).setModels(
+                        new ConfiguredModel(models().cross("eviscera",
+                                RLUtility.makeRL("block/eviscera"))))
+                .partialState().with(BlockStateProperties.BERRIES, true).setModels(
+                        new ConfiguredModel(models().cross("eviscera_lit",
+                                RLUtility.makeRL("block/eviscera_lit"))));
+
         externalModelAssociation01(Registrar.MANUAL_CRUSHER.get(), "manual_crusher");
 
         tapper(Registrar.TAPPER.get());

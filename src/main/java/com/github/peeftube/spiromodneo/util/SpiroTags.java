@@ -1,6 +1,7 @@
 package com.github.peeftube.spiromodneo.util;
 
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -32,6 +33,10 @@ public class SpiroTags
         public static TagKey<Block> SUPPORTS_CAVE_VINES = tag("can_support_cave_vines");
         public static TagKey<Block> PHANTOM_VINES = tag("is_phantom_vine");
         public static TagKey<Block> RUBY_VINES = tag("is_ruby_vine");
+
+        public static TagKey<Block> VISCERA = tag("is_gore");
+        public static TagKey<Block> VISCERA_SOLID = tag("is_flesh");
+        public static TagKey<Block> EVISCERA_STEM = tag("is_eviscera_stem");
 
         public static TagKey<Block> SUPPORTS_GROUND_STONES = tag("can_support_ground_stone");
 
@@ -76,6 +81,8 @@ public class SpiroTags
         public static TagKey<Biome> IS_VERDANT_CAVE_BIOME = tag("is_verdant_cavern");
         public static TagKey<Biome> IS_GILDED_CAVE_BIOME = tag("is_gilded_cavern");
         public static TagKey<Biome> IS_AMETHYST_CAVE_BIOME = tag("is_amethyst_cavern");
+
+        public static TagKey<Biome> IS_VISCERAL = tag("is_visceral_biome");
 
         public static TagKey<Biome> RUBY_SPAWNABLE = tag("is_ruby_spawnable");
 

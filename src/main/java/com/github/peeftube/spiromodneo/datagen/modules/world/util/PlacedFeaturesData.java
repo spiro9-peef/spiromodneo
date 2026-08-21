@@ -130,6 +130,7 @@ public class PlacedFeaturesData
 
     public static final ResourceKey<PlacedFeature> AZURE_CAVERN_CEILING_VINES = registerKey("azure_cavern_ceiling_vines");
     public static final ResourceKey<PlacedFeature> RUBY_CAVERN_CEILING_VINES = registerKey("ruby_cavern_ceiling_vines");
+    public static final ResourceKey<PlacedFeature> EVISCERA_STEMS = registerKey("eviscera_stems");
 
     public static final ResourceKey<PlacedFeature> AZURE_CAVE_TREES = registerKey("azure_cave_trees");
     public static final ResourceKey<PlacedFeature> RUBY_CAVE_TREES = registerKey("ruby_cave_trees");
@@ -627,6 +628,14 @@ public class PlacedFeaturesData
                 BiomeFilter.biome());
         register(context, RUBY_CAVERN_CEILING_VINES,
                 configuredFeatures.getOrThrow(ConfigFeaturesData.RUBY_CAVERN_CEILING_VINES),
+                CountPlacement.of(188), InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BiomeFilter.biome());
+        register(context, EVISCERA_STEMS,
+                configuredFeatures.getOrThrow(ConfigFeaturesData.EVISCERA_STEMS),
                 CountPlacement.of(188), InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN),

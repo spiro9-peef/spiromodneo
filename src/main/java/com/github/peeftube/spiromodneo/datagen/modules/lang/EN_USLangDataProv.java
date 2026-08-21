@@ -94,6 +94,8 @@ public class EN_USLangDataProv extends LanguageProvider
         ExtensibleBerryBushBlock ebPhantom = (ExtensibleBerryBushBlock) Registrar.PHANTOM_BERRY_BUSH.get();
         add(ebPhantom.getBerry().get(), "Phantom Berries");
 
+        add(Registrar.BLOODTHORN.get(), "Bloodthorn");
+
         // Creative tabs
         add(Registrar.TAB_TITLE_KEY_FORMULAIC + ".minerals_tab", "Ores and Raw Minerals");
         add(Registrar.TAB_TITLE_KEY_FORMULAIC + ".woods_tab", "Wood and Carpentry");
@@ -513,6 +515,8 @@ public class EN_USLangDataProv extends LanguageProvider
         genFormulae.put(BaseStone.BASALT, readable + " (Basalt)");
         genFormulae.put(BaseStone.ENDSTONE, "Ender " + readable);
         genFormulae.put(BaseStone.LIMBIPETRA, "Limbo " + readable);
+        genFormulae.put(BaseStone.HAEMOLITE, "Haemolic " + readable);
+        genFormulae.put(BaseStone.PACKED_HAEMOLITE, "Dense Haemolic " + readable);
 
         return genFormulae.getOrDefault(s, readable);
     }

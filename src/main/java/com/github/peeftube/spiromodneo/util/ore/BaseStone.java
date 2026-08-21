@@ -28,8 +28,8 @@ public enum BaseStone
 
     // Modded stone types.
     LIMBIPETRA("limbipetra_", TUFF_BASED_ORE, 15),
-    HAEMOLITE("haemolite_", NETHER_BASED_ORE),
-    PACKED_HAEMOLITE("packed_haemolite_", DEEPSLATE_BASED_ORE);
+    HAEMOLITE("haemolite_", NETHER_BASED_ORE, 0),
+    PACKED_HAEMOLITE("packed_haemolite_", DEEPSLATE_BASED_ORE, 0);
 
     private final String                    name;
     private final Supplier<BlockBehaviour.Properties> props;

@@ -67,6 +67,11 @@ public class BlockLootTables extends BlockLootSubProvider
         this.add(Registrar.RUBY_VINES_PLANT.get(),
                 createExtensibleCaveVinesDrop(Registrar.RUBY_VINES_PLANT.get(), Items.SWEET_BERRIES));
 
+        this.add(Registrar.EVISCERA.get(),
+                createExtensibleCaveVinesDrop(Registrar.EVISCERA.get(), Registrar.BLOODTHORN.get()));
+        this.add(Registrar.EVISCERA_PLANT.get(),
+                createExtensibleCaveVinesDrop(Registrar.EVISCERA_PLANT.get(), Registrar.BLOODTHORN.get()));
+
         dropSelf(Registrar.MANUAL_CRUSHER.get());
         dropSelf(Registrar.TAPPER.get());
 

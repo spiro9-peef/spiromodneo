@@ -65,6 +65,13 @@ public class NeoBiomes
     public static final ResourceKey<Biome> RUBY_CAVERNS =
             registerKey("spiro_ruby_caverns");
 
+    /**
+     * A living tomb, of flesh and gore, that not even the creatures of the dark and night
+     * would enter, lest it claim them for itself. Do you dare enter the depths of the damned?
+     */
+    public static final ResourceKey<Biome> FLESH_CAVERNS =
+            registerKey("spiro_flesh_caverns");
+
     private static ResourceKey<Biome> registerKey(String name)
     { return ResourceKey.create(Registries.BIOME, RLUtility.makeRL(name)); }
 }

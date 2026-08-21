@@ -7,6 +7,7 @@ import com.github.peeftube.spiromodneo.core.init.InitializeBlockRenderTypes;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.content.worldgen.region.NetherColdRegion;
 import com.github.peeftube.spiromodneo.core.init.content.worldgen.region.OverworldAlternativeRegion1;
+import com.github.peeftube.spiromodneo.core.init.content.worldgen.region.OverworldFleshRegion1;
 import com.github.peeftube.spiromodneo.core.init.content.worldgen.region.OverworldStrangeRegion1;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Soil;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherScreen;
@@ -92,6 +93,8 @@ public class SpiroMod
                     (RLUtility.makeRL("spiro_alt_region01"), 3));
             Regions.register(new OverworldStrangeRegion1
                     (RLUtility.makeRL("spiro_strange_region01"), 1));
+            Regions.register(new OverworldFleshRegion1
+                    (RLUtility.makeRL("spiro_flesh_region01"), 1));
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, MOD_ID,
                     NetherColdRegionSourceRules.rules());

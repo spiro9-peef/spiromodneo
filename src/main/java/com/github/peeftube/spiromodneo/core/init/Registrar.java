@@ -392,7 +392,19 @@ public class Registrar
     public static final DeferredBlock<Block> RUBY_VINES =
             BLOCKS.register("ruby_cave_vines",
                     () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(RUBY_VINES_PLANT.get()),
-                            Items.SWEET_BERRIES, RUBY_VINES_PLANT, true));
+                            Items.SWEET_BERRIES, RUBY_VINES_PLANT, false));
+
+    public static final DeferredItem<Item> BLOODTHORN = ITEMS.registerSimpleItem("bloodthorn");
+
+    public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> EVISCERA_PLANT =
+            BLOCKS.register("eviscera_plant",
+            () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
+                    .lightLevel(ExtensibleCaveVines.emission(0, 0)),
+                    BLOODTHORN, ExtensibleCaveVinesType.VISCERAL, false));
+    public static final DeferredBlock<Block> EVISCERA =
+            BLOCKS.register("eviscera",
+                    () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(EVISCERA_PLANT.get()),
+                            BLOODTHORN, EVISCERA_PLANT, false));
 
     // Going to try setting the order of features lower, maybe this will fix weird bugs I'm having
     public static final DeferredHolder<Feature<?>, GroundStoneFeature> GROUND_STONE_FEATURE =

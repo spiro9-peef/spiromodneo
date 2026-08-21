@@ -36,6 +36,8 @@ public class RightClickHandler
         boolean isPhantomBerry =
                 event.getItemStack()
                      .is(((ExtensibleBerryBushBlock) Registrar.PHANTOM_BERRY_BUSH.get()).getBerry().asItem());
+        boolean isBloodthorn =
+                event.getItemStack().is(Registrar.BLOODTHORN.get().asItem());
         boolean isSweetBerry =
                 event.getItemStack().is(Items.SWEET_BERRIES);
 
@@ -43,9 +45,9 @@ public class RightClickHandler
         BlockPos clickedPos = event.getPos();
         Direction face       = event.getFace();
 
-        if (isPhantomBerry || isSweetBerry)
+        if (isPhantomBerry || isSweetBerry || isBloodthorn)
         {
-            if (face == Direction.UP && !isSweetBerry)
+            if (face == Direction.UP && !isSweetBerry && !isBloodthorn)
             {
                 BlockPos targetPos = clickedPos.above();
 
@@ -78,12 +80,14 @@ public class RightClickHandler
             {
                 BlockPos targetPos = clickedPos.below();
 
-                if (level.isEmptyBlock(targetPos) &&
-                        level.getBlockState(clickedPos).is(SpiroTags.Blocks.SUPPORTS_CAVE_VINES))
+                if (level.isEmptyBlock(targetPos) && ((!isBloodthorn &&
+                        level.getBlockState(clickedPos).is(SpiroTags.Blocks.SUPPORTS_CAVE_VINES)) ||
+                        (isBloodthorn && level.getBlockState(clickedPos).is(SpiroTags.Blocks.VISCERA_SOLID))))
                 {
                     if (!level.isClientSide() && event.getPlayer() != null)
                     {
-                        Block toPlace = isPhantomBerry ? Registrar.PHANTOM_VINES.get() : Registrar.RUBY_VINES.get();
+                        Block toPlace = isPhantomBerry ? Registrar.PHANTOM_VINES.get() :
+                                isSweetBerry ? Registrar.RUBY_VINES.get() : Registrar.EVISCERA.get();
                         level.setBlock(targetPos, toPlace.defaultBlockState(), 3);
 
                         // Consume the berry from hand if not in creative
@@ -99,17 +103,20 @@ public class RightClickHandler
             }
 
             if ((level.getBlockState(clickedPos).is(SpiroTags.Blocks.PHANTOM_VINES) && isPhantomBerry) ||
-                    (level.getBlockState(clickedPos).is(SpiroTags.Blocks.RUBY_VINES) && isSweetBerry))
+                    (level.getBlockState(clickedPos).is(SpiroTags.Blocks.RUBY_VINES) && isSweetBerry) ||
+                    (level.getBlockState(clickedPos).is(SpiroTags.Blocks.EVISCERA_STEM) && isBloodthorn))
             {
                 BlockPos targetPos = clickedPos.below();
                 if (level.isEmptyBlock(targetPos))
                 {
                     if (!level.isClientSide() && event.getPlayer() != null)
                     {
-                        Block toPlace = isPhantomBerry ?
-                                Registrar.PHANTOM_VINES.get() : Registrar.RUBY_VINES.get();
-                        Block toUpdate = isPhantomBerry ?
-                                Registrar.PHANTOM_VINES_PLANT.get() : Registrar.RUBY_VINES_PLANT.get();
+                        Block toPlace =     isPhantomBerry ? Registrar.PHANTOM_VINES.get() :
+                                            isSweetBerry ? Registrar.RUBY_VINES.get() :
+                                            Registrar.EVISCERA.get();
+                        Block toUpdate =    isPhantomBerry ? Registrar.PHANTOM_VINES_PLANT.get() :
+                                            isSweetBerry ? Registrar.RUBY_VINES_PLANT.get() :
+                                            Registrar.EVISCERA_PLANT.get();
 
                         level.setBlock(clickedPos, toUpdate.defaultBlockState(), 3);
                         level.setBlock(targetPos, toPlace.defaultBlockState(), 3);
