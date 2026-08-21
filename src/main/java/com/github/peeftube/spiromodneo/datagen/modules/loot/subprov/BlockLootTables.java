@@ -24,6 +24,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -55,6 +56,17 @@ public class BlockLootTables extends BlockLootSubProvider
         for (WoodCollection wood : WoodCollection.WOOD_COLLECTIONS) { woodTables(wood); }
         for (VariableWoodCollection wood : VariableWoodCollection.VARIABLE_WOOD_COLLECTIONS) { variableWoodTables(wood); }
         for (MossCollection moss : MossCollection.MOSS_COLLECTIONS) { mossTables(moss); }
+
+        this.add(Registrar.PHANTOM_VINES.get(),
+                createExtensibleCaveVinesDrop(Registrar.PHANTOM_VINES.get(), Registrar.PHANTOM_BERRIES.get()));
+        this.add(Registrar.PHANTOM_VINES_PLANT.get(),
+                createExtensibleCaveVinesDrop(Registrar.PHANTOM_VINES_PLANT.get(), Registrar.PHANTOM_BERRIES.get()));
+
+        this.add(Registrar.RUBY_VINES.get(),
+                createExtensibleCaveVinesDrop(Registrar.RUBY_VINES.get(), Items.SWEET_BERRIES));
+        this.add(Registrar.RUBY_VINES_PLANT.get(),
+                createExtensibleCaveVinesDrop(Registrar.RUBY_VINES_PLANT.get(), Items.SWEET_BERRIES));
+
         dropSelf(Registrar.MANUAL_CRUSHER.get());
         dropSelf(Registrar.TAPPER.get());
 
@@ -98,6 +110,15 @@ public class BlockLootTables extends BlockLootSubProvider
             if (!set.material().equals(MossMaterial.MOSS))
                 dropSelf(set.bulkData().get(t).getBlock().get());
         }
+    }
+
+    protected LootTable.Builder createExtensibleCaveVinesDrop(Block block, Item item)
+    {
+        return LootTable.lootTable().withPool(
+                LootPool.lootPool().add(LootItem.lootTableItem(item))
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                        .setProperties(net.minecraft.advancements.critereon.StatePropertiesPredicate.Builder
+                                .properties().hasProperty(BlockStateProperties.BERRIES, true))));
     }
 
     private void variableWoodTables(VariableWoodCollection set)

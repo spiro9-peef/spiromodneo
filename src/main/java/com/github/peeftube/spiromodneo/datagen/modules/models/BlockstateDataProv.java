@@ -2,15 +2,14 @@ package com.github.peeftube.spiromodneo.datagen.modules.models;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
-import com.github.peeftube.spiromodneo.core.init.content.blocks.GroundStoneBlock;
-import com.github.peeftube.spiromodneo.core.init.content.blocks.TappableWoodBlock;
-import com.github.peeftube.spiromodneo.core.init.content.blocks.TapperBlock;
+import com.github.peeftube.spiromodneo.core.init.content.blocks.*;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.util.RLUtility;
 import com.github.peeftube.spiromodneo.util.moss.MossType;
 import com.github.peeftube.spiromodneo.util.ore.OreCoupling;
 import com.github.peeftube.spiromodneo.util.stone.*;
 import com.github.peeftube.spiromodneo.util.wood.*;
+import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -53,6 +52,11 @@ public class BlockstateDataProv extends BlockStateProvider
             { variableWoodSetDesign(wood, this.models().existingFileHelper); }
         for (MossCollection moss : MossCollection.MOSS_COLLECTIONS)
             { mossSetDesign(moss, this.models().existingFileHelper); }
+
+        caveVineSetDesign("phantom_cave_vines", Registrar.PHANTOM_VINES_PLANT.get(),
+                Registrar.PHANTOM_VINES.get(), this.models().existingFileHelper);
+        caveVineSetDesign("ruby_cave_vines", Registrar.RUBY_VINES_PLANT.get(),
+                Registrar.RUBY_VINES.get(), this.models().existingFileHelper);
 
         externalModelAssociation01(Registrar.MANUAL_CRUSHER.get(), "manual_crusher");
 
@@ -186,6 +190,37 @@ public class BlockstateDataProv extends BlockStateProvider
                             .from(0, 0, 0).to(16, 1, 16).end())
             );
         }
+    }
+
+    private void caveVineSetDesign(String name, Block body, Block tip, ExistingFileHelper eFH)
+    {
+        BlockModelBuilder bodyVineLit = externalModelImporter01(
+                name + "_plant_lit", "cross_xcavevine")
+                .texture("cross", RLUtility.makeRL("block/recolorable_cave_vine_plant"))
+                .texture("cross2", RLUtility.makeRL("block/recolorable_cave_vine_plant_leaves"))
+                .texture("cross3", RLUtility.makeRL("block/recolorable_cave_vine_plant_lit"));
+
+        BlockModelBuilder bodyVine = externalModelImporter01(name + "_plant", "cross2_wtint")
+                .texture("cross", RLUtility.makeRL("block/recolorable_cave_vine_plant"))
+                .texture("cross2", RLUtility.makeRL("block/recolorable_cave_vine_plant_leaves"));
+
+        getVariantBuilder(body)
+                .partialState().with(BlockStateProperties.BERRIES, true).setModels(new ConfiguredModel(bodyVineLit))
+                .partialState().with(BlockStateProperties.BERRIES, false).setModels(new ConfiguredModel(bodyVine));
+        
+        BlockModelBuilder headVineLit = externalModelImporter01(
+                name + "_lit", "cross_xcavevine")
+                .texture("cross", RLUtility.makeRL("block/recolorable_cave_vine"))
+                .texture("cross2", RLUtility.makeRL("block/recolorable_cave_vine_leaves"))
+                .texture("cross3", RLUtility.makeRL("block/recolorable_cave_vine_lit"));
+
+        BlockModelBuilder headVine = externalModelImporter01(name, "cross2_wtint")
+                .texture("cross", RLUtility.makeRL("block/recolorable_cave_vine"))
+                .texture("cross2", RLUtility.makeRL("block/recolorable_cave_vine_leaves"));
+
+        getVariantBuilder(tip)
+                .partialState().with(BlockStateProperties.BERRIES, true).setModels(new ConfiguredModel(headVineLit))
+                .partialState().with(BlockStateProperties.BERRIES, false).setModels(new ConfiguredModel(headVine));
     }
 
     private void variableWoodSetDesign(VariableWoodCollection set, ExistingFileHelper eFH)

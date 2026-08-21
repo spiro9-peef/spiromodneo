@@ -1,0 +1,7 @@
+{
+  "parent": "spiromodneo:block/cross2_wtint_import",
+  "textures": {
+    "cross": "spiromodneo:block/recolorable_cave_vine_plant",
+    "cross2": "spiromodneo:block/recolorable_cave_vine_plant_leaves"
+  }
+}

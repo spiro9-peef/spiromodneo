@@ -1,9 +1,7 @@
 package com.github.peeftube.spiromodneo.core.init;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
-import com.github.peeftube.spiromodneo.core.init.content.blocks.ExtensibleBerryBushBlock;
-import com.github.peeftube.spiromodneo.core.init.content.blocks.ManualCrusherBlock;
-import com.github.peeftube.spiromodneo.core.init.content.blocks.TapperBlock;
+import com.github.peeftube.spiromodneo.core.init.content.blocks.*;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.entity.ExtensibleChestBlockEntity;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.entity.ExtensibleTrappedChestBlockEntity;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.entity.ManualCrusherBlockEntity;
@@ -31,8 +29,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CaveVinesBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -141,6 +141,8 @@ public class Registrar
     public static final StoneCollection TUFF_SET = StoneCollection.registerCollection(StoneMaterial.TUFF);
     public static final StoneCollection ENDSTONE_SET = StoneCollection.registerCollection(StoneMaterial.ENDSTONE);
     public static final StoneCollection LIMBIPETRA_SET = StoneCollection.registerCollection(StoneMaterial.LIMBIPETRA);
+
+    // Consider maybe adding support for Vanilla Backported here - will require a major refactor
 
     public static final DeferredItem<Item> SINEW = ITEMS.registerSimpleItem("sinew");
     public static final DeferredItem<Item> PLANT_FIBRE = ITEMS.registerSimpleItem("plant_fibre");
@@ -328,6 +330,8 @@ public class Registrar
     public static final WoodCollection ASHEN_BIRCH_WOOD = WoodCollection.registerCollection(WoodMaterial.ASHEN_BIRCH);
     public static final WoodCollection STONEWOOD = WoodCollection.registerCollection(WoodMaterial.STONEWOOD);
 
+    // Consider maybe adding support for Vanilla Backported here - will require a major refactor
+
     public static final TappableWoodCollection RUBBER_WOOD =
             TappableWoodCollection.registerCollection(TappableWoodMaterial.RUBBERWOOD);
     public static final TappableWoodCollection MAPLE_WOOD =
@@ -357,15 +361,36 @@ public class Registrar
     public static final MossCollection AMETHYST_GLOWMOSS =
             MossCollection.registerCollection(MossMaterial.AMETHYST_GLOWMOSS, 6);
 
+    public static final DeferredItem<Item> PHANTOM_BERRIES = ITEMS.registerSimpleItem("phantom_berries",
+            new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.15f).build()));
     public static final DeferredBlock<Block> PHANTOM_BERRY_BUSH = BLOCKS.register("phantom_berry_bush",
             () -> new ExtensibleBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)
                     .lightLevel(s -> {
                         if (s.getValue(BlockStateProperties.AGE_3) < 2) return 6;
                         else if (s.getValue(BlockStateProperties.AGE_3) == 2) return 10;
                         else return 14;
-                    }), "phantom_berries", new Item.Properties().food(
-                            new FoodProperties.Builder().nutrition(2).saturationModifier(0.15f).build()),
+                    }), PHANTOM_BERRIES,
                     true));
+
+    public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> PHANTOM_VINES_PLANT =
+            BLOCKS.register("phantom_cave_vines_plant",
+            () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
+                    .lightLevel(ExtensibleCaveVines.emission(14, 6)),
+                    PHANTOM_BERRIES, ExtensibleCaveVinesType.PHANTOM, true));
+    public static final DeferredBlock<Block> PHANTOM_VINES =
+            BLOCKS.register("phantom_cave_vines",
+                    () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(PHANTOM_VINES_PLANT.get()),
+                            PHANTOM_BERRIES, PHANTOM_VINES_PLANT, true));
+
+    public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> RUBY_VINES_PLANT =
+            BLOCKS.register("ruby_cave_vines_plant",
+            () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
+                    .lightLevel(ExtensibleCaveVines.emission(6, 6)),
+                    Items.SWEET_BERRIES, ExtensibleCaveVinesType.RUBY, false));
+    public static final DeferredBlock<Block> RUBY_VINES =
+            BLOCKS.register("ruby_cave_vines",
+                    () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(RUBY_VINES_PLANT.get()),
+                            Items.SWEET_BERRIES, RUBY_VINES_PLANT, true));
 
     // Going to try setting the order of features lower, maybe this will fix weird bugs I'm having
     public static final DeferredHolder<Feature<?>, GroundStoneFeature> GROUND_STONE_FEATURE =

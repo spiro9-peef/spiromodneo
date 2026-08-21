@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "berries=false": {
+      "model": "spiromodneo:block/phantom_cave_vines_plant"
+    },
+    "berries=true": {
+      "model": "spiromodneo:block/phantom_cave_vines_plant_lit"
+    }
+  }
+}

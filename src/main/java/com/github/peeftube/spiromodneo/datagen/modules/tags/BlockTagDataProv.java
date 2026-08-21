@@ -75,8 +75,18 @@ public class BlockTagDataProv extends BlockTagsProvider
             {
                 tag(BlockTags.DIRT)
                         .add(moss.bulkData().get(MossType.MOSS_BLOCK).getBlock().get());
+                tag(SpiroTags.Blocks.SUPPORTS_CAVE_VINES)
+                        .add(moss.bulkData().get(MossType.MOSS_BLOCK).getBlock().get());
+                tag(SpiroTags.Blocks.SUPPORTS_STONE_PLANTABLE_SAPLINGS)
+                        .add(moss.bulkData().get(MossType.MOSS_BLOCK).getBlock().get());
             }
         }
+
+        // Vines should be relatively easy so we'll do them inline as well
+        tag(SpiroTags.Blocks.PHANTOM_VINES)
+                .add(Registrar.PHANTOM_VINES.get()).add(Registrar.PHANTOM_VINES_PLANT.get());
+        tag(SpiroTags.Blocks.RUBY_VINES)
+                .add(Registrar.RUBY_VINES.get()).add(Registrar.RUBY_VINES_PLANT.get());
 
         // Tool level setup
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)
@@ -174,6 +184,8 @@ public class BlockTagDataProv extends BlockTagsProvider
             tag(s.getTag()).add(set.bulkData().get(s).getBlock().get());
             tag(tag).add(set.bulkData().get(s).getBlock().get());
             tag(BlockTags.ANIMALS_SPAWNABLE_ON).add(set.bulkData().get(s).getBlock().get());
+
+            tag(SpiroTags.Blocks.SUPPORTS_CAVE_VINES).add(set.bulkData().get(s).getBlock().get());
         }
     }
 
@@ -185,6 +197,10 @@ public class BlockTagDataProv extends BlockTagsProvider
         // This may break things but whatever
         tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES).add(set.material().getOreBase().getOreBase().get());
         tag(BlockTags.NETHER_CARVER_REPLACEABLES).add(set.material().getOreBase().getOreBase().get());
+
+        // This is so that custom cave vine types grow on stone!
+        tag(SpiroTags.Blocks.SUPPORTS_CAVE_VINES)
+                .add(set.getBaseStone().get());
 
         tag(SpiroTags.Blocks.SUPPORTS_GROUND_STONES)
                 .add(set.getBaseStone().get())

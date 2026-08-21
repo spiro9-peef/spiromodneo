@@ -1,0 +1,8 @@
+{
+  "parent": "spiromodneo:block/cross_xcavevine_import",
+  "textures": {
+    "cross": "spiromodneo:block/recolorable_cave_vine",
+    "cross2": "spiromodneo:block/recolorable_cave_vine_leaves",
+    "cross3": "spiromodneo:block/recolorable_cave_vine_lit"
+  }
+}

@@ -34,6 +34,17 @@ public class InitializeBlockRenderTypes
         // Berry bushes?
         ItemBlockRenderTypes.setRenderLayer(Registrar.PHANTOM_BERRY_BUSH.get(),
                 ChunkRenderTypeSet.of(RenderType.CUTOUT));
+
+        // Vine sets.
+        ItemBlockRenderTypes.setRenderLayer(Registrar.PHANTOM_VINES.get(),
+                ChunkRenderTypeSet.of(RenderType.CUTOUT));
+        ItemBlockRenderTypes.setRenderLayer(Registrar.PHANTOM_VINES_PLANT.get(),
+                ChunkRenderTypeSet.of(RenderType.CUTOUT));
+
+        ItemBlockRenderTypes.setRenderLayer(Registrar.RUBY_VINES.get(),
+                ChunkRenderTypeSet.of(RenderType.CUTOUT));
+        ItemBlockRenderTypes.setRenderLayer(Registrar.RUBY_VINES_PLANT.get(),
+                ChunkRenderTypeSet.of(RenderType.CUTOUT));
     }
 
     protected static void variableWoodSettings(VariableWoodCollection set)

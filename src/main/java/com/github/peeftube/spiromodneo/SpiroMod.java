@@ -203,12 +203,47 @@ public class SpiroMod
                     Registrar.AZURE_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
                     Registrar.AZURE_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
 
+
+            event.register((st, l, p, i) ->
+            {
+                if (p != null && l != null)
+                {
+                    int vineColor = -10784593;
+                    int berryColor = 0xFF00CAFF;
+
+                    if (i == 1) { return noiseBasedColorMod(vineColor, p); }
+                    else if (i == 2) { return noiseBasedColorMod(berryColor, p); }
+                    else { return -1; }
+                }
+
+                return -1;
+            },
+                    Registrar.PHANTOM_VINES.get(),
+                    Registrar.PHANTOM_VINES_PLANT.get());
+
             event.register((st, l, p, i) ->
                             p != null ? noiseBasedColorMod(-5744252, p) : -5744252,
                     Registrar.RUBY_STONEWOOD.leaves().getBlock().get(),
                     Registrar.RUBY_STONEWOOD.sapling().getBlock().get(),
                     Registrar.RUBY_GLOWMOSS.bulkData().get(MossType.MOSS_BLOCK).getBlock().get(),
                     Registrar.RUBY_GLOWMOSS.bulkData().get(MossType.MOSS_CARPET).getBlock().get());
+
+            event.register((st, l, p, i) ->
+            {
+                if (p != null && l != null)
+                {
+                    int vineColor = -5744252;
+                    int berryColor = 0xFFC1253D;
+
+                    if (i == 1) { return noiseBasedColorMod(vineColor, p); }
+                    else if (i == 2) { return noiseBasedColorMod(berryColor, p); }
+                    else { return -1; }
+                }
+
+                return -1;
+            },
+                    Registrar.RUBY_VINES.get(),
+                    Registrar.RUBY_VINES_PLANT.get());
 
             event.register((st, l, p, i) ->
                             p != null ? noiseBasedColorMod(-10835342, p) : -10835342,

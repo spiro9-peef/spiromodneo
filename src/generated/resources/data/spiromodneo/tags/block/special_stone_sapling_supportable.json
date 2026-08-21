@@ -35,6 +35,11 @@
     "spiromodneo:mossy_cobbled_tuff",
     "minecraft:end_stone",
     "spiromodneo:cobbled_end_stone",
-    "spiromodneo:mossy_cobbled_endstone"
+    "spiromodneo:mossy_cobbled_endstone",
+    "spiromodneo:azure_glow_moss_block",
+    "spiromodneo:ruby_glow_moss_block",
+    "spiromodneo:verdant_glow_moss_block",
+    "spiromodneo:gilded_glow_moss_block",
+    "spiromodneo:amethyst_glow_moss_block"
   ]
 }

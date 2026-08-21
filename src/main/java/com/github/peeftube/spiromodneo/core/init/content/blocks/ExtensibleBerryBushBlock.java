@@ -32,6 +32,9 @@ public class ExtensibleBerryBushBlock extends SweetBerryBushBlock
     { super(properties); this.berry = Registrar.ITEMS.register(berryName,
             () -> new ItemNameBlockItem(this, berryProps)); this.isDamageDisabled = disableDamage; }
 
+    public ExtensibleBerryBushBlock(Properties properties, DeferredItem<Item> berry, boolean disableDamage)
+    { super(properties); this.berry = berry; this.isDamageDisabled = disableDamage; }
+
     public DeferredItem<Item> getBerry()
     { return this.berry; }
 
