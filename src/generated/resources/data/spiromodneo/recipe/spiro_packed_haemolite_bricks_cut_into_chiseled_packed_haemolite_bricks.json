@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spiromodneo:packed_haemolite_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "spiromodneo:chiseled_packed_haemolite_bricks"
+  }
+}

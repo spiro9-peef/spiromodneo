@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "spiromodneo:block/packed_haemolite_bricks",
+    "side": "spiromodneo:block/packed_haemolite_bricks",
+    "top": "spiromodneo:block/packed_haemolite_bricks"
+  }
+}

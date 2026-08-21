@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:moss_block"
+    },
+    {
+      "item": "spiromodneo:packed_haemolite_column"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "spiromodneo:mossy_packed_haemolite_column"
+  }
+}

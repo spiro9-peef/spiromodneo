@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spiromodneo:haemolite_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "spiromodneo:haemolite_brick_wall"
+  }
+}

@@ -27,7 +27,9 @@ public enum BaseStone
     ENDSTONE("end_", STONE_BASED_ORE, () -> Blocks.END_STONE, true),
 
     // Modded stone types.
-    LIMBIPETRA("limbipetra_", TUFF_BASED_ORE, 15);
+    LIMBIPETRA("limbipetra_", TUFF_BASED_ORE, 15),
+    HAEMOLITE("haemolite_", NETHER_BASED_ORE),
+    PACKED_HAEMOLITE("packed_haemolite_", DEEPSLATE_BASED_ORE);
 
     private final String                    name;
     private final Supplier<BlockBehaviour.Properties> props;

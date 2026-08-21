@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "spiromodneo:block/haemolite",
+    "side": "spiromodneo:block/haemolite",
+    "top": "spiromodneo:block/haemolite"
+  }
+}

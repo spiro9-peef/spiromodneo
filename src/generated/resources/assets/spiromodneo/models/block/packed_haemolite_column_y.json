@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_uv_locked_y",
+  "textures": {
+    "end": "spiromodneo:block/packed_haemolite_column_top",
+    "side": "spiromodneo:block/packed_haemolite_column"
+  }
+}

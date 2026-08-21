@@ -13,6 +13,8 @@
     "minecraft:netherrack",
     "minecraft:tuff",
     "minecraft:end_stone",
-    "spiromodneo:limbipetra"
+    "spiromodneo:limbipetra",
+    "spiromodneo:haemolite",
+    "spiromodneo:packed_haemolite"
   ]
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "spiromodneo:cobbled_packed_haemolite"
+  },
+  "result": {
+    "count": 1,
+    "id": "spiromodneo:packed_haemolite"
+  }
+}

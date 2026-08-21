@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "spiromodneo:block/cobbled_haemolite",
+    "side": "spiromodneo:block/cobbled_haemolite",
+    "top": "spiromodneo:block/cobbled_haemolite"
+  }
+}

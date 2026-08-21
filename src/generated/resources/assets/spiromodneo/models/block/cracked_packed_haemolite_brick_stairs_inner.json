@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "spiromodneo:block/cracked_packed_haemolite_bricks",
+    "side": "spiromodneo:block/cracked_packed_haemolite_bricks",
+    "top": "spiromodneo:block/cracked_packed_haemolite_bricks"
+  }
+}

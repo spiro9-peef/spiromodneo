@@ -22,7 +22,9 @@ public enum StoneMaterial
     ENDSTONE("endstone", BaseStone.ENDSTONE),
 
     // Modded stone types!
-    LIMBIPETRA("limbipetra", BaseStone.LIMBIPETRA);
+    LIMBIPETRA("limbipetra", BaseStone.LIMBIPETRA),
+    HAEMOLITE("haemolite", BaseStone.HAEMOLITE),
+    PACKED_HAEMOLITE("packed_haemolite", BaseStone.PACKED_HAEMOLITE);
 
     private final String name;
     /** This has been coded in to force any additions to this enum to also have additions

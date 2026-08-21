@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "spiromodneo:block/packed_haemolite_pressure_plate"
+    },
+    "powered=true": {
+      "model": "spiromodneo:block/packed_haemolite_pressure_plate_pressed"
+    }
+  }
+}

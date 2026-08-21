@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "spiromodneo:haemolite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "spiromodneo:haemolite_button"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cut": {
+      "conditions": {
+        "items": [
+          {
+            "items": "spiromodneo:cut_haemolite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spiromodneo:spiro_cut_haemolite_craft_cut_haemolite_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cut"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spiromodneo:spiro_cut_haemolite_craft_cut_haemolite_stairs"
+    ]
+  }
+}

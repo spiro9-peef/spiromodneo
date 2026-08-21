@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_column": {
+      "conditions": {
+        "items": [
+          {
+            "items": "spiromodneo:packed_haemolite_column"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spiromodneo:spiro_packed_haemolite_combine_vine_into_packed_haemolite_mossy_column"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_column"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spiromodneo:spiro_packed_haemolite_combine_vine_into_packed_haemolite_mossy_column"
+    ]
+  }
+}

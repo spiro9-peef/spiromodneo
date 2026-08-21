@@ -141,6 +141,8 @@ public class Registrar
     public static final StoneCollection TUFF_SET = StoneCollection.registerCollection(StoneMaterial.TUFF);
     public static final StoneCollection ENDSTONE_SET = StoneCollection.registerCollection(StoneMaterial.ENDSTONE);
     public static final StoneCollection LIMBIPETRA_SET = StoneCollection.registerCollection(StoneMaterial.LIMBIPETRA);
+    public static final StoneCollection HAEMOLITE_SET = StoneCollection.registerCollection(StoneMaterial.HAEMOLITE);
+    public static final StoneCollection PACKED_HAEMOLITE_SET = StoneCollection.registerCollection(StoneMaterial.PACKED_HAEMOLITE);
 
     // Consider maybe adding support for Vanilla Backported here - will require a major refactor
 

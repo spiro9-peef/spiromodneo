@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "spiromodneo:block/mossy_cobbled_haemolite",
+    "side": "spiromodneo:block/mossy_cobbled_haemolite",
+    "top": "spiromodneo:block/mossy_cobbled_haemolite"
+  }
+}

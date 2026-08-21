@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:vine"
+    },
+    {
+      "item": "spiromodneo:cobbled_packed_haemolite"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "spiromodneo:mossy_cobbled_packed_haemolite"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spiromodneo:block/packed_haemolite_tile_slab"
+    },
+    "type=double": {
+      "model": "spiromodneo:block/packed_haemolite_tile_slab_double"
+    },
+    "type=top": {
+      "model": "spiromodneo:block/packed_haemolite_tile_slab_top"
+    }
+  }
+}
