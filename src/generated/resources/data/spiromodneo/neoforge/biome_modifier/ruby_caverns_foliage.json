@@ -3,7 +3,8 @@
   "biomes": "#spiromodneo:is_ruby_cavern",
   "features": [
     "spiromodneo:ruby_cavern_veg",
-    "spiromodneo:ruby_cave_trees"
+    "spiromodneo:ruby_cave_trees",
+    "spiromodneo:ruby_cavern_ceiling_vines"
   ],
   "step": "vegetal_decoration"
 }

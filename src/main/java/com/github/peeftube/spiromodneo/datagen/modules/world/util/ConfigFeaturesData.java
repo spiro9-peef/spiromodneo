@@ -2,10 +2,12 @@ package com.github.peeftube.spiromodneo.datagen.modules.world.util;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.core.init.content.blocks.ExtensibleCaveVinesBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Soil;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.TargetRuleData;
 import com.github.peeftube.spiromodneo.util.RLUtility;
 import com.github.peeftube.spiromodneo.util.moss.MossType;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -15,10 +17,16 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.util.valueproviders.WeightedListInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CaveVines;
+import net.minecraft.world.level.block.CaveVinesBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
@@ -29,6 +37,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlac
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaJungleFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.RandomizedIntStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.BeehiveDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
@@ -163,6 +172,11 @@ public class ConfigFeaturesData
             registerKey("amethyst_glow_moss_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_GLOW_MOSS_PATCH_BONEMEAL =
             registerKey("amethyst_glow_moss_patch_bonemeal");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_CAVERN_CEILING_VINES =
+            registerKey("azure_cavern_ceiling_vines");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_CAVERN_CEILING_VINES =
+            registerKey("ruby_cavern_ceiling_vines");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> AZURE_CAVE_TREES = registerKey("azure_cave_trees");
     public static final ResourceKey<ConfiguredFeature<?, ?>> RUBY_CAVE_TREES = registerKey("ruby_cave_trees");
@@ -629,6 +643,66 @@ public class ConfigFeaturesData
                         0F, 5, 0.6F,
                         UniformInt.of(1, 2), 0.75F
                 ));
+
+        WeightedStateProvider azureCaveVineWeightedStateProv =
+                new WeightedStateProvider(
+                SimpleWeightedRandomList.<BlockState>builder()
+                    .add(Registrar.PHANTOM_VINES_PLANT.get().defaultBlockState(), 4)
+                    .add(Registrar.PHANTOM_VINES_PLANT.get().defaultBlockState()
+                        .setValue(BlockStateProperties.BERRIES, Boolean.TRUE), 1));
+        RandomizedIntStateProvider azureCaveVineRandIntStateProv =
+                new RandomizedIntStateProvider( new WeightedStateProvider(
+                SimpleWeightedRandomList.<BlockState>builder()
+                    .add(Registrar.PHANTOM_VINES.get().defaultBlockState(), 4)
+                    .add(Registrar.PHANTOM_VINES.get().defaultBlockState()
+                        .setValue(BlockStateProperties.BERRIES, Boolean.TRUE), 1)),
+            ExtensibleCaveVinesBlock.AGE,
+            UniformInt.of(23, 25));
+        register(context, AZURE_CAVERN_CEILING_VINES, Feature.BLOCK_COLUMN,
+                new BlockColumnConfiguration(
+                        List.of(
+                                BlockColumnConfiguration.layer( new WeightedListInt(
+                                    SimpleWeightedRandomList.<IntProvider>builder()
+                                    .add(UniformInt.of(0, 19), 2)
+                                    .add(UniformInt.of(0, 2), 3)
+                                    .add(UniformInt.of(0, 6), 10)
+                                    .build()),
+                                azureCaveVineWeightedStateProv), 
+                                BlockColumnConfiguration.layer(ConstantInt.of(1), azureCaveVineRandIntStateProv)
+                        ),
+                        Direction.DOWN,
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                        true));
+        
+        WeightedStateProvider rubyCaveVineWeightedStateProv =
+                new WeightedStateProvider(
+                SimpleWeightedRandomList.<BlockState>builder()
+                    .add(Registrar.RUBY_VINES_PLANT.get().defaultBlockState(), 4)
+                    .add(Registrar.RUBY_VINES_PLANT.get().defaultBlockState()
+                        .setValue(BlockStateProperties.BERRIES, Boolean.TRUE), 1));
+        RandomizedIntStateProvider rubyCaveVineRandIntStateProv =
+                new RandomizedIntStateProvider( new WeightedStateProvider(
+                SimpleWeightedRandomList.<BlockState>builder()
+                    .add(Registrar.RUBY_VINES.get().defaultBlockState(), 4)
+                    .add(Registrar.RUBY_VINES.get().defaultBlockState()
+                        .setValue(BlockStateProperties.BERRIES, Boolean.TRUE), 1)),
+            ExtensibleCaveVinesBlock.AGE,
+            UniformInt.of(23, 25));
+        register(context, RUBY_CAVERN_CEILING_VINES, Feature.BLOCK_COLUMN,
+                new BlockColumnConfiguration(
+                        List.of(
+                                BlockColumnConfiguration.layer( new WeightedListInt(
+                                    SimpleWeightedRandomList.<IntProvider>builder()
+                                    .add(UniformInt.of(0, 19), 2)
+                                    .add(UniformInt.of(0, 2), 3)
+                                    .add(UniformInt.of(0, 6), 10)
+                                    .build()),
+                                rubyCaveVineWeightedStateProv), 
+                                BlockColumnConfiguration.layer(ConstantInt.of(1), rubyCaveVineRandIntStateProv)
+                        ),
+                        Direction.DOWN,
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE,
+                        true));
 
         register(context, AZURE_CAVE_TREES, Feature.RANDOM_SELECTOR,
                 new RandomFeatureConfiguration(List.of(

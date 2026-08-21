@@ -128,6 +128,9 @@ public class PlacedFeaturesData
     public static final ResourceKey<PlacedFeature> GILDED_CAVERN_VEGETATION = registerKey("gilded_cavern_veg");
     public static final ResourceKey<PlacedFeature> AMETHYST_CAVERN_VEGETATION = registerKey("amethyst_cavern_veg");
 
+    public static final ResourceKey<PlacedFeature> AZURE_CAVERN_CEILING_VINES = registerKey("azure_cavern_ceiling_vines");
+    public static final ResourceKey<PlacedFeature> RUBY_CAVERN_CEILING_VINES = registerKey("ruby_cavern_ceiling_vines");
+
     public static final ResourceKey<PlacedFeature> AZURE_CAVE_TREES = registerKey("azure_cave_trees");
     public static final ResourceKey<PlacedFeature> RUBY_CAVE_TREES = registerKey("ruby_cave_trees");
     public static final ResourceKey<PlacedFeature> VERDANT_CAVE_TREES = registerKey("verdant_cave_trees");
@@ -612,6 +615,23 @@ public class PlacedFeaturesData
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
+
+        register(context, AZURE_CAVERN_CEILING_VINES,
+                configuredFeatures.getOrThrow(ConfigFeaturesData.AZURE_CAVERN_CEILING_VINES),
+                CountPlacement.of(188), InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BiomeFilter.biome());
+        register(context, RUBY_CAVERN_CEILING_VINES,
+                configuredFeatures.getOrThrow(ConfigFeaturesData.RUBY_CAVERN_CEILING_VINES),
+                CountPlacement.of(188), InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
                 BiomeFilter.biome());
 
         register(context, AZURE_CAVE_TREES,

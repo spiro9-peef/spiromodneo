@@ -3,7 +3,8 @@
   "biomes": "#spiromodneo:is_azure_cavern",
   "features": [
     "spiromodneo:azure_cavern_veg",
-    "spiromodneo:azure_cave_trees"
+    "spiromodneo:azure_cave_trees",
+    "spiromodneo:azure_cavern_ceiling_vines"
   ],
   "step": "vegetal_decoration"
 }

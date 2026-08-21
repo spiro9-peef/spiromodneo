@@ -190,14 +190,16 @@ public class BiomeModifiersData
         context.register(AZURE_CAVERNS_FOLIAGE, new BiomeModifiers.AddFeaturesBiomeModifier(
                 tag(biomes, SpiroTags.Biomes.IS_AZURE_CAVE_BIOME),
                 features(features,
-                        PlacedFeaturesData.AZURE_CAVERN_VEGETATION, PlacedFeaturesData.AZURE_CAVE_TREES),
+                        PlacedFeaturesData.AZURE_CAVERN_VEGETATION, PlacedFeaturesData.AZURE_CAVE_TREES,
+                        PlacedFeaturesData.AZURE_CAVERN_CEILING_VINES),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
 
         context.register(RUBY_CAVERNS_FOLIAGE, new BiomeModifiers.AddFeaturesBiomeModifier(
                 tag(biomes, SpiroTags.Biomes.IS_RUBY_CAVE_BIOME),
                 features(features,
-                        PlacedFeaturesData.RUBY_CAVERN_VEGETATION, PlacedFeaturesData.RUBY_CAVE_TREES),
+                        PlacedFeaturesData.RUBY_CAVERN_VEGETATION, PlacedFeaturesData.RUBY_CAVE_TREES,
+                        PlacedFeaturesData.RUBY_CAVERN_CEILING_VINES),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
 

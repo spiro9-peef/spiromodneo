@@ -6,6 +6,7 @@ import com.github.peeftube.spiromodneo.core.init.registry.data.StoneCollection;
 import com.github.peeftube.spiromodneo.core.init.registry.data.StoneMaterial;
 import com.github.peeftube.spiromodneo.datagen.modules.loot.subprov.OreBaseLootTables;
 import com.github.peeftube.spiromodneo.datagen.modules.loot.subprov.OtherLootTables;
+import com.github.peeftube.spiromodneo.util.RLUtility;
 import com.github.peeftube.spiromodneo.util.loot.SwapLootStackModifier;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
@@ -92,6 +93,34 @@ public class LootModDataProv extends GlobalLootModifierProvider
                 new AddTableLootModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(
                                 ResourceLocation.withDefaultNamespace("blocks/cave_vines_plant")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
+
+        // Technically this is not the right way to do this, but I want results *now* lol
+        this.add("phantom_vines_fibre",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                RLUtility.makeRL("blocks/phantom_cave_vines")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
+
+        // Technically this is not the right way to do this, but I want results *now* lol
+        this.add("phantom_vines_fibre_2",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                RLUtility.makeRL("blocks/phantom_cave_vines_plant")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
+
+        // Technically this is not the right way to do this, but I want results *now* lol
+        this.add("ruby_vines_fibre",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                RLUtility.makeRL("blocks/ruby_cave_vines")).build()
+                }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
+
+        // Technically this is not the right way to do this, but I want results *now* lol
+        this.add("ruby_vines_fibre_2",
+                new AddTableLootModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(
+                                RLUtility.makeRL("blocks/ruby_cave_vines_plant")).build()
                 }, OtherLootTables.PLANT_FIBRE_DROPS_MEDIUM));
     }
 

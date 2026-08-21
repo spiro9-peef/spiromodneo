@@ -54,7 +54,11 @@
     "spiromodneo:kelp_fibre",
     "spiromodneo:kelp_fibre_2",
     "spiromodneo:cave_vines_fibre",
-    "spiromodneo:cave_vines_fibre_2"
+    "spiromodneo:cave_vines_fibre_2",
+    "spiromodneo:phantom_vines_fibre",
+    "spiromodneo:phantom_vines_fibre_2",
+    "spiromodneo:ruby_vines_fibre",
+    "spiromodneo:ruby_vines_fibre_2"
   ],
   "replace": false
 }
