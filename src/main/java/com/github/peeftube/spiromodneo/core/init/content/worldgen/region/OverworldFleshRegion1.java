@@ -24,7 +24,8 @@ public class OverworldFleshRegion1 extends Region
     {
         VanillaParameterOverlayBuilder builder = new VanillaParameterOverlayBuilder();
         new ParameterUtils.ParameterPointListBuilder()
-                .temperature(Climate.Parameter.span(0.2F, 1.0F))
+                .temperature(ParameterUtils.Temperature.span(ParameterUtils.Temperature.WARM,
+                        ParameterUtils.Temperature.HOT))
                 .humidity(ParameterUtils.Humidity.HUMID)
                 .continentalness(ParameterUtils.Continentalness.FULL_RANGE)
                 .erosion(ParameterUtils.Erosion.FULL_RANGE)
