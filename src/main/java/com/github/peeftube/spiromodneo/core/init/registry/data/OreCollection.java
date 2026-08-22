@@ -53,7 +53,9 @@ public record OreCollection(OreMaterial material, Map<StoneMaterial, OreCoupling
         for(StoneMaterial s : StoneMaterial.values())
         {
             // Light level should never surpass 15, and should be the higher between the base stone and ore light levels
-            li = Math.max(li, s.getOreBase().getLightLevel());
+            // Additionally, run a check to see if li has surpassed lightEmissionLevel, and if it has, reset it -
+            // this is because the variable will otherwise max out from a material like limbipetra, which is undesired
+            li = Math.max(Math.min(li, lightEmissionLevel), s.getOreBase().getLightLevel());
 
             switch(s)
             {

@@ -636,7 +636,7 @@ public class PlacedFeaturesData
                 BiomeFilter.biome());
         register(context, EVISCERA_STEMS,
                 configuredFeatures.getOrThrow(ConfigFeaturesData.EVISCERA_STEMS),
-                CountPlacement.of(188), InSquarePlacement.spread(),
+                CountPlacement.of(256), InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
