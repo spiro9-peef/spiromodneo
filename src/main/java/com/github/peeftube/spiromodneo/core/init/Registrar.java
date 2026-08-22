@@ -10,7 +10,6 @@ import com.github.peeftube.spiromodneo.core.init.creative.CTProcessor;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherMenu;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.GroundStoneFeature;
-import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.modifiers.NotInStructPlacement;
 import com.github.peeftube.spiromodneo.util.MathUtils;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.github.peeftube.spiromodneo.util.equipment.CustomArmorMaterial;
@@ -30,10 +29,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.GameRules;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CaveVinesBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -42,7 +39,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
@@ -99,9 +95,6 @@ public class Registrar
     // Placement modifiers are being put up here just for ease of access.
     public static final DeferredRegister<PlacementModifierType<?>> PLACEMENT_MODS =
             DeferredRegister.create(Registries.PLACEMENT_MODIFIER_TYPE, SpiroMod.MOD_ID);
-
-    public static final Supplier<PlacementModifierType<NotInStructPlacement>> NOT_IN_STRUCT_PLACEMENT =
-            PLACEMENT_MODS.register("not_in_struct_placement", () -> () -> NotInStructPlacement.CODEC);
 
     public static final Supplier<BlockBehaviour.Properties> STONE_BASED_ORE     = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.NORMAL.get()).sound(SoundType.STONE);
