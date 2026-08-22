@@ -138,6 +138,8 @@ public class PlacedFeaturesData
 
     public static final ResourceKey<PlacedFeature> GROUND_STONES = registerKey("ground_stones");
 
+    public static final ResourceKey<PlacedFeature> UNHOLY_FANGS = registerKey("unholy_fangs");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context)
     {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -635,7 +637,7 @@ public class PlacedFeaturesData
         register(context, EVISCERA_STEMS,
                 configuredFeatures.getOrThrow(ConfigFeaturesData.EVISCERA_STEMS),
                 CountPlacement.of(256), InSquarePlacement.spread(),
-                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                PlacementUtils.FULL_RANGE,
                 EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
@@ -683,6 +685,12 @@ public class PlacedFeaturesData
          BiomeFilter.biome())); */
 
         register(context, GROUND_STONES, configuredFeatures.getOrThrow(ConfigFeaturesData.GROUND_STONES));
+
+        register(context, UNHOLY_FANGS,
+                configuredFeatures.getOrThrow(ConfigFeaturesData.UNHOLY_FANGS),
+                CountPlacement.of(64), InSquarePlacement.spread(),
+                PlacementUtils.FULL_RANGE,
+                BiomeFilter.biome());
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name)

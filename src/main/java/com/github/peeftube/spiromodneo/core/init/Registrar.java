@@ -10,6 +10,8 @@ import com.github.peeftube.spiromodneo.core.init.creative.CTProcessor;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherMenu;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.GroundStoneFeature;
+import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.PulledSpikesFeature;
+import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.config.PulledSpikesFeatureConfiguration;
 import com.github.peeftube.spiromodneo.util.MathUtils;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.github.peeftube.spiromodneo.util.equipment.CustomArmorMaterial;
@@ -413,6 +415,10 @@ public class Registrar
     // Going to try setting the order of features lower, maybe this will fix weird bugs I'm having
     public static final DeferredHolder<Feature<?>, GroundStoneFeature> GROUND_STONE_FEATURE =
             FEATURES.register("ground_stone_feature", () -> new GroundStoneFeature(NoneFeatureConfiguration.CODEC));
+
+    public static final DeferredHolder<Feature<?>, PulledSpikesFeature> PULLED_SPIKES_FEATURE =
+            FEATURES.register("pulled_spikes_feature",
+                    () -> new PulledSpikesFeature(PulledSpikesFeatureConfiguration.CODEC));
 
     // Language key for creative tabs
     public static final String TAB_TITLE_KEY_FORMULAIC = "itemGroup." + SpiroMod.MOD_ID;

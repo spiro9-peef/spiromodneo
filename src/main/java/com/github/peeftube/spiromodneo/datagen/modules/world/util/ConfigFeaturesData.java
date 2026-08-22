@@ -5,10 +5,13 @@ import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.ExtensibleCaveVinesBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.Soil;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.TargetRuleData;
+import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.config.PulledSpikesFeatureConfiguration;
 import com.github.peeftube.spiromodneo.util.RLUtility;
+import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.github.peeftube.spiromodneo.util.moss.MossType;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -20,6 +23,7 @@ import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.util.valueproviders.WeightedListInt;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CaveVines;
@@ -46,13 +50,15 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.MegaJungleTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
+import net.minecraft.world.level.levelgen.placement.EnvironmentScanPlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
 
 public class ConfigFeaturesData
 {
-    private static      HolderGetter<Block>                  blocks;
+    private static      HolderGetter<Block> blocks;
+    private static      HolderGetter<Biome> biomes;
 
     /** This is an ancient holdout from a less efficient method of determining per-biome stone types.
      * Good riddance. */
@@ -187,11 +193,14 @@ public class ConfigFeaturesData
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> GROUND_STONES = registerKey("ground_stones");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> UNHOLY_FANGS = registerKey("unholy_fangs");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context)
     {
         HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
         blocks = context.lookup(Registries.BLOCK);
+        biomes = context.lookup(Registries.BIOME);
 
         register(context, COAL_ORE, Feature.ORE,
                 new OreConfiguration(TargetRuleData.OreTargets.COAL_ORE_TARGETS.get(), 17));
@@ -796,6 +805,12 @@ public class ConfigFeaturesData
                         placedFeatures.getOrThrow(PlacedFeaturesData.AMETHYST_STONEWOOD)));
 
         register(context, GROUND_STONES, Registrar.GROUND_STONE_FEATURE.get(), new NoneFeatureConfiguration());
+
+        register(context, UNHOLY_FANGS, Registrar.PULLED_SPIKES_FEATURE.get(), new PulledSpikesFeatureConfiguration(
+                blocks.getOrThrow(SpiroTags.Blocks.VISCERA_SOLID),
+                Blocks.BONE_BLOCK,
+                biomes.getOrThrow(SpiroTags.Biomes.IS_VISCERAL),
+                UniformInt.of(8, 32)));
     }
 
     private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name)

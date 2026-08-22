@@ -55,6 +55,7 @@ public class BiomeModifiersData
     public static final ResourceKey<BiomeModifier> GILDED_CAVERNS_FOLIAGE = key("gilded_caverns_foliage");
     public static final ResourceKey<BiomeModifier> AMETHYST_CAVERNS_FOLIAGE = key("amethyst_caverns_foliage");
 
+    public static final ResourceKey<BiomeModifier> VISCERAL_MATTER_FEATURES = key("visceral_matter");
     public static final ResourceKey<BiomeModifier> EVISCERA_STEMS_IN_VISCERALS = key("eviscera_in_viscerals");
 
     public static void bootstrap(final BootstrapContext<BiomeModifier> context)
@@ -224,6 +225,13 @@ public class BiomeModifiersData
                 features(features,
                         PlacedFeaturesData.AMETHYST_CAVERN_VEGETATION, PlacedFeaturesData.AMETHYST_CAVE_TREES),
                 GenerationStep.Decoration.VEGETAL_DECORATION
+        ));
+
+        context.register(VISCERAL_MATTER_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
+                tag(biomes, SpiroTags.Biomes.IS_VISCERAL),
+                features(features,
+                        PlacedFeaturesData.UNHOLY_FANGS),
+                GenerationStep.Decoration.UNDERGROUND_ORES
         ));
 
         context.register(EVISCERA_STEMS_IN_VISCERALS, new BiomeModifiers.AddFeaturesBiomeModifier(

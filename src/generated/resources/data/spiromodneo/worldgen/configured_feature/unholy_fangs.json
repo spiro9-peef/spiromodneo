@@ -1,0 +1,13 @@
+{
+  "type": "spiromodneo:pulled_spikes_feature",
+  "config": {
+    "block": "minecraft:bone_block",
+    "blocks_for_base": "#spiromodneo:is_flesh",
+    "height_range": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 32,
+      "min_inclusive": 8
+    },
+    "safe_spawn_biomes": "#spiromodneo:is_visceral_biome"
+  }
+}
