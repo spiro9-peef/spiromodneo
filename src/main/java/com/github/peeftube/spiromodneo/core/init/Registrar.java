@@ -10,6 +10,7 @@ import com.github.peeftube.spiromodneo.core.init.creative.CTProcessor;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherMenu;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.GroundStoneFeature;
+import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.modifiers.NotInStructPlacement;
 import com.github.peeftube.spiromodneo.util.MathUtils;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.github.peeftube.spiromodneo.util.equipment.CustomArmorMaterial;
@@ -41,6 +42,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.neoforge.common.SimpleTier;
@@ -74,6 +77,7 @@ public class Registrar
         BLOCK_ENTITIES.register(bus);
         MENUS.register(bus);
         ARMOR_MATERIALS.register(bus);
+        PLACEMENT_MODS.register(bus);
         FEATURES.register(bus);
         LOOTMOD_SERIALIZERS.register(bus);
         RECIPE_SERIALIZERS.register(bus);
@@ -91,6 +95,13 @@ public class Registrar
 
     public static final Supplier<MapCodec<SwapLootStackModifier>> SWAP_LOOT_STACKS =
             LOOTMOD_SERIALIZERS.register("swap_loot_stacks", () -> SwapLootStackModifier.CODEC);
+
+    // Placement modifiers are being put up here just for ease of access.
+    public static final DeferredRegister<PlacementModifierType<?>> PLACEMENT_MODS =
+            DeferredRegister.create(Registries.PLACEMENT_MODIFIER_TYPE, SpiroMod.MOD_ID);
+
+    public static final Supplier<PlacementModifierType<NotInStructPlacement>> NOT_IN_STRUCT_PLACEMENT =
+            PLACEMENT_MODS.register("not_in_struct_placement", () -> () -> NotInStructPlacement.CODEC);
 
     public static final Supplier<BlockBehaviour.Properties> STONE_BASED_ORE     = () ->
             BlockBehaviour.Properties.of().strength(BlockToughnessLevel.NORMAL.get()).sound(SoundType.STONE);

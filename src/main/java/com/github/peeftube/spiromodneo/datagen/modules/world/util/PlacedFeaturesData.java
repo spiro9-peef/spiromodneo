@@ -2,6 +2,7 @@ package com.github.peeftube.spiromodneo.datagen.modules.world.util;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.modifiers.NotInStructPlacement;
 import com.github.peeftube.spiromodneo.util.RLUtility;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -148,32 +149,37 @@ public class PlacedFeaturesData
                 CountPlacement.of(30),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.absolute(136), VerticalAnchor.belowTop(0))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, COAL_ORE_LOWER, configuredFeatures.getOrThrow(ConfigFeaturesData.COAL_ORE_BURIED), List.of(
                 CountPlacement.of(20),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(0), VerticalAnchor.absolute(192))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
 
         register(context, IRON_ORE_UPPER, configuredFeatures.getOrThrow(ConfigFeaturesData.IRON_ORE_GENERIC), List.of(
                 CountPlacement.of(90),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(80), VerticalAnchor.absolute(384))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, IRON_ORE_MID, configuredFeatures.getOrThrow(ConfigFeaturesData.IRON_ORE_GENERIC), List.of(
                 CountPlacement.of(10),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(56))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, IRON_ORE_SMALL, configuredFeatures.getOrThrow(ConfigFeaturesData.IRON_ORE_SMALL), List.of(
                 CountPlacement.of(10),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.aboveBottom(0), VerticalAnchor.absolute(72))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, IRON_ORE_NETHER, configuredFeatures.getOrThrow(ConfigFeaturesData.IRON_ORE_SMALL), List.of(
                 CountPlacement.of(10),
@@ -192,13 +198,15 @@ public class PlacedFeaturesData
                 CountPlacement.of(16),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, COPPER_ORE_LARGE, configuredFeatures.getOrThrow(ConfigFeaturesData.COPPER_ORE_LARGE), List.of(
                 CountPlacement.of(16),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(112))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, COPPER_ORE_NETHER, configuredFeatures.getOrThrow(ConfigFeaturesData.COPPER_ORE_SMALL), List.of(
                 CountPlacement.of(10),
@@ -211,51 +219,59 @@ public class PlacedFeaturesData
                 CountPlacement.of(7),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, DIAMOND_ORE, configuredFeatures.getOrThrow(ConfigFeaturesData.DIAMOND_ORE), List.of(
                 CountPlacement.of(2),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-4))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, DIAMOND_ORE_LARGE, configuredFeatures.getOrThrow(ConfigFeaturesData.DIAMOND_ORE_LARGE), List.of(
                 RarityFilter.onAverageOnceEvery(9),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, DIAMOND_ORE_BURIED, configuredFeatures.getOrThrow(ConfigFeaturesData.DIAMOND_ORE_BURIED), List.of(
                 CountPlacement.of(4),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.aboveBottom(-80), VerticalAnchor.aboveBottom(80))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
 
         register(context, EMERALD_ORE, configuredFeatures.getOrThrow(ConfigFeaturesData.EMERALD_ORE), List.of(
                 CountPlacement.of(100),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(256))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
 
         register(context, GOLD_ORE, configuredFeatures.getOrThrow(ConfigFeaturesData.GOLD_ORE_BURIED), List.of(
                 CountPlacement.of(4),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(32))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, GOLD_ORE_EXTRA, configuredFeatures.getOrThrow(ConfigFeaturesData.GOLD_ORE), List.of(
                 CountPlacement.of(50),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.absolute(32), VerticalAnchor.absolute(256))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, GOLD_ORE_LOWER, configuredFeatures.getOrThrow(ConfigFeaturesData.GOLD_ORE_BURIED), List.of(
                 CountPlacement.of(UniformInt.of(0, 1)),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(-48))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, GOLD_ORE_NETHER, configuredFeatures.getOrThrow(ConfigFeaturesData.NETHER_GOLD_ORE), List.of(
                 CountPlacement.of(10),
@@ -274,26 +290,30 @@ public class PlacedFeaturesData
                 CountPlacement.of(2),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-32), VerticalAnchor.absolute(32))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, LAPIS_ORE_BURIED, configuredFeatures.getOrThrow(ConfigFeaturesData.LAPIS_ORE_BURIED), List.of(
                 CountPlacement.of(4),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.aboveBottom(0), VerticalAnchor.absolute(64))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
 
         register(context, REDSTONE_ORE, configuredFeatures.getOrThrow(ConfigFeaturesData.REDSTONE_ORE), List.of(
                 CountPlacement.of(4),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.aboveBottom(0), VerticalAnchor.absolute(15))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, REDSTONE_ORE_LOWER, configuredFeatures.getOrThrow(ConfigFeaturesData.REDSTONE_ORE), List.of(
                 CountPlacement.of(8),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.aboveBottom(-32), VerticalAnchor.aboveBottom(32))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
 
         register(context, QUARTZ_ORE_NETHER, configuredFeatures.getOrThrow(ConfigFeaturesData.QUARTZ_ORE), List.of(
@@ -312,26 +332,30 @@ public class PlacedFeaturesData
                 CountPlacement.of(2),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.absolute(-16), VerticalAnchor.belowTop(256))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
 
         register(context, LEAD_ORE_UPPER, configuredFeatures.getOrThrow(ConfigFeaturesData.LEAD_ORE), List.of(
                 CountPlacement.of(90),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(80), VerticalAnchor.absolute(384))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, LEAD_ORE_MID, configuredFeatures.getOrThrow(ConfigFeaturesData.LEAD_ORE), List.of(
                 CountPlacement.of(10),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(56))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, LEAD_ORE_SMALL, configuredFeatures.getOrThrow(ConfigFeaturesData.LEAD_ORE_SMALL), List.of(
                 CountPlacement.of(10),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.aboveBottom(0), VerticalAnchor.absolute(72))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, LEAD_ORE_NETHER, configuredFeatures.getOrThrow(ConfigFeaturesData.LEAD_ORE_SMALL), List.of(
                 CountPlacement.of(10),
@@ -350,14 +374,16 @@ public class PlacedFeaturesData
                 CountPlacement.of(100),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-16), VerticalAnchor.absolute(256))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
 
         register(context, METHANE_ICE_ORE_OVERWORLD, configuredFeatures.getOrThrow(ConfigFeaturesData.OVERWORLD_METHANE_ICE), List.of(
                 CountPlacement.of(20),
                 HeightRangePlacement.of(TrapezoidHeight.of(VerticalAnchor.absolute(-256), VerticalAnchor.absolute(-80))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, METHANE_ICE_ORE_NETHER, configuredFeatures.getOrThrow(ConfigFeaturesData.NETHER_METHANE_ICE), List.of(
                 CountPlacement.of(30),
@@ -382,7 +408,8 @@ public class PlacedFeaturesData
                 CountPlacement.of(10),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.absolute(-160))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, CRIMSONITE, configuredFeatures.getOrThrow(ConfigFeaturesData.CRIMSONITE), List.of(
                 CountPlacement.of(30),
@@ -407,7 +434,8 @@ public class PlacedFeaturesData
                 CountPlacement.of(10),
                 HeightRangePlacement.of(UniformHeight.of(VerticalAnchor.bottom(), VerticalAnchor.absolute(-160))),
                 BiomeFilter.biome(),
-                InSquarePlacement.spread()
+                InSquarePlacement.spread(),
+                NotInStructPlacement.block()
         ));
         register(context, STRAVIMITE, configuredFeatures.getOrThrow(ConfigFeaturesData.STRAVIMITE), List.of(
                 CountPlacement.of(30),

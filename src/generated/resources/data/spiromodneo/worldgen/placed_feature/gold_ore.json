@@ -22,6 +22,9 @@
     },
     {
       "type": "minecraft:in_square"
+    },
+    {
+      "type": "spiromodneo:not_in_struct_placement"
     }
   ]
 }
