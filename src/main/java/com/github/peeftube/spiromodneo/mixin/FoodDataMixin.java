@@ -13,6 +13,8 @@ import net.minecraft.world.level.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(FoodData.class)
 public class FoodDataMixin
@@ -20,19 +22,21 @@ public class FoodDataMixin
     @Shadow private int foodLevel;
     @Shadow private float exhaustionLevel;
     @Shadow private float saturationLevel;
-
     @Shadow private int tickTimer;
+    @Shadow private int lastFoodLevel;
 
-    @WrapMethod(method = "tick")
-    public void onTick(Player player, Operation<Void> original) {
+    @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
+    public void onTick(Player player, CallbackInfo ci) {
         boolean customHungerActive = !player.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL);
         boolean isPeaceful = player.level().getDifficulty() == Difficulty.PEACEFUL;
 
         if (customHungerActive && isPeaceful)
         {
+            this.lastFoodLevel = this.foodLevel;
+
             // Manually drive the food stats since vanilla skips tick logic in Peaceful
             // Add a tiny bit of passive exhaustion over time so it feeds into standard food loss
-            this.exhaustionLevel += 0.01F;
+            this.exhaustionLevel += 0.0005F;
 
             if (this.exhaustionLevel > 4.0F)
             {
@@ -58,10 +62,13 @@ public class FoodDataMixin
                 {
                     this.saturationLevel -= 1.0F;
                     player.setHealth(Math.min(maxHealth, currHealth + 1.0F));
+
+                    // Just to be absolutely safe!
+                    currHealth = player.getHealth();
                 }
 
                 // Drop food level by one for every 2 units of health.
-                if (this.foodLevel > 0 && ((maxHealth - currHealth) >= 1.0F))
+                if (this.saturationLevel < 1.0F && this.foodLevel > 0 && ((maxHealth - currHealth) >= 1.0F))
                 {
                     if (this.tickTimer % 2 == 0)
                     {
@@ -70,9 +77,7 @@ public class FoodDataMixin
                     }
                 }
             }
-            return;
+            ci.cancel();
         }
-
-        original.call(player);
     }
 }
