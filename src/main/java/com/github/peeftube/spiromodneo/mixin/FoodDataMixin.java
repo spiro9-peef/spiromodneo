@@ -9,6 +9,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
+import net.minecraft.world.level.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -44,7 +45,7 @@ public class FoodDataMixin
 
             // Skip the original call in Peaceful so vanilla doesn't override our manual drain,
             // but still handle health regen/starvation logic if food hits zero!
-            if (player.isHurt())
+            if (player.isHurt() && player.level().getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION))
             {
                 // Give a grace period but still maintain some exhaustion, unless the value is below 1.0.
                 this.exhaustionLevel = (this.exhaustionLevel > 1.0F) ? Math.max(1.0F, this.exhaustionLevel - 0.5F) :
@@ -60,7 +61,7 @@ public class FoodDataMixin
                 }
 
                 // Drop food level by one for every 2 units of health.
-                if (foodLevel > 0 && ((maxHealth - currHealth) >= 1.0F))
+                if (this.foodLevel > 0 && ((maxHealth - currHealth) >= 1.0F))
                 {
                     if (this.tickTimer % 2 == 0)
                     {

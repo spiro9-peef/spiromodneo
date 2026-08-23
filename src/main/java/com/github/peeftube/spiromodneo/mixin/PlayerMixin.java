@@ -24,8 +24,9 @@ public abstract class PlayerMixin extends LivingEntity
     {
         if (!this.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL))
         {
+            /* Commented out due to it causing problems
             // Only on occasion should this function normally. Otherwise, do nothing.
-            if (SpiroMod.RNG.nextFloat() <= 0.05) { original.call(instance, saturationLevel); }
+            if (SpiroMod.RNG.nextFloat() <= 0.0025) { original.call(instance, saturationLevel); } */
         }
         else original.call(instance, saturationLevel);
     }
@@ -36,8 +37,9 @@ public abstract class PlayerMixin extends LivingEntity
     {
         if (!this.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL))
         {
+            /* Commented out due to it causing problems
             // Only on occasion should this function normally. Otherwise, do nothing.
-            if (SpiroMod.RNG.nextFloat() <= 0.05) { original.call(instance, foodLevel); }
+            if (SpiroMod.RNG.nextFloat() <= 0.0025) { original.call(instance, foodLevel); } */
         }
         else original.call(instance, foodLevel);
     }
