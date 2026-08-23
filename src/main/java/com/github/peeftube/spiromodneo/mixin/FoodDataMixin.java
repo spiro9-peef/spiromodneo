@@ -1,11 +1,14 @@
 package com.github.peeftube.spiromodneo.mixin;
 
+import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.llamalad7.mixinextras.expression.Definition;
 import com.llamalad7.mixinextras.expression.Expression;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
@@ -25,8 +28,8 @@ public class FoodDataMixin
     @Shadow private int tickTimer;
     @Shadow private int lastFoodLevel;
 
-    @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
-    public void onTick(Player player, CallbackInfo ci) {
+    @WrapMethod(method = "tick")
+    public void onTick(Player player, Operation<Void> original) {
         boolean customHungerActive = !player.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL);
         boolean isPeaceful = player.level().getDifficulty() == Difficulty.PEACEFUL;
 
@@ -36,7 +39,7 @@ public class FoodDataMixin
 
             // Manually drive the food stats since vanilla skips tick logic in Peaceful
             // Add a tiny bit of passive exhaustion over time so it feeds into standard food loss
-            this.exhaustionLevel += 0.0005F;
+            // this.exhaustionLevel += 0.0005F;
 
             if (this.exhaustionLevel > 4.0F)
             {
@@ -70,14 +73,38 @@ public class FoodDataMixin
                 // Drop food level by one for every 2 units of health.
                 if (this.saturationLevel < 1.0F && this.foodLevel > 0 && ((maxHealth - currHealth) >= 1.0F))
                 {
-                    if (this.tickTimer % 2 == 0)
+                    if (this.tickTimer % 10 == 0)
                     {
-                        if (this.tickTimer % 4 == 0) { this.foodLevel -= 1; }
+                        if (this.tickTimer % 20 == 0) { this.foodLevel -= 1; }
                         player.setHealth(Math.min(maxHealth, currHealth + 1.0F));
                     }
                 }
+
+                // Starvation!
+                else if (this.foodLevel <= 0)
+                {
+                    ++this.tickTimer;
+                    if (this.tickTimer >= 80)
+                    {
+                        if (player.getHealth() > 10.0F)
+                        { player.hurt(player.damageSources().starve(), 1.0F); }
+                        this.tickTimer = 0;
+                    }
+                }
             }
-            ci.cancel();
+
+            if (player instanceof ServerPlayer serverPlayer)
+            {
+                // Parameters typically match: (float health, int foodLevel, float saturationLevel)
+                serverPlayer.connection.send(new net.minecraft.network.protocol.game.ClientboundSetHealthPacket(
+                        serverPlayer.getHealth(),
+                        this.foodLevel,
+                        this.saturationLevel));
+            }
+
+            return;
         }
+
+        original.call(player);
     }
 }

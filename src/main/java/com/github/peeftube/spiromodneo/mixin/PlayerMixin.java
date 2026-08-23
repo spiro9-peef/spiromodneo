@@ -8,6 +8,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,40 +20,14 @@ public abstract class PlayerMixin extends LivingEntity
     { super(entityType, level); }
 
     @WrapOperation(method = "aiStep",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/food/FoodData;setSaturation(F)V"))
-    public void onSetSaturation(FoodData instance, float saturationLevel, Operation<Void> original)
+            at = @At(value ="INVOKE", target = "Lnet/minecraft/world/level/GameRules;getBoolean(Lnet/minecraft/world/level/GameRules$Key;)Z"))
+    public boolean onCheckPeaceful(GameRules instance, GameRules.Key<GameRules.BooleanValue> key, Operation<Boolean> original)
     {
-        if (!this.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL))
-        {
-            /* Commented out due to it causing problems
-            // Only on occasion should this function normally. Otherwise, do nothing.
-            if (SpiroMod.RNG.nextFloat() <= 0.0025) { original.call(instance, saturationLevel); } */
-        }
-        else original.call(instance, saturationLevel);
-    }
+        boolean originalReturn = original.call(instance, key);
+        boolean ourRule = this.level().getServer() != null
+            ? this.level().getServer().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL)
+            : this.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL);
 
-    @WrapOperation(method = "aiStep",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/food/FoodData;setFoodLevel(I)V"))
-    public void onSetFoodLevel(FoodData instance, int foodLevel, Operation<Void> original)
-    {
-        if (!this.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL))
-        {
-            /* Commented out due to it causing problems
-            // Only on occasion should this function normally. Otherwise, do nothing.
-            if (SpiroMod.RNG.nextFloat() <= 0.0025) { original.call(instance, foodLevel); } */
-        }
-        else original.call(instance, foodLevel);
-    }
-
-    @WrapOperation(method = "aiStep",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;heal(F)V"))
-    public void onHeal(Player instance, float v, Operation<Void> original)
-    {
-        if (!this.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL))
-        {
-            // Heal on avg. at 50% of the normal rate.
-            if (SpiroMod.RNG.nextFloat() <= 0.5) { original.call(instance, v); }
-        }
-        else original.call(instance, v);
+        return originalReturn && ourRule;
     }
 }
