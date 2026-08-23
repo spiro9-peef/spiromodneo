@@ -46,8 +46,9 @@ public class FoodDataMixin
             // but still handle health regen/starvation logic if food hits zero!
             if (player.isHurt())
             {
-                // Give a grace period.
-                this.exhaustionLevel = 0.0F;
+                // Give a grace period but still maintain some exhaustion, unless the value is below 1.0.
+                this.exhaustionLevel = (this.exhaustionLevel > 1.0F) ? Math.max(1.0F, this.exhaustionLevel - 0.5F) :
+                                        this.exhaustionLevel;
                 float maxHealth = player.getMaxHealth();
                 float currHealth = player.getHealth();
 
