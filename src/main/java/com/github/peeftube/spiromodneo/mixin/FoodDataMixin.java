@@ -54,41 +54,42 @@ public class FoodDataMixin
             // but still handle health regen/starvation logic if food hits zero!
             if (player.isHurt() && player.level().getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION))
             {
-                // Give a grace period but still maintain some exhaustion, unless the value is below 1.0.
-                this.exhaustionLevel = (this.exhaustionLevel > 1.0F) ? Math.max(1.0F, this.exhaustionLevel - 0.5F) :
-                                        this.exhaustionLevel;
-                float maxHealth = player.getMaxHealth();
-                float currHealth = player.getHealth();
-
-                // Draw immediately from saturation pool if it is present.
-                if (this.saturationLevel >= 1.0F && ((maxHealth - currHealth) >= 1.0F))
+                if (this.tickTimer % 10 == 0)
                 {
-                    this.saturationLevel -= 1.0F;
-                    player.setHealth(Math.min(maxHealth, currHealth + 1.0F));
+                    // Give a grace period but still maintain some exhaustion, unless the value is below 1.0.
+                    this.exhaustionLevel = (this.exhaustionLevel > 1.0F) ? Math.max(1.0F, this.exhaustionLevel - 0.5F) :
+                            this.exhaustionLevel;
+                    float maxHealth  = player.getMaxHealth();
+                    float currHealth = player.getHealth();
 
-                    // Just to be absolutely safe!
-                    currHealth = player.getHealth();
-                }
-
-                // Drop food level by one for every 2 units of health.
-                if (this.saturationLevel < 1.0F && this.foodLevel > 0 && ((maxHealth - currHealth) >= 1.0F))
-                {
-                    if (this.tickTimer % 10 == 0)
+                    // Draw immediately from saturation pool if it is present.
+                    if (this.saturationLevel >= 1.0F && ((maxHealth - currHealth) >= 1.0F))
                     {
-                        if (this.tickTimer % 20 == 0) { this.foodLevel -= 1; }
+                        this.saturationLevel -= 1.0F;
+                        player.setHealth(Math.min(maxHealth, currHealth + 1.0F));
+
+                        // Just to be absolutely safe!
+                        currHealth = player.getHealth();
+                    }
+
+                    // Drop food level by one for every 2 units of health.
+                    if (this.saturationLevel < 1.0F && this.foodLevel > 0 && ((maxHealth - currHealth) >= 1.0F))
+                    {
+                        if (this.tickTimer % 20 == 0)
+                        { this.foodLevel -= 1; }
                         player.setHealth(Math.min(maxHealth, currHealth + 1.0F));
                     }
-                }
 
-                // Starvation!
-                else if (this.foodLevel <= 0)
-                {
-                    ++this.tickTimer;
-                    if (this.tickTimer >= 80)
+                    // Starvation!
+                    else if (this.foodLevel <= 0)
                     {
-                        if (player.getHealth() > 10.0F)
-                        { player.hurt(player.damageSources().starve(), 1.0F); }
-                        this.tickTimer = 0;
+                        ++this.tickTimer;
+                        if (this.tickTimer >= 80)
+                        {
+                            if (player.getHealth() > 10.0F)
+                            { player.hurt(player.damageSources().starve(), 1.0F); }
+                            this.tickTimer = 0;
+                        }
                     }
                 }
             }
