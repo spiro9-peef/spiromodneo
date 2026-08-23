@@ -50,11 +50,11 @@ public class FoodDataMixin
                 { this.foodLevel = Math.max(this.foodLevel - 1, 0); }
             }
 
-            // Skip the original call in Peaceful so vanilla doesn't override our manual drain,
-            // but still handle health regen/starvation logic if food hits zero!
-            if (player.isHurt() && player.level().getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION))
+            if (this.tickTimer % 10 == 0)
             {
-                if (this.tickTimer % 10 == 0)
+                // Skip the original call in Peaceful so vanilla doesn't override our manual drain,
+                // but still handle health regen/starvation logic if food hits zero!
+                if (player.isHurt() && player.level().getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION))
                 {
                     // Give a grace period but still maintain some exhaustion, unless the value is below 1.0.
                     this.exhaustionLevel = (this.exhaustionLevel > 1.0F) ? Math.max(1.0F, this.exhaustionLevel - 0.5F) :
@@ -79,17 +79,17 @@ public class FoodDataMixin
                         { this.foodLevel -= 1; }
                         player.setHealth(Math.min(maxHealth, currHealth + 1.0F));
                     }
+                }
 
-                    // Starvation!
-                    else if (this.foodLevel <= 0)
+                // Starvation!
+                if (this.foodLevel <= 0)
+                {
+                    ++this.tickTimer;
+                    if (this.tickTimer >= 80)
                     {
-                        ++this.tickTimer;
-                        if (this.tickTimer >= 80)
-                        {
-                            if (player.getHealth() > 10.0F)
-                            { player.hurt(player.damageSources().starve(), 1.0F); }
-                            this.tickTimer = 0;
-                        }
+                        if (player.getHealth() > 10.0F)
+                        { player.hurt(player.damageSources().starve(), 1.0F); }
+                        this.tickTimer = 0;
                     }
                 }
             }
