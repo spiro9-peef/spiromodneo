@@ -5,8 +5,8 @@
     "blocks_for_base": "#spiromodneo:is_flesh",
     "height_range": {
       "type": "minecraft:uniform",
-      "max_inclusive": 32,
-      "min_inclusive": 8
+      "max_inclusive": 24,
+      "min_inclusive": 4
     },
     "safe_spawn_biomes": "#spiromodneo:is_visceral_biome"
   }

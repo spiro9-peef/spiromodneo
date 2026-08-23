@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
   "biomes": "#spiromodneo:is_visceral_biome",
-  "features": "spiromodneo:unholy_fangs",
-  "step": "underground_ores"
+  "features": "spiromodneo:unholy_fangs_floor",
+  "step": "underground_decoration"
 }

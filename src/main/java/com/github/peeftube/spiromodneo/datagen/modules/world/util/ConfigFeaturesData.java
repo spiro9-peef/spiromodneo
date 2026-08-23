@@ -810,7 +810,7 @@ public class ConfigFeaturesData
                 blocks.getOrThrow(SpiroTags.Blocks.VISCERA_SOLID),
                 Blocks.BONE_BLOCK,
                 biomes.getOrThrow(SpiroTags.Biomes.IS_VISCERAL),
-                UniformInt.of(8, 32)));
+                UniformInt.of(4, 24)));
     }
 
     private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name)

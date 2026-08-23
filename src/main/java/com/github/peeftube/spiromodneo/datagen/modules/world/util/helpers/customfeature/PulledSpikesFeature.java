@@ -124,16 +124,71 @@ public class PulledSpikesFeature extends Feature<PulledSpikesFeatureConfiguratio
             PulledSpikesFeatureConfiguration c, boolean isNearEdge, BlockState base, Direction growthDir,
             Direction bias)
     {
-        int baseRadiusX = isNearEdge && (bias.getAxis() == Direction.Axis.X) ? 4 : 2;
-        int baseRadiusZ = isNearEdge && (bias.getAxis() == Direction.Axis.Z) ? 4 : 2;
-        int baseLayers = r.nextInt(2, 4);
+        int baseRadiusX = isNearEdge && (bias.getAxis() == Direction.Axis.X) ? 2 : 1;
+        int baseRadiusZ = isNearEdge && (bias.getAxis() == Direction.Axis.Z) ? 2 : 1;
+        int baseLayers = r.nextInt(1, 4);
+        int safeBaseLayers = baseLayers;
+
+        // What we want to do now is check 8 points in the given radius. If they all hit solid material, we consider
+        // this the base. If some are in air, we go up a layer, add 1 to an additive variable for baseLayers,
+        // and try again. Do this the following number of tries before giving up.
+        int findSolidBaseTryCount = 5;
+        float baseRadiusChange = 1.0F;
+        boolean hasFound = false;
+
+        BlockPos newPos = p;
+
+        for (int t = 0; t < findSolidBaseTryCount; t++)
+        {
+            if (!hasFound)
+            {
+                int currentRadiusX = Math.max(1, baseRadiusX + Math.round(t / 2.0F));
+                int currentRadiusZ = Math.max(1, baseRadiusZ + Math.round(t / 2.0F));
+
+                BlockPos pCheck = p.relative(growthDir.getOpposite(), t);
+
+                int matchingPoints = 0;
+                int totalPoints    = 0;
+
+                int checkRadius = Math.max(currentRadiusX, currentRadiusZ);
+
+                for (int i = 0; i < 8; i++)
+                {
+                    double   angle  = (2 * Math.PI * i) / 8;
+                    int      dx     = (int) Math.round(checkRadius * Math.cos(angle));
+                    int      dz     = (int) Math.round(checkRadius * Math.sin(angle));
+                    BlockPos sample = pCheck.offset(dx, 0, dz);
+
+                    totalPoints++;
+                    if (!l.isEmptyBlock(sample)) { matchingPoints++; }
+                }
+
+                if (matchingPoints == totalPoints)
+                {
+                    hasFound = true;
+                    baseLayers += t;
+                    baseRadiusChange += t / 2.0F;
+
+                    baseRadiusX = Math.round(baseRadiusX * baseRadiusChange);
+                    baseRadiusZ = Math.round(baseRadiusZ * baseRadiusChange);
+
+                    newPos = newPos.relative(growthDir.getOpposite(), t);
+                }
+            }
+        }
+
+        // Don't generate if we can't find solid terrain
+        if (!hasFound) { return false; }
+
+        int pillarHeight = r.nextInt(c.heightRange.getMinValue(), c.heightRange.getMaxValue());
+        BlockPos pillarCurrent = newPos;
 
         for (int yLayer = 0; yLayer < baseLayers; yLayer++)
         {
             int currentRadiusX = Math.max(1, baseRadiusX - yLayer);
             int currentRadiusZ = Math.max(1, baseRadiusZ - yLayer);
 
-            BlockPos layerCenter = p.relative(growthDir, yLayer);
+            BlockPos layerCenter = newPos.relative(growthDir, yLayer);
 
             // Offset the center slightly toward the interior bias on edge formations
             if (isNearEdge && yLayer == 0) { layerCenter = layerCenter.relative(bias, 1); }
@@ -144,15 +199,12 @@ public class PulledSpikesFeature extends Feature<PulledSpikesFeatureConfiguratio
                 {
                     BlockPos targetPos = layerCenter.offset(dx, 0, dz);
 
-                    // Ensure we only replace empty space
-                    if (l.isEmptyBlock(targetPos))
+                    // Ensure we only replace the blocks we want
+                    if (l.isEmptyBlock(targetPos) || l.getBlockState(targetPos).is(base.getBlock()))
                     { l.setBlock(targetPos, base, 2); }
                 }
             }
         }
-
-        int pillarHeight = r.nextInt(c.heightRange.getMinValue(), c.heightRange.getMaxValue());
-        BlockPos pillarCurrent = p;
 
         // Track slight drift coordinates for the vine-like skew effect
         int driftX = 0;

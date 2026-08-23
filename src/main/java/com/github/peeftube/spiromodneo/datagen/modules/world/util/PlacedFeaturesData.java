@@ -138,7 +138,8 @@ public class PlacedFeaturesData
 
     public static final ResourceKey<PlacedFeature> GROUND_STONES = registerKey("ground_stones");
 
-    public static final ResourceKey<PlacedFeature> UNHOLY_FANGS = registerKey("unholy_fangs");
+    public static final ResourceKey<PlacedFeature> UNHOLY_FANGS_FLOOR = registerKey("unholy_fangs_floor");
+    public static final ResourceKey<PlacedFeature> UNHOLY_FANGS_CEIL = registerKey("unholy_fangs_ceiling");
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context)
     {
@@ -637,7 +638,7 @@ public class PlacedFeaturesData
         register(context, EVISCERA_STEMS,
                 configuredFeatures.getOrThrow(ConfigFeaturesData.EVISCERA_STEMS),
                 CountPlacement.of(256), InSquarePlacement.spread(),
-                PlacementUtils.FULL_RANGE,
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
@@ -686,10 +687,21 @@ public class PlacedFeaturesData
 
         register(context, GROUND_STONES, configuredFeatures.getOrThrow(ConfigFeaturesData.GROUND_STONES));
 
-        register(context, UNHOLY_FANGS,
+        register(context, UNHOLY_FANGS_FLOOR,
                 configuredFeatures.getOrThrow(ConfigFeaturesData.UNHOLY_FANGS),
-                CountPlacement.of(64), InSquarePlacement.spread(),
-                PlacementUtils.FULL_RANGE,
+                CountPlacement.of(192), InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.hasSturdyFace(Direction.DOWN),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
+                BiomeFilter.biome());
+        register(context, UNHOLY_FANGS_CEIL,
+                configuredFeatures.getOrThrow(ConfigFeaturesData.UNHOLY_FANGS),
+                CountPlacement.of(192), InSquarePlacement.spread(),
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome());
     }
 

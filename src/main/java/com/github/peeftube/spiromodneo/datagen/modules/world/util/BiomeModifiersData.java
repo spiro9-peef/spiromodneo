@@ -9,7 +9,6 @@ import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.OrePlacements;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
@@ -230,8 +229,8 @@ public class BiomeModifiersData
         context.register(VISCERAL_MATTER_FEATURES, new BiomeModifiers.AddFeaturesBiomeModifier(
                 tag(biomes, SpiroTags.Biomes.IS_VISCERAL),
                 features(features,
-                        PlacedFeaturesData.UNHOLY_FANGS),
-                GenerationStep.Decoration.UNDERGROUND_ORES
+                        PlacedFeaturesData.UNHOLY_FANGS_FLOOR),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION
         ));
 
         context.register(EVISCERA_STEMS_IN_VISCERALS, new BiomeModifiers.AddFeaturesBiomeModifier(

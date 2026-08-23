@@ -1,9 +1,9 @@
 {
-  "feature": "spiromodneo:eviscera_stems",
+  "feature": "spiromodneo:unholy_fangs",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 256
+      "count": 192
     },
     {
       "type": "minecraft:in_square"

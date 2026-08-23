@@ -1,9 +1,9 @@
 {
-  "feature": "spiromodneo:eviscera_stems",
+  "feature": "spiromodneo:unholy_fangs",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 256
+      "count": 192
     },
     {
       "type": "minecraft:in_square"
@@ -26,17 +26,17 @@
         "type": "minecraft:matching_blocks",
         "blocks": "minecraft:air"
       },
-      "direction_of_search": "up",
+      "direction_of_search": "down",
       "max_steps": 12,
       "target_condition": {
         "type": "minecraft:has_sturdy_face",
-        "direction": "down"
+        "direction": "up"
       }
     },
     {
       "type": "minecraft:random_offset",
       "xz_spread": 0,
-      "y_spread": -1
+      "y_spread": 1
     },
     {
       "type": "minecraft:biome"
