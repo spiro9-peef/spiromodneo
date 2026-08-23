@@ -20,13 +20,57 @@ public class FoodDataMixin
     @Shadow private float exhaustionLevel;
     @Shadow private float saturationLevel;
 
+    @Shadow private int tickTimer;
+
     @WrapMethod(method = "tick")
-    public void onTick(Player player, Operation<Void> original)
-    {
-        if (!player.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL) &&
-            player.level().getDifficulty() == Difficulty.PEACEFUL &&
-                this.saturationLevel <= 0.0F && this.exhaustionLevel <= 0.0F)
-        { this.foodLevel = Math.max(this.foodLevel - 1, 0); }
+    public void onTick(Player player, Operation<Void> original) {
+        boolean customHungerActive = !player.level().getGameRules().getBoolean(Registrar.PEACEFUL_IS_PEACEFUL);
+        boolean isPeaceful = player.level().getDifficulty() == Difficulty.PEACEFUL;
+
+        if (customHungerActive && isPeaceful)
+        {
+            // Manually drive the food stats since vanilla skips tick logic in Peaceful
+            // Add a tiny bit of passive exhaustion over time so it feeds into standard food loss
+            this.exhaustionLevel += 0.01F;
+
+            if (this.exhaustionLevel > 4.0F)
+            {
+                this.exhaustionLevel = 0.0F;
+                if (this.saturationLevel > 0.0F)
+                { this.saturationLevel = Math.max(this.saturationLevel - 1.0F, 0.0F); }
+                else if (this.foodLevel > 0)
+                { this.foodLevel = Math.max(this.foodLevel - 1, 0); }
+            }
+
+            // Skip the original call in Peaceful so vanilla doesn't override our manual drain,
+            // but still handle health regen/starvation logic if food hits zero!
+            if (player.isHurt())
+            {
+                // Give a grace period.
+                this.exhaustionLevel = 0.0F;
+                float maxHealth = player.getMaxHealth();
+                float currHealth = player.getHealth();
+
+                // Draw immediately from saturation pool if it is present.
+                if (this.saturationLevel >= 1.0F && ((maxHealth - currHealth) >= 1.0F))
+                {
+                    this.saturationLevel -= 1.0F;
+                    player.setHealth(Math.min(maxHealth, currHealth + 1.0F));
+                }
+
+                // Drop food level by one for every 2 units of health.
+                if (foodLevel > 0 && ((maxHealth - currHealth) >= 1.0F))
+                {
+                    if (this.tickTimer % 2 == 0)
+                    {
+                        if (this.tickTimer % 4 == 0) { this.foodLevel -= 1; }
+                        player.setHealth(Math.min(maxHealth, currHealth + 1.0F));
+                    }
+                }
+            }
+            return;
+        }
+
         original.call(player);
     }
 }
