@@ -3,7 +3,7 @@ package com.github.peeftube.spiromodneo.datagen;
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.datagen.modules.models.BlockstateDataProv;
 import com.github.peeftube.spiromodneo.datagen.modules.models.ItemModelDataProv;
-import com.github.peeftube.spiromodneo.datagen.modules.lang.EN_USLangDataProv;
+import com.github.peeftube.spiromodneo.datagen.modules.lang.en_us.EN_USLangDataProv;
 import com.github.peeftube.spiromodneo.datagen.modules.loot.LootModDataProv;
 import com.github.peeftube.spiromodneo.datagen.modules.loot.LootTableDataProv;
 import com.github.peeftube.spiromodneo.datagen.modules.recipe.RecipeDataProv;

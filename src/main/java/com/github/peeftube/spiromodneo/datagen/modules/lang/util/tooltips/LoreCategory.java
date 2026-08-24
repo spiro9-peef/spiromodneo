@@ -1,4 +1,4 @@
-package com.github.peeftube.spiromodneo.datagen.modules.lang.util.helpers.tooltips;
+package com.github.peeftube.spiromodneo.datagen.modules.lang.util.tooltips;
 
 public enum LoreCategory
 {

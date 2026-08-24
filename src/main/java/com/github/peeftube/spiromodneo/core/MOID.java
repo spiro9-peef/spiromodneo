@@ -75,7 +75,9 @@ public enum MOID
 
     // ORGANICS AND ORGANIC MATERIAL IDS
     // -- Vanilla
+    STICK("stick"),
     LEATHER("leather"),
+    STRING("string"),
     /// <h1>REFERENCE</h1><p><hr>
     /// <i>NOTE: Specifically for wood as a general material, not any specific type</i><hr>
     MAT_WOOD("wooden"),
@@ -83,6 +85,24 @@ public enum MOID
     MAT_SHARPWOOD("sharp_wooden"),
     CAOUTCHOUC("caoutchouc"),
     MAPLE_SAP("maple_sap"),
+    PHANTOM_BERRIES("phantom_berries"),
+    PHANTOM_BUSH("phantom_berry_bush"),
+    /// <h1>REFERENCE</h1><p><hr>
+    /// <b>Aliases:</b><br>
+    /// 0: '_plant' - use for body block<br>
+    PHANTOM_VINE("phantom_cave_vines", "phantom_cave_vines_plant"),
+    /// <h1>REFERENCE</h1><p><hr>
+    /// <b>Aliases:</b><br>
+    /// 0: '_plant' - use for body block<br>
+    RUBY_VINE("ruby_cave_vines", "ruby_cave_vines_plant"),
+    BLOODTHORN("bloodthorn"),
+    /// <h1>REFERENCE</h1><p><hr>
+    /// <b>Aliases:</b><br>
+    /// 0: '_plant' - use for body block<br>
+    EVISCERA("eviscera", "eviscera_plant"),
+    EYEFRUIT("eyefruit"),
+    EYEFRUIT_BUSH("eyefruit_thistle"),
+    COOKED_EYEFRUIT("cooked_eyefruit"),
 
     // WOOD TYPE IDS
     // -- Vanilla
@@ -134,16 +154,68 @@ public enum MOID
     METHANE_ICE("methane_ice"),
     CRIMSONITE("crimsonite"),
     STRAVIMITE("stravimite"),
-    
-    PHANTOM_BERRIES("phantom_berries"),
-    BLOODTHORN("bloodthorn"),
-    EYEFRUIT("eyefruit"),
-    COOKED_EYEFRUIT("cooked_eyefruit");
+
+    // METALLURGIC IDS
+    /// <h1>REFERENCE</h1><p><hr>
+    /// <b>Aliases:</b><br>
+    /// 0: 'cast_iron_mix' - use for the intermediary item<br>
+    CAST_IRON("cast_iron", "cast_iron_mix"),
+    /// <h1>REFERENCE</h1><p><hr>
+    /// <b>Aliases:</b><br>
+    /// 0: 'weak_steel_mix' - use for the alternative item<br>
+    STEEL_MIXTURES("steel_mix", "weak_steel_mix"),
+    CRUSHED_CARBON("crushed_carbon"),
+
+    // WORKSTATION IDS
+    // -- Vanilla
+    // -- SpiroMod NEO
+    TAPPER("tapper"),
+    CRUSHER_T0("manual_crusher"),
+
+    // INDUSTRY AND ELECTRONICS IDS
+    PREP_LATEX("rubber_precursor"),
+    RUBBER("natural_rubber"),
+    SYNTH_RUBBER("rubber"),
+    COPPER_WIRE_RAW("copper_wire"),
+    COPPER_WIRE_T0("shielded_copper_wire"),
+    ROD_IRON("iron_stick"),
+    ROD_LEAD("lead_stick"),
+    ROD_STEEL("steel_rod"),
+
+    // LOOSE OR UNCATEGORIZED IDS
+    SINEW("sinew"),
+    PLANT_FIBRE("plant_fibre"),
+    SMALL_STONE("small_stone"),
+    SHARPENED_STICK("sharpened_stick"),
+    BUNDLE_SHARP_STICKS("bundle_of_sharp_sticks"),
+    SHARP_GRAFTING_KIT("wooden_tool_grafting_kit"),
+    NETHER_CLAY("nether_clay"),
+
+    // UTILITY
+    NO_USE_END();
 
     private final String       key;
     private final List<String> aliases;
 
     // These all force lowercase just for safety reasons.
+    /// Deprecated as this should be used sparingly. Will not be removed.
+    @Deprecated
+    MOID()
+    {
+        this.key = this.name().toLowerCase();
+        this.aliases = new ArrayList<>();
+
+        if (!this.name().equalsIgnoreCase("no_use_end"))
+        {
+            SpiroMod.LOGGER.warn("REGISTERED MOID WITHOUT INTERNAL ID: '{}'", this.key.toLowerCase());
+            SpiroMod.LOGGER.warn("THIS MAY CAUSE ISSUES! PLEASE FIX.");
+        }
+        else
+        {
+            SpiroMod.LOGGER.info("REGISTERED A TOTAL OF {} MOIDs.", this.ordinal());
+            SpiroMod.LOGGER.info("MOID SYSTEM FULLY INITIALIZED!");
+        }
+    }
     MOID(String key)
     {
         boolean isNull = this.toString().equalsIgnoreCase("NULL");

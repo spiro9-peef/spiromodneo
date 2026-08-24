@@ -19,6 +19,8 @@ import java.util.function.Supplier;
 
 public interface OreUtilities
 {
+    /// TODO: Implement flavor text for every non-vanilla item
+    ///       (vanilla items need to be handled through TooltipHandler.java)
     static Map<BaseStone, Map<OreMaterial, OreCoupling>> getComboPresets()
     {
         Map<BaseStone, Map<OreMaterial, OreCoupling>> reference          = new HashMap<>();

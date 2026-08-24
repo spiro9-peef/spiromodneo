@@ -27,6 +27,8 @@ import java.util.function.Supplier;
 
 public interface WoodUtilities
 {
+    /// TODO: Implement flavor text for every non-vanilla item
+    ///       (vanilla items need to be handled through TooltipHandler.java)
     static WoodData populate(WoodMaterial mat, int li, Map<Boolean, Tappable> isTappable)
     {
         Map<LivingWoodBlockType, GenericBlockItemCoupling> livingDataContent = new HashMap<>();
@@ -977,7 +979,9 @@ public interface WoodUtilities
                 plankDataContent, plankTags, manufacturableContent, signContent, isVariableWoodType);
     }
 
-    /** Populates the leaves section of the variable wood collection record. */
+    /// Populates the leaves section of the variable wood collection record.<p>
+    /// TODO: Implement flavor text for every non-vanilla item
+    ///       (vanilla items need to be handled through TooltipHandler.java)
     static GenericBlockItemCoupling pVariableLeaves(VariableWoodMaterial mat, int li)
     {
         Supplier<? extends Block> b = Registrar.regBlock(mat.getName() + "_leaves",
@@ -991,7 +995,9 @@ public interface WoodUtilities
         return new GenericBlockItemCoupling(b, i);
     }
 
-    /** Populates the sapling section of the variable wood collection record. */
+    /// Populates the sapling section of the variable wood collection record.<p>
+    /// TODO: Implement flavor text for every non-vanilla item
+    ///       (vanilla items need to be handled through TooltipHandler.java)
     static GenericBlockItemCoupling pVariableSapling(VariableWoodMaterial mat, int li)
     {
         Supplier<? extends Block> b =

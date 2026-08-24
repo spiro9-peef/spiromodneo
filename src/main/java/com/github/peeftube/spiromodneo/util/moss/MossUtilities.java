@@ -19,6 +19,8 @@ import java.util.function.Supplier;
 
 public interface MossUtilities
 {
+    /// TODO: Implement flavor text for every non-vanilla item
+    ///       (vanilla items need to be handled through TooltipHandler.java)
     public static Map<MossType, GenericBlockItemCoupling> populate(MossMaterial mat, int li)
     {
         Map<MossType, GenericBlockItemCoupling> output = new HashMap<>();

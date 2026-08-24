@@ -83,6 +83,7 @@ public interface EquipmentUtilities
         }
     }
 
+    /// TODO: Implement flavor text
     private static ToolSet createNewToolSet(EquipmentMaterial mat)
     {
         Supplier<SwordItem> sword = Registrar.ITEMS.register(mat.getName() + "_sword",
@@ -99,6 +100,7 @@ public interface EquipmentUtilities
         return new ToolSet(sword, shovel, hoe, axe, pickaxe);
     }
 
+    /// TODO: Implement flavor text
     private static ArmorSet createNewArmorSet(EquipmentMaterial mat)
     {
         List<DeferredItem<ArmorItem>> armorItems = new ArrayList<>();

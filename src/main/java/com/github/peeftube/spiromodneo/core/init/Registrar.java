@@ -10,8 +10,8 @@ import com.github.peeftube.spiromodneo.core.init.content.recipe.ManualCrusherRec
 import com.github.peeftube.spiromodneo.core.init.creative.CTProcessor;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherMenu;
-import com.github.peeftube.spiromodneo.datagen.modules.lang.util.helpers.TooltipUtils;
-import com.github.peeftube.spiromodneo.datagen.modules.lang.util.helpers.tooltips.LoreCategory;
+import com.github.peeftube.spiromodneo.datagen.modules.lang.util.TooltipUtils;
+import com.github.peeftube.spiromodneo.datagen.modules.lang.util.tooltips.LoreCategory;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.GroundStoneFeature;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.PulledSpikesFeature;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.config.PulledSpikesFeatureConfiguration;
@@ -58,10 +58,11 @@ import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.*;
 
 public class Registrar
 {
@@ -163,79 +164,106 @@ public class Registrar
 
     // Consider maybe adding support for Vanilla Backported here - will require a major refactor
 
-    public static final DeferredItem<Item> SINEW = ITEMS.registerSimpleItem("sinew"); // TODO: Provide MOID
-    public static final DeferredItem<Item> PLANT_FIBRE = ITEMS.registerSimpleItem("plant_fibre"); // TODO: Provide MOID
+    public static final DeferredItem<Item> SINEW = ITEMS.registerSimpleItem(getMOID(MOID.SINEW),
+            new Item.Properties().component(DataComponents.LORE, new ItemLore(
+                            TooltipUtils.autoLore(getMOID(MOID.SINEW),
+                                    Map.of(LoreCategory.FLAVOR_TEXT, 1,
+                                           LoreCategory.GAMEPLAY_HINTS, 1)))));
+    public static final DeferredItem<Item> PLANT_FIBRE = ITEMS.registerSimpleItem(getMOID(MOID.PLANT_FIBRE),
+            new Item.Properties().component(DataComponents.LORE, new ItemLore(
+                    TooltipUtils.autoLore(getMOID(MOID.PLANT_FIBRE),
+                            Map.of(LoreCategory.FLAVOR_TEXT, 1,
+                                   LoreCategory.GAMEPLAY_HINTS, 1)))));
 
-    public static final DeferredItem<Item> SMALL_STONE = ITEMS.registerSimpleItem("small_stone"); // TODO: Provide MOID
+    public static final DeferredItem<Item> SMALL_STONE = ITEMS.registerSimpleItem(getMOID(MOID.SMALL_STONE),
+            new Item.Properties().component(DataComponents.LORE, new ItemLore(
+                    TooltipUtils.autoLore(getMOID(MOID.SMALL_STONE),
+                            Map.of(LoreCategory.FLAVOR_TEXT, 2,
+                                   LoreCategory.GAMEPLAY_HINTS, 1)))));
 
-    public static final DeferredItem<Item> SHARPENED_STICK = ITEMS.registerSimpleItem("sharpened_stick"); // TODO: Provide MOID
+    public static final DeferredItem<Item> SHARPENED_STICK = ITEMS.registerSimpleItem(getMOID(MOID.SHARPENED_STICK),
+            new Item.Properties().component(DataComponents.LORE, new ItemLore(
+                    TooltipUtils.autoLore(getMOID(MOID.SHARPENED_STICK),
+                            Map.of(LoreCategory.FLAVOR_TEXT, 1,
+                                   LoreCategory.GAMEPLAY_HINTS, 2)))));
     public static final DeferredItem<Item> BUNDLE_OF_SHARP_STICKS =
-            ITEMS.registerSimpleItem("bundle_of_sharp_sticks"); // TODO: Provide MOID
+            ITEMS.registerSimpleItem(getMOID(MOID.BUNDLE_SHARP_STICKS),
+                    new Item.Properties().component(DataComponents.LORE, new ItemLore(
+                            TooltipUtils.autoLore(getMOID(MOID.BUNDLE_SHARP_STICKS),
+                                    Map.of(LoreCategory.FLAVOR_TEXT, 1,
+                                           LoreCategory.GAMEPLAY_HINTS, 1)))));
     public static final DeferredItem<Item> WOODEN_TOOL_GRAFTING_KIT =
-            ITEMS.registerSimpleItem("wooden_tool_grafting_kit"); // TODO: Provide MOID
+            ITEMS.registerSimpleItem(getMOID(MOID.SHARP_GRAFTING_KIT),
+                    new Item.Properties().component(DataComponents.LORE, new ItemLore(
+                            TooltipUtils.autoLore(getMOID(MOID.SHARP_GRAFTING_KIT),
+                                    Map.of(LoreCategory.FLAVOR_TEXT, 1,
+                                           LoreCategory.GAMEPLAY_HINTS, 1)))));
 
     // Special steel alloying items
     /** Cast iron mixture is made using one coal or charcoal item with 4 iron ingot items. It is the only form of steel
      * precursor which can be made using vanilla techniques.
      * <p> However, it can produce steel if run through an oxygenated smelting process. */
-    public static final DeferredItem<Item> CAST_IRON_MIXTURE = ITEMS.registerSimpleItem("cast_iron_mix"); // TODO: Provide MOID
+    public static final DeferredItem<Item> CAST_IRON_MIXTURE =
+            ITEMS.registerSimpleItem(getMOIDwithAlias(MOID.CAST_IRON, 0));
     /** Cast iron is added but has no particular uses, apart from smelting into steel. Iron ore blocks
      * can in theory be smelted into this but this has not been made a final decision as of writing this documentation.
      * <p> It can be converted back to regular iron once oxygenation is available to the player.
      * <p> To further compound upon the matter, cast iron cannot be made into blocks.
      * <p> TODO: Allow oxygenation. */
-    public static final DeferredItem<Item> CAST_IRON = ITEMS.registerSimpleItem("cast_iron"); // TODO: Provide MOID
+    public static final DeferredItem<Item> CAST_IRON = ITEMS.registerSimpleItem(getMOID(MOID.CAST_IRON));
     /** Steel mixture is made using crushed carbon dust with cast iron or regular iron. The cast iron recipe
      * will require more cast iron, making it more expensive in terms of coal, but produces slightly more
      * steel mixture, offsetting this cost. Steel can be oxygenated to produce regular iron if needed.
      * <p> Steel mixture can also be run through oxygenation as a smelting process to produce extra steel. */
-    public static final DeferredItem<Item> STEEL_MIXTURE = ITEMS.registerSimpleItem("steel_mix"); // TODO: Provide MOID
+    public static final DeferredItem<Item> STEEL_MIXTURE = ITEMS.registerSimpleItem(getMOID(MOID.STEEL_MIXTURES));
     /** To differentiate iron-based steel mix from cast iron-based steel mix, the two are separate items.
      * This allows them to have unique textures while having roughly the same properties in-game. */
-    public static final DeferredItem<Item> WEAK_STEEL_MIXTURE = ITEMS.registerSimpleItem("weak_steel_mix"); // TODO: Provide MOID
+    public static final DeferredItem<Item> WEAK_STEEL_MIXTURE =
+            ITEMS.registerSimpleItem(getMOIDwithAlias(MOID.STEEL_MIXTURES, 0));
     /** Crushed carbon is a coal or charcoal derivative. It can be made from regular coal or charcoal, but
      * when made using normal crafting is expensive to produce, requiring extra carbon sources as well as hard
      * "crusher" items, like bricks or stones, consuming those items in the process. This means steel can be
      * produced in the early game but is more of a commodity due to how expensive vanilla processes become
      * for fuel sources, as well as the time needed to make this happen. */
-    public static final DeferredItem<Item> CRUSHED_CARBON = ITEMS.registerSimpleItem("crushed_carbon");
+    public static final DeferredItem<Item> CRUSHED_CARBON = ITEMS.registerSimpleItem(getMOID(MOID.CRUSHED_CARBON));
 
-    public static final DeferredBlock<Block> MANUAL_CRUSHER = BLOCKS.register("manual_crusher", // TODO: Provide MOID
+    public static final DeferredBlock<Block> MANUAL_CRUSHER = BLOCKS.register(getMOID(MOID.CRUSHER_T0),
             () -> new ManualCrusherBlock(STONE_BASED_ORE.get().noOcclusion()));
     public static final Supplier<BlockEntityType<ManualCrusherBlockEntity>> MANUAL_CRUSHER_ENTITY =
-            BLOCK_ENTITIES.register("manual_crusher_entity", () -> BlockEntityType.Builder.of(
+            BLOCK_ENTITIES.register(getMOIDSuffixed(MOID.CRUSHER_T0, "entity"), () -> BlockEntityType.Builder.of(
                     ManualCrusherBlockEntity::new, MANUAL_CRUSHER.get()).build(null));
     public static final DeferredItem<Item> MANUAL_CRUSHER_ITEM = regSimpleBlockItem(MANUAL_CRUSHER);
 
     public static final DeferredHolder<MenuType<?>, MenuType<ManualCrusherMenu>> MANUAL_CRUSHER_MENU =
-            MENUS.register("manual_crusher_menu", () -> IMenuTypeExtension.create(ManualCrusherMenu::new));
+            MENUS.register(getMOIDSuffixed(MOID.CRUSHER_T0, "menu"),
+                    () -> IMenuTypeExtension.create(ManualCrusherMenu::new));
 
     public static final DeferredHolder<RecipeSerializer<?>,
             RecipeSerializer<ManualCrusherRecipe>> MANUAL_CRUSHER_SERIALIZER =
-        RECIPE_SERIALIZERS.register("manual_crusher", ManualCrusherRecipe.Serializer::new);
+        RECIPE_SERIALIZERS.register(getMOID(MOID.CRUSHER_T0), ManualCrusherRecipe.Serializer::new);
     public static final DeferredHolder<RecipeType<?>,
             RecipeType<ManualCrusherRecipe>> MANUAL_CRUSHER_TYPE =
-        RECIPE_TYPES.register("manual_crusher", () -> new RecipeType<ManualCrusherRecipe>()
+        RECIPE_TYPES.register(getMOID(MOID.CRUSHER_T0), () -> new RecipeType<ManualCrusherRecipe>()
         {
             @Override
-            public String toString() { return "manual_crusher"; }
+            public String toString() { return getMOID(MOID.CRUSHER_T0); }
         });
 
-    public static final DeferredItem<Item> NETHER_CLAY = ITEMS.registerSimpleItem("nether_clay"); // TODO: Provide MOID
+    public static final DeferredItem<Item> NETHER_CLAY = ITEMS.registerSimpleItem(getMOID(MOID.NETHER_CLAY));
 
-    public static final DeferredItem<Item> CAOUTCHOUC = ITEMS.registerSimpleItem("caoutchouc"); // TODO: Provide MOID
-    public static final DeferredItem<Item> MAPLE_SAP = ITEMS.registerSimpleItem("maple_sap"); // TODO: Provide MOID
+    public static final DeferredItem<Item> CAOUTCHOUC = ITEMS.registerSimpleItem(getMOID(MOID.CAOUTCHOUC));
+    public static final DeferredItem<Item> MAPLE_SAP = ITEMS.registerSimpleItem(getMOID(MOID.MAPLE_SAP));
 
-    public static final DeferredItem<Item> RUBBER_PRECURSOR = ITEMS.registerSimpleItem("rubber_precursor"); // TODO: Provide MOID
-    public static final DeferredItem<Item> NATURAL_RUBBER = ITEMS.registerSimpleItem("natural_rubber"); // TODO: Provide MOID
-    public static final DeferredItem<Item> COPPER_WIRE = ITEMS.registerSimpleItem("copper_wire"); // TODO: Provide MOID
-    public static final DeferredItem<Item> SHIELDED_COPPER_WIRE = ITEMS.registerSimpleItem("shielded_copper_wire"); // TODO: Provide MOID
+    public static final DeferredItem<Item> RUBBER_PRECURSOR = ITEMS.registerSimpleItem(getMOID(MOID.PREP_LATEX));
+    public static final DeferredItem<Item> NATURAL_RUBBER = ITEMS.registerSimpleItem(getMOID(MOID.RUBBER));
+    public static final DeferredItem<Item> COPPER_WIRE = ITEMS.registerSimpleItem(getMOID(MOID.COPPER_WIRE_RAW));
+    public static final DeferredItem<Item> SHIELDED_COPPER_WIRE = ITEMS.registerSimpleItem(getMOID(MOID.COPPER_WIRE_T0));
 
-    public static final DeferredItem<Item> IRON_STICK = ITEMS.registerSimpleItem("iron_stick"); // TODO: Provide MOID
-    public static final DeferredItem<Item> LEAD_STICK = ITEMS.registerSimpleItem("lead_stick"); // TODO: Provide MOID
-    public static final DeferredItem<Item> STEEL_ROD = ITEMS.registerSimpleItem("steel_rod"); // TODO: Provide MOID
+    public static final DeferredItem<Item> IRON_STICK = ITEMS.registerSimpleItem(getMOID(MOID.ROD_IRON));
+    public static final DeferredItem<Item> LEAD_STICK = ITEMS.registerSimpleItem(getMOID(MOID.ROD_LEAD));
+    public static final DeferredItem<Item> STEEL_ROD = ITEMS.registerSimpleItem(getMOID(MOID.ROD_STEEL));
 
-    public static final DeferredBlock<Block> TAPPER = BLOCKS.register("tapper", // TODO: Provide MOID
+    public static final DeferredBlock<Block> TAPPER = BLOCKS.register(getMOID(MOID.TAPPER),
             () -> new TapperBlock(RAW_ORE.get().noCollission().strength(0.5f, 0f)));
     public static final DeferredItem<Item> TAPPER_ITEM = regSimpleBlockItem(TAPPER);
 
@@ -265,7 +293,8 @@ public class Registrar
     public static final SimpleTier T_COPPER = new SimpleTier(SpiroTags.Blocks.INCORRECT_FOR_COPPER,
             240, 6.2F, 1.2F, 12, () -> Ingredient.of(Items.COPPER_INGOT));
     /** Armor Material for copper. */
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_COPPER = CustomArmorMaterial.register("copper", // TODO: Refactor with MOID
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_COPPER =
+            CustomArmorMaterial.register(getMOID(MOID.COPPER),
             new int[]{1, 3, 2, 1, 4}, SoundEvents.ARMOR_EQUIP_GOLD, 12, 0.0F, 0.0F,
             () -> Items.COPPER_INGOT);
     /** Tool tier for lead. TODO: Add appropriate tag */
@@ -273,7 +302,8 @@ public class Registrar
             320, 5.2F, 2.5F, 2,
             () -> Ingredient.of(getIngotFromMetal(LEAD_METAL)));
     /** Armor Material for lead. */
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_LEAD = CustomArmorMaterial.register("lead", // TODO: Refactor with MOID
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_LEAD =
+            CustomArmorMaterial.register(getMOID(MOID.LEAD),
             new int[]{2, 5, 3, 1, 7}, SoundEvents.ARMOR_EQUIP_IRON, 2, 1.0F, 2.5F,
             () -> getIngotFromMetal(LEAD_METAL));
     /** Tool tier for steel. TODO: Add appropriate tag */
@@ -281,7 +311,8 @@ public class Registrar
             650, 6.2F, 4.5F, 4,
             () -> Ingredient.of(getIngotFromMetal(STEEL_METAL)));
     /** Armor Material for steel. */
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_STEEL = CustomArmorMaterial.register("steel", // TODO: Refactor with MOID
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_STEEL =
+            CustomArmorMaterial.register(getMOID(MOID.STEEL),
             new int[]{3, 5, 3, 2, 7}, SoundEvents.ARMOR_EQUIP_IRON, 4, 2.0F, 1.5F,
             () -> getIngotFromMetal(STEEL_METAL));
 
@@ -382,12 +413,10 @@ public class Registrar
 
     public static final DeferredItem<Item> PHANTOM_BERRIES = ITEMS.registerSimpleItem(getMOID(MOID.PHANTOM_BERRIES),
             new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.15f).build())
-            .component(DataComponents.LORE, new ItemLore(List.of(
-                    TooltipUtils.lore(getMOID(MOID.PHANTOM_BERRIES), 0, LoreCategory.FLAVOR_TEXT)
-                                .withStyle(ChatFormatting.ITALIC, ChatFormatting.AQUA),
-                    TooltipUtils.lore(getMOID(MOID.PHANTOM_BERRIES), 1, LoreCategory.FLAVOR_TEXT)
-                                .withStyle(ChatFormatting.ITALIC, ChatFormatting.AQUA)))));
-    public static final DeferredBlock<Block> PHANTOM_BERRY_BUSH = BLOCKS.register("phantom_berry_bush", // TODO: Provide MOID
+            .component(DataComponents.LORE, new ItemLore(
+                    TooltipUtils.autoLore(getMOID(MOID.PHANTOM_BERRIES),
+                            Map.of(LoreCategory.FLAVOR_TEXT, 2), ChatFormatting.AQUA))));
+    public static final DeferredBlock<Block> PHANTOM_BERRY_BUSH = BLOCKS.register(getMOID(MOID.PHANTOM_BUSH),
             () -> new ExtensibleBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)
                     .lightLevel(s -> {
                         if (s.getValue(BlockStateProperties.AGE_3) < 2) return 6;
@@ -397,57 +426,51 @@ public class Registrar
                     true));
 
     public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> PHANTOM_VINES_PLANT =
-            BLOCKS.register("phantom_cave_vines_plant", // TODO: Provide MOID
+            BLOCKS.register(getMOIDwithAlias(MOID.PHANTOM_VINE, 0),
             () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
                     .lightLevel(ExtensibleCaveVines.emission(14, 6)),
                     PHANTOM_BERRIES, ExtensibleCaveVinesType.PHANTOM, true));
     public static final DeferredBlock<Block> PHANTOM_VINES =
-            BLOCKS.register("phantom_cave_vines", // TODO: Provide MOID
+            BLOCKS.register(getMOID(MOID.PHANTOM_VINE),
                     () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(PHANTOM_VINES_PLANT.get()),
                             PHANTOM_BERRIES, PHANTOM_VINES_PLANT, true));
 
     public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> RUBY_VINES_PLANT =
-            BLOCKS.register("ruby_cave_vines_plant", // TODO: Provide MOID
+            BLOCKS.register(getMOIDwithAlias(MOID.RUBY_VINE, 0),
             () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
                     .lightLevel(ExtensibleCaveVines.emission(6, 6)),
                     Items.SWEET_BERRIES, ExtensibleCaveVinesType.RUBY, false));
     public static final DeferredBlock<Block> RUBY_VINES =
-            BLOCKS.register("ruby_cave_vines", // TODO: Provide MOID
+            BLOCKS.register(getMOID(MOID.RUBY_VINE),
                     () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(RUBY_VINES_PLANT.get()),
                             Items.SWEET_BERRIES, RUBY_VINES_PLANT, false));
 
     public static final DeferredItem<Item> BLOODTHORN =
             ITEMS.registerSimpleItem(getMOID(MOID.BLOODTHORN),
                     new Item.Properties().component(DataComponents.LORE,
-                            new ItemLore(List.of(
-                                    TooltipUtils.lore(getMOID(MOID.BLOODTHORN), 0, LoreCategory.FLAVOR_TEXT)
-                                                .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
-                                    TooltipUtils.lore(getMOID(MOID.BLOODTHORN), 1, LoreCategory.FLAVOR_TEXT)
-                                                .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
-                                    TooltipUtils.lore(getMOID(MOID.BLOODTHORN), 0, LoreCategory.GAMEPLAY_HINTS)
-                                                .withStyle(ChatFormatting.RESET, ChatFormatting.DARK_GRAY)))));
+                            new ItemLore(
+                                    TooltipUtils.autoLore(getMOID(MOID.BLOODTHORN),
+                                            Map.of(LoreCategory.FLAVOR_TEXT, 2,
+                                                    LoreCategory.GAMEPLAY_HINTS, 1), ChatFormatting.DARK_RED))));
 
     public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> EVISCERA_PLANT =
-            BLOCKS.register("eviscera_plant", // TODO: Provide MOID
+            BLOCKS.register(getMOIDwithAlias(MOID.EVISCERA, 0),
             () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
                     .lightLevel(ExtensibleCaveVines.emission(0, 0)).randomTicks(),
                     BLOODTHORN, ExtensibleCaveVinesType.VISCERAL, false, true));
     public static final DeferredBlock<Block> EVISCERA =
-            BLOCKS.register("eviscera", // TODO: Provide MOID
+            BLOCKS.register(getMOID(MOID.EVISCERA),
                     () -> new ExtensibleCaveVinesBlock(
                             BlockBehaviour.Properties.ofFullCopy(EVISCERA_PLANT.get()).randomTicks(),
                             BLOODTHORN, EVISCERA_PLANT, false, true));
 
     public static final DeferredItem<Item> EYEFRUIT = ITEMS.registerSimpleItem(getMOID(MOID.EYEFRUIT),
             new Item.Properties().component(DataComponents.LORE,
-                    new ItemLore(List.of(
-                            TooltipUtils.lore(getMOID(MOID.EYEFRUIT), 0, LoreCategory.FLAVOR_TEXT)
-                                        .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
-                            TooltipUtils.lore(getMOID(MOID.EYEFRUIT), 1, LoreCategory.FLAVOR_TEXT)
-                                        .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
-                            TooltipUtils.lore(getMOID(MOID.EYEFRUIT), 0, LoreCategory.GAMEPLAY_HINTS)
-                                        .withStyle(ChatFormatting.RESET, ChatFormatting.DARK_GRAY)))));
-    public static final DeferredBlock<Block> EYEFRUIT_THISTLE = BLOCKS.register("eyefruit_thistle", // TODO: Provide MOID
+                    new ItemLore(
+                            TooltipUtils.autoLore(getMOID(MOID.EYEFRUIT),
+                                    Map.of(LoreCategory.FLAVOR_TEXT, 2,
+                                           LoreCategory.GAMEPLAY_HINTS, 1), ChatFormatting.DARK_RED))));
+    public static final DeferredBlock<Block> EYEFRUIT_THISTLE = BLOCKS.register(getMOID(MOID.EYEFRUIT_BUSH),
             () -> new ExtensibleBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)
                     .lightLevel(s -> {
                         if (s.getValue(BlockStateProperties.AGE_3) < 2) return 3;
@@ -460,15 +483,10 @@ public class Registrar
                 200, // Duration in ticks (10 seconds, 20 ticks/second)
                 0    // Amplifier (0 = Nausea I)
             ), 0.75f).build()) // 75% chance to give nausea
-                 .component(DataComponents.LORE, new ItemLore(List.of(
-                         TooltipUtils.lore(getMOID(MOID.COOKED_EYEFRUIT), 0, LoreCategory.FLAVOR_TEXT)
-                                     .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
-                         TooltipUtils.lore(getMOID(MOID.COOKED_EYEFRUIT), 1, LoreCategory.FLAVOR_TEXT)
-                                     .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
-                         TooltipUtils.lore(getMOID(MOID.COOKED_EYEFRUIT), 2, LoreCategory.FLAVOR_TEXT)
-                                     .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
-                         TooltipUtils.lore(getMOID(MOID.COOKED_EYEFRUIT), 0, LoreCategory.GAMEPLAY_HINTS)
-                                     .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_GRAY)))));
+                 .component(DataComponents.LORE, new ItemLore(
+                         TooltipUtils.autoLore(getMOID(MOID.COOKED_EYEFRUIT),
+                                 Map.of(LoreCategory.FLAVOR_TEXT, 3,
+                                         LoreCategory.GAMEPLAY_HINTS, 1), ChatFormatting.DARK_RED))));
 
     // Going to try setting the order of features lower, maybe this will fix weird bugs I'm having
     public static final DeferredHolder<Feature<?>, GroundStoneFeature> GROUND_STONE_FEATURE =

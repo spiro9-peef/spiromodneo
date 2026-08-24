@@ -14,6 +14,8 @@ import java.util.function.Supplier;
 
 public interface MetalUtilities
 {
+    /// TODO: Implement flavor text for every non-vanilla item
+    ///       (vanilla items need to be handled through TooltipHandler.java)
     static IngotCoupling getIngotData(MetalMaterial material, int li)
     {
         Map<MetalMaterial, IngotCoupling> presets = new HashMap<>();

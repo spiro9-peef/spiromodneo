@@ -17,6 +17,8 @@ import java.util.function.Supplier;
 
 public interface StoneUtilities
 {
+    /// TODO: Implement flavor text for every non-vanilla item
+    ///       (vanilla items need to be handled through TooltipHandler.java)
     static StoneData populate(StoneMaterial mat)
     {
         Map<StoneBlockType, Map<StoneVariantType, Map<StoneSubBlockType, GenericBlockItemCoupling>>> mappings =

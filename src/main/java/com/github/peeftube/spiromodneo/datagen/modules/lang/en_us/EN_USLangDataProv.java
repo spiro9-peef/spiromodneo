@@ -1,12 +1,12 @@
-package com.github.peeftube.spiromodneo.datagen.modules.lang;
+package com.github.peeftube.spiromodneo.datagen.modules.lang.en_us;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
 import com.github.peeftube.spiromodneo.core.MOID;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.ExtensibleBerryBushBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
-import com.github.peeftube.spiromodneo.datagen.modules.lang.util.helpers.TooltipUtils;
-import com.github.peeftube.spiromodneo.datagen.modules.lang.util.helpers.tooltips.LoreCategory;
+import com.github.peeftube.spiromodneo.datagen.modules.lang.util.TooltipUtils;
+import com.github.peeftube.spiromodneo.datagen.modules.lang.util.tooltips.LoreCategory;
 import com.github.peeftube.spiromodneo.util.moss.MossType;
 import com.github.peeftube.spiromodneo.util.ore.BaseStone;
 import com.github.peeftube.spiromodneo.util.ore.OreCoupling;
@@ -24,7 +24,6 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
 import static com.github.peeftube.spiromodneo.util.stone.StoneSetPresets.getPresets;
@@ -113,6 +112,55 @@ public class EN_USLangDataProv extends LanguageProvider
     // Up here for ease of access
     private void doLorePass()
     {
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.STICK), 0, LoreCategory.GAMEPLAY_HINTS),
+                "Could be pointier.");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.FLINT), 0, LoreCategory.FLAVOR_TEXT),
+                "The name's Flint Eastwood.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.FLINT), 0, LoreCategory.GAMEPLAY_HINTS),
+                "Sharp enough to chip at STONE.");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SMALL_STONE), 0, LoreCategory.FLAVOR_TEXT),
+                "Not to be thrown in a glass house.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SMALL_STONE), 1, LoreCategory.FLAVOR_TEXT),
+                "Also apparently floats in water.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SMALL_STONE), 0, LoreCategory.GAMEPLAY_HINTS),
+                "Might be able to knap with this.");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SHARPENED_STICK), 0, LoreCategory.FLAVOR_TEXT),
+                "You call that a stick? THIS is a stick.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SHARPENED_STICK), 0, LoreCategory.GAMEPLAY_HINTS),
+                "Might be able to catch loose materials better.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SHARPENED_STICK), 1, LoreCategory.GAMEPLAY_HINTS),
+                "Maybe you can put some on your wooden tools?");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.BUNDLE_SHARP_STICKS), 0, LoreCategory.FLAVOR_TEXT),
+                "It's a miniature palisade kit.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.BUNDLE_SHARP_STICKS), 0, LoreCategory.GAMEPLAY_HINTS),
+                "Maybe you can put this on your wooden tools?");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SHARP_GRAFTING_KIT), 0, LoreCategory.FLAVOR_TEXT),
+                "Everything you need to upgrade a wooden tool.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SHARP_GRAFTING_KIT), 0, LoreCategory.GAMEPLAY_HINTS),
+                "Sharp wooden tools can mine GRAVEL for FLINT.");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.STRING), 0, LoreCategory.FLAVOR_TEXT),
+                "Not to be confused with yarn.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.STRING), 0, LoreCategory.GAMEPLAY_HINTS),
+                "Could be used to bind things together.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.STRING), 1, LoreCategory.GAMEPLAY_HINTS),
+                "Could be woven into something, maybe?");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SINEW), 0, LoreCategory.FLAVOR_TEXT),
+                "It's all tough and stringy.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.SINEW), 0, LoreCategory.GAMEPLAY_HINTS),
+                "This could be used like string.");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.PLANT_FIBRE), 0, LoreCategory.FLAVOR_TEXT),
+                "It's green.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.PLANT_FIBRE), 0, LoreCategory.GAMEPLAY_HINTS),
+                "This could be used like string.");
+
         add(TooltipUtils.translateLoreKey(getMOID(MOID.PHANTOM_BERRIES), 0, LoreCategory.FLAVOR_TEXT),
                 "They glow brightly,");
         add(TooltipUtils.translateLoreKey(getMOID(MOID.PHANTOM_BERRIES), 1, LoreCategory.FLAVOR_TEXT),
@@ -123,7 +171,7 @@ public class EN_USLangDataProv extends LanguageProvider
         add(TooltipUtils.translateLoreKey(getMOID(MOID.BLOODTHORN), 1, LoreCategory.FLAVOR_TEXT),
                 "You feel unsafe holding it.");
         add(TooltipUtils.translateLoreKey(getMOID(MOID.BLOODTHORN), 0, LoreCategory.GAMEPLAY_HINTS),
-                "This may have a crafting use...");
+                "This may have a crafting use.");
 
         add(TooltipUtils.translateLoreKey(getMOID(MOID.EYEFRUIT), 0, LoreCategory.FLAVOR_TEXT),
                 "It's slimy.");

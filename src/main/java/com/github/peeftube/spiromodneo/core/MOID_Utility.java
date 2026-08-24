@@ -8,6 +8,10 @@ public final class MOID_Utility
     public static String getMOID(MOID moid)
     { return moid.getKey().toLowerCase(); }
 
+    /** Use whenever you need this MOID prefixed to something specific */
+    public static String getMOIDSuffixed(MOID moid, String suffix)
+    { return moid.getKey().toLowerCase() + "_" + suffix.toLowerCase(); }
+
     /** Use whenever you need this MOID as a prefix */
     public static String prefixMOID(MOID moid)
     { return moid.getKey().toLowerCase() + "_"; }
