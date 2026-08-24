@@ -141,6 +141,8 @@ public class PlacedFeaturesData
     public static final ResourceKey<PlacedFeature> UNHOLY_FANGS_FLOOR = registerKey("unholy_fangs_floor");
     public static final ResourceKey<PlacedFeature> UNHOLY_FANGS_CEIL = registerKey("unholy_fangs_ceiling");
 
+    public static final ResourceKey<PlacedFeature> CARNATURE_GROWTHS = registerKey("meat_vegetation");
+
     public static void bootstrap(BootstrapContext<PlacedFeature> context)
     {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -700,6 +702,15 @@ public class PlacedFeaturesData
                 CountPlacement.of(192), InSquarePlacement.spread(),
                 PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
                 EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.hasSturdyFace(Direction.UP),
+                        BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+                RandomOffsetPlacement.vertical(ConstantInt.of(1)),
+                BiomeFilter.biome());
+
+        register(context, CARNATURE_GROWTHS,
+                configuredFeatures.getOrThrow(ConfigFeaturesData.CARNATURE_GROWTHS),
+                CountPlacement.of(25), InSquarePlacement.spread(), // We don't want this to grow as much just yet
+                PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT,
+                EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.solid(),
                         BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
                 RandomOffsetPlacement.vertical(ConstantInt.of(1)),
                 BiomeFilter.biome());

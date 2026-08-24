@@ -1,6 +1,7 @@
 package com.github.peeftube.spiromodneo.core.init;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
+import com.github.peeftube.spiromodneo.core.MOID;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.*;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.entity.ExtensibleChestBlockEntity;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.entity.ExtensibleTrappedChestBlockEntity;
@@ -9,6 +10,8 @@ import com.github.peeftube.spiromodneo.core.init.content.recipe.ManualCrusherRec
 import com.github.peeftube.spiromodneo.core.init.creative.CTProcessor;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
 import com.github.peeftube.spiromodneo.core.screens.ManualCrusherMenu;
+import com.github.peeftube.spiromodneo.datagen.modules.lang.util.helpers.TooltipUtils;
+import com.github.peeftube.spiromodneo.datagen.modules.lang.util.helpers.tooltips.LoreCategory;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.GroundStoneFeature;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.PulledSpikesFeature;
 import com.github.peeftube.spiromodneo.datagen.modules.world.util.helpers.customfeature.config.PulledSpikesFeatureConfiguration;
@@ -18,15 +21,20 @@ import com.github.peeftube.spiromodneo.util.equipment.CustomArmorMaterial;
 import com.github.peeftube.spiromodneo.util.loot.SwapLootStackModifier;
 import com.github.peeftube.spiromodneo.util.wood.LivingWoodBlockType;
 import com.mojang.serialization.MapCodec;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.datafix.fixes.References;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -49,8 +57,11 @@ import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.*;
 
+import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
+
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
 
 public class Registrar
 {
@@ -369,8 +380,13 @@ public class Registrar
     public static final MossCollection AMETHYST_GLOWMOSS =
             MossCollection.registerCollection(MossMaterial.AMETHYST_GLOWMOSS, 6);
 
-    public static final DeferredItem<Item> PHANTOM_BERRIES = ITEMS.registerSimpleItem("phantom_berries",
-            new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.15f).build()));
+    public static final DeferredItem<Item> PHANTOM_BERRIES = ITEMS.registerSimpleItem(getMOID(MOID.PHANTOM_BERRIES),
+            new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.15f).build())
+            .component(DataComponents.LORE, new ItemLore(List.of(
+                    TooltipUtils.lore(getMOID(MOID.PHANTOM_BERRIES), 0, LoreCategory.FLAVOR_TEXT)
+                                .withStyle(ChatFormatting.ITALIC, ChatFormatting.AQUA),
+                    TooltipUtils.lore(getMOID(MOID.PHANTOM_BERRIES), 1, LoreCategory.FLAVOR_TEXT)
+                                .withStyle(ChatFormatting.ITALIC, ChatFormatting.AQUA)))));
     public static final DeferredBlock<Block> PHANTOM_BERRY_BUSH = BLOCKS.register("phantom_berry_bush",
             () -> new ExtensibleBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)
                     .lightLevel(s -> {
@@ -400,17 +416,59 @@ public class Registrar
                     () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(RUBY_VINES_PLANT.get()),
                             Items.SWEET_BERRIES, RUBY_VINES_PLANT, false));
 
-    public static final DeferredItem<Item> BLOODTHORN = ITEMS.registerSimpleItem("bloodthorn");
+    public static final DeferredItem<Item> BLOODTHORN =
+            ITEMS.registerSimpleItem(getMOID(MOID.BLOODTHORN),
+                    new Item.Properties().component(DataComponents.LORE,
+                            new ItemLore(List.of(
+                                    TooltipUtils.lore(getMOID(MOID.BLOODTHORN), 0, LoreCategory.FLAVOR_TEXT)
+                                                .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
+                                    TooltipUtils.lore(getMOID(MOID.BLOODTHORN), 1, LoreCategory.FLAVOR_TEXT)
+                                                .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
+                                    TooltipUtils.lore(getMOID(MOID.BLOODTHORN), 0, LoreCategory.GAMEPLAY_HINTS)
+                                                .withStyle(ChatFormatting.RESET, ChatFormatting.DARK_GRAY)))));
 
     public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> EVISCERA_PLANT =
             BLOCKS.register("eviscera_plant",
             () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
-                    .lightLevel(ExtensibleCaveVines.emission(0, 0)),
-                    BLOODTHORN, ExtensibleCaveVinesType.VISCERAL, false));
+                    .lightLevel(ExtensibleCaveVines.emission(0, 0)).randomTicks(),
+                    BLOODTHORN, ExtensibleCaveVinesType.VISCERAL, false, true));
     public static final DeferredBlock<Block> EVISCERA =
             BLOCKS.register("eviscera",
-                    () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(EVISCERA_PLANT.get()),
-                            BLOODTHORN, EVISCERA_PLANT, false));
+                    () -> new ExtensibleCaveVinesBlock(
+                            BlockBehaviour.Properties.ofFullCopy(EVISCERA_PLANT.get()).randomTicks(),
+                            BLOODTHORN, EVISCERA_PLANT, false, true));
+
+    public static final DeferredItem<Item> EYEFRUIT = ITEMS.registerSimpleItem(getMOID(MOID.EYEFRUIT),
+            new Item.Properties().component(DataComponents.LORE,
+                    new ItemLore(List.of(
+                            TooltipUtils.lore(getMOID(MOID.EYEFRUIT), 0, LoreCategory.FLAVOR_TEXT)
+                                        .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
+                            TooltipUtils.lore(getMOID(MOID.EYEFRUIT), 1, LoreCategory.FLAVOR_TEXT)
+                                        .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
+                            TooltipUtils.lore(getMOID(MOID.EYEFRUIT), 0, LoreCategory.GAMEPLAY_HINTS)
+                                        .withStyle(ChatFormatting.RESET, ChatFormatting.DARK_GRAY)))));
+    public static final DeferredBlock<Block> EYEFRUIT_THISTLE = BLOCKS.register("eyefruit_thistle",
+            () -> new ExtensibleBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)
+                    .lightLevel(s -> {
+                        if (s.getValue(BlockStateProperties.AGE_3) < 2) return 3;
+                        else if (s.getValue(BlockStateProperties.AGE_3) == 2) return 4;
+                        else return 7;
+                    }), EYEFRUIT, false));
+    public static final DeferredItem<Item> COOKED_EYEFRUIT = ITEMS.registerSimpleItem(getMOID(MOID.COOKED_EYEFRUIT),
+            new Item.Properties().food(new FoodProperties.Builder().nutrition(5).saturationModifier(0.5f)
+               .effect(new MobEffectInstance(MobEffects.CONFUSION, // "Confusion" is the internal name for the Nausea effect
+                200, // Duration in ticks (10 seconds, 20 ticks/second)
+                0    // Amplifier (0 = Nausea I)
+            ), 0.75f).build()) // 75% chance to give nausea
+                 .component(DataComponents.LORE, new ItemLore(List.of(
+                         TooltipUtils.lore(getMOID(MOID.COOKED_EYEFRUIT), 0, LoreCategory.FLAVOR_TEXT)
+                                     .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
+                         TooltipUtils.lore(getMOID(MOID.COOKED_EYEFRUIT), 1, LoreCategory.FLAVOR_TEXT)
+                                     .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
+                         TooltipUtils.lore(getMOID(MOID.COOKED_EYEFRUIT), 2, LoreCategory.FLAVOR_TEXT)
+                                     .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
+                         TooltipUtils.lore(getMOID(MOID.COOKED_EYEFRUIT), 0, LoreCategory.GAMEPLAY_HINTS)
+                                     .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_GRAY)))));
 
     // Going to try setting the order of features lower, maybe this will fix weird bugs I'm having
     public static final DeferredHolder<Feature<?>, GroundStoneFeature> GROUND_STONE_FEATURE =

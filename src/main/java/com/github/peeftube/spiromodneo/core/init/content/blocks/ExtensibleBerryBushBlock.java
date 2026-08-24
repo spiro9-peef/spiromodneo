@@ -1,6 +1,7 @@
 package com.github.peeftube.spiromodneo.core.init.content.blocks;
 
 import com.github.peeftube.spiromodneo.core.init.Registrar;
+import com.github.peeftube.spiromodneo.util.SpiroTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
@@ -37,6 +39,19 @@ public class ExtensibleBerryBushBlock extends SweetBerryBushBlock
 
     public DeferredItem<Item> getBerry()
     { return this.berry; }
+
+    @Override
+    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos)
+    {
+        boolean defaultBehavior = super.mayPlaceOn(state, level, pos);
+
+        boolean isThisAVisceraPlant = this.defaultBlockState().is(SpiroTags.Blocks.VISCERA_PLANT);
+        boolean areWePlacingOnViscera = state.is(SpiroTags.Blocks.VISCERA_SOLID);
+
+        // ^ = XOR; if we're not dealing with a viscera plant, we can use vanilla behavior, otherwise,
+        //          we MUST rely on viscera rules. No exceptions.
+        return (isThisAVisceraPlant && areWePlacingOnViscera) || (isThisAVisceraPlant ^ defaultBehavior);
+    }
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state)

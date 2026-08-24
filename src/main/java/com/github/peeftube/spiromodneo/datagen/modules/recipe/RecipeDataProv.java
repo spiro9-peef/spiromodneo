@@ -64,6 +64,11 @@ public class RecipeDataProv extends RecipeProvider implements IConditionBuilder
         for (OreCollection ore : OreCollection.ORE_COLLECTIONS) { oreSmeltingHandler(ore, output); }
 
         // Additional / Other / Loose
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(Registrar.EYEFRUIT),
+                RecipeCategory.FOOD, Registrar.COOKED_EYEFRUIT, 0.5f, 200)
+                                  .unlockedBy("has_eyefruit", has(Registrar.NETHER_CLAY))
+                .save(output, RLUtility.makeRL("cooking_eyefruit"));
+
         stringLikeHandler(output);
         manualCrusherCraftingHandler(output);
         tapperRecipe(output);

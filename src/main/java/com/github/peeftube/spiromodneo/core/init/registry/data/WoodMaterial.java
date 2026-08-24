@@ -1,30 +1,33 @@
 package com.github.peeftube.spiromodneo.core.init.registry.data;
 
+import com.github.peeftube.spiromodneo.core.MOID;
 import com.github.peeftube.spiromodneo.util.wood.growers.CustomTreeGrowers;
 import net.minecraft.world.level.block.grower.TreeGrower;
 
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
+
 public enum WoodMaterial
 {
-    OAK("oak", TreeGrower.OAK),
-    BIRCH("birch", TreeGrower.BIRCH),
-    SPRUCE("spruce", TreeGrower.SPRUCE),
-    JUNGLE("jungle", TreeGrower.JUNGLE),
-    ACACIA("acacia", TreeGrower.ACACIA),
-    DARK_OAK("dark_oak", TreeGrower.DARK_OAK),
-    CHERRY("cherry", TreeGrower.CHERRY),
-    CRIMSON_FUNGUS("crimson_fungus", null, true),
-    WARPED_FUNGUS("warped_fungus", null, true),
-    MANGROVE("mangrove", TreeGrower.MANGROVE, false, true),
+    OAK(getMOID(MOID.OAK), TreeGrower.OAK),
+    BIRCH(getMOID(MOID.BIRCH), TreeGrower.BIRCH),
+    SPRUCE(getMOID(MOID.SPRUCE), TreeGrower.SPRUCE),
+    JUNGLE(getMOID(MOID.JUNGLE), TreeGrower.JUNGLE),
+    ACACIA(getMOID(MOID.ACACIA), TreeGrower.ACACIA),
+    DARK_OAK(getMOID(MOID.DARK_OAK), TreeGrower.DARK_OAK),
+    CHERRY(getMOID(MOID.CHERRY), TreeGrower.CHERRY),
+    CRIMSON_FUNGUS(getMOID(MOID.CRIMSON_FUNGUS), null, true),
+    WARPED_FUNGUS(getMOID(MOID.WARPED_FUNGUS), null, true),
+    MANGROVE(getMOID(MOID.MANGROVE), TreeGrower.MANGROVE, false, true),
 
     // Modded types
-    ASHEN_OAK("ashen_oak", CustomTreeGrowers.ASHEN_OAK),
-    ASHEN_BIRCH("ashen_birch", CustomTreeGrowers.ASHEN_BIRCH),
-    STONEWOOD("stonewood", CustomTreeGrowers.STONEWOOD,
+    ASHEN_OAK(getMOID(MOID.ASHEN_OAK), CustomTreeGrowers.ASHEN_OAK),
+    ASHEN_BIRCH(getMOID(MOID.ASHEN_BIRCH), CustomTreeGrowers.ASHEN_BIRCH),
+    STONEWOOD(getMOID(MOID.STONEWOOD), CustomTreeGrowers.STONEWOOD,
             false, false, true),
 
     // Modded tappables
-    RUBBERWOOD("rubberwood", CustomTreeGrowers.RUBBERWOOD),
-    MAPLE("maple", CustomTreeGrowers.MAPLE);
+    RUBBERWOOD(getMOID(MOID.RUBBERWOOD), CustomTreeGrowers.RUBBERWOOD),
+    MAPLE(getMOID(MOID.MAPLE), CustomTreeGrowers.MAPLE);
 
     private final String name;
     private final boolean netherFungusLike;

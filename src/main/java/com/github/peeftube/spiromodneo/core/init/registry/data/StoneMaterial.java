@@ -1,30 +1,33 @@
 package com.github.peeftube.spiromodneo.core.init.registry.data;
 
+import com.github.peeftube.spiromodneo.core.MOID;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import com.github.peeftube.spiromodneo.util.ore.BaseStone;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
+
 public enum StoneMaterial
 {
-    STONE("stone", BaseStone.STONE),
-    DEEPSLATE("deepslate", BaseStone.DEEPSLATE),
-    ANDESITE("andesite", BaseStone.ANDESITE),
-    GRANITE("granite", BaseStone.GRANITE),
-    DIORITE("diorite", BaseStone.DIORITE),
-    CALCITE("calcite", BaseStone.CALCITE),
-    SANDSTONE("sandstone", BaseStone.SMS),
-    RED_SANDSTONE("red_sandstone", BaseStone.SMRS),
-    TUFF("tuff", BaseStone.TUFF),
-    DRIPSTONE("dripstone", BaseStone.DRIPSTONE),
-    NETHERRACK("netherrack", BaseStone.NETHERRACK),
-    BASALT("basalt", BaseStone.BASALT),
-    ENDSTONE("endstone", BaseStone.ENDSTONE),
+    STONE(getMOID(MOID.STONE), BaseStone.STONE),
+    DEEPSLATE(getMOID(MOID.DEEPSLATE), BaseStone.DEEPSLATE),
+    ANDESITE(getMOID(MOID.ANDESITE), BaseStone.ANDESITE),
+    GRANITE(getMOID(MOID.GRANITE), BaseStone.GRANITE),
+    DIORITE(getMOID(MOID.DIORITE), BaseStone.DIORITE),
+    CALCITE(getMOID(MOID.CALCITE), BaseStone.CALCITE),
+    SANDSTONE(getMOID(MOID.SANDSTONE), BaseStone.SMS),
+    RED_SANDSTONE(getMOID(MOID.RED_SANDSTONE), BaseStone.SMRS),
+    TUFF(getMOID(MOID.TUFF), BaseStone.TUFF),
+    DRIPSTONE(getMOID(MOID.DRIPSTONE), BaseStone.DRIPSTONE),
+    NETHERRACK(getMOID(MOID.NETHERRACK), BaseStone.NETHERRACK),
+    BASALT(getMOID(MOID.BASALT), BaseStone.BASALT),
+    ENDSTONE(getMOID(MOID.ENDSTONE), BaseStone.ENDSTONE),
 
     // Modded stone types!
-    LIMBIPETRA("limbipetra", BaseStone.LIMBIPETRA),
-    HAEMOLITE("haemolite", BaseStone.HAEMOLITE),
-    PACKED_HAEMOLITE("packed_haemolite", BaseStone.PACKED_HAEMOLITE);
+    LIMBIPETRA(getMOID(MOID.LIMBIPETRA), BaseStone.LIMBIPETRA),
+    HAEMOLITE(getMOID(MOID.HAEMOLITE), BaseStone.HAEMOLITE),
+    PACKED_HAEMOLITE(getMOID(MOID.PACKED_HAEMOLITE), BaseStone.PACKED_HAEMOLITE);
 
     private final String name;
     /** This has been coded in to force any additions to this enum to also have additions

@@ -1,9 +1,13 @@
 package com.github.peeftube.spiromodneo.core.init.registry.data;
 
+import com.github.peeftube.spiromodneo.core.MOID;
+
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
+
 public enum TappableWoodMaterial
 {
-    RUBBERWOOD("rubberwood", WoodMaterial.RUBBERWOOD, Tappable.CAOUTCHOUC),
-    MAPLE("maple", WoodMaterial.MAPLE, Tappable.MAPLE_SAP);
+    RUBBERWOOD(getMOID(MOID.RUBBERWOOD), WoodMaterial.RUBBERWOOD, Tappable.CAOUTCHOUC),
+    MAPLE(getMOID(MOID.MAPLE), WoodMaterial.MAPLE, Tappable.MAPLE_SAP);
 
     private final String name;
     private final WoodMaterial wood;

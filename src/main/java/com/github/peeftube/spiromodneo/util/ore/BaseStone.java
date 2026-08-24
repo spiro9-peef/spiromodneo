@@ -1,35 +1,38 @@
 package com.github.peeftube.spiromodneo.util.ore;
 
+import com.github.peeftube.spiromodneo.core.MOID;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Supplier;
 
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.*;
 import static com.github.peeftube.spiromodneo.core.init.Registrar.*;
 
 public enum BaseStone
 {
-    STONE("", STONE_BASED_ORE, () -> Blocks.STONE, true),
-    ANDESITE("andesite_", STONE_BASED_ORE, () -> Blocks.ANDESITE, true),
-    DIORITE("diorite_", STONE_BASED_ORE, () -> Blocks.DIORITE, true),
-    GRANITE("granite_", STONE_BASED_ORE, () -> Blocks.GRANITE, true),
-    CALCITE("calcite_", CALCITE_BASED_ORE, () -> Blocks.CALCITE, true),
-    SMS("smooth_sandstone_", STONE_BASED_ORE,
+    // Stone uses NULL here because prefixing any stone derivatives with "stone" is ridiculous
+    STONE(getMOID(MOID.NULL), STONE_BASED_ORE, () -> Blocks.STONE, true),
+    ANDESITE(prefixMOID(MOID.ANDESITE), STONE_BASED_ORE, () -> Blocks.ANDESITE, true),
+    DIORITE(prefixMOID(MOID.DIORITE), STONE_BASED_ORE, () -> Blocks.DIORITE, true),
+    GRANITE(prefixMOID(MOID.GRANITE), STONE_BASED_ORE, () -> Blocks.GRANITE, true),
+    CALCITE(prefixMOID(MOID.CALCITE), CALCITE_BASED_ORE, () -> Blocks.CALCITE, true),
+    SMS(prefixMOID(MOID.SMOOTH_SANDSTONE), STONE_BASED_ORE,
             () -> Blocks.SMOOTH_SANDSTONE, () -> Blocks.SANDSTONE, true),
-    SMRS("smooth_red_sandstone_", STONE_BASED_ORE,
+    SMRS(prefixMOID(MOID.SMOOTH_RED_SANDSTONE), STONE_BASED_ORE,
             () -> Blocks.SMOOTH_RED_SANDSTONE, () -> Blocks.RED_SANDSTONE, true),
-    DEEPSLATE("deepslate_", DEEPSLATE_BASED_ORE, () -> Blocks.DEEPSLATE, true),
-    TUFF("tuff_", TUFF_BASED_ORE, () -> Blocks.TUFF, true),
-    DRIPSTONE("dripstone_", DRIPSTONE_BASED_ORE, () -> Blocks.DRIPSTONE_BLOCK, true),
-    NETHERRACK("nether_", NETHER_BASED_ORE, () -> Blocks.NETHERRACK, true),
-    BASALT("basalt_", BASALT_BASED_ORE, () -> Blocks.SMOOTH_BASALT, () -> Blocks.BASALT, true),
-    ENDSTONE("end_", STONE_BASED_ORE, () -> Blocks.END_STONE, true),
+    DEEPSLATE(prefixMOID(MOID.DEEPSLATE), DEEPSLATE_BASED_ORE, () -> Blocks.DEEPSLATE, true),
+    TUFF(prefixMOID(MOID.TUFF), TUFF_BASED_ORE, () -> Blocks.TUFF, true),
+    DRIPSTONE(prefixMOID(MOID.DRIPSTONE), DRIPSTONE_BASED_ORE, () -> Blocks.DRIPSTONE_BLOCK, true),
+    NETHERRACK(prefixMOIDwithAlias(MOID.NETHERRACK, 0), NETHER_BASED_ORE, () -> Blocks.NETHERRACK, true),
+    BASALT(prefixMOID(MOID.BASALT), BASALT_BASED_ORE, () -> Blocks.SMOOTH_BASALT, () -> Blocks.BASALT, true),
+    ENDSTONE(prefixMOIDwithAlias(MOID.ENDSTONE, 0), STONE_BASED_ORE, () -> Blocks.END_STONE, true),
 
     // Modded stone types.
-    LIMBIPETRA("limbipetra_", TUFF_BASED_ORE, 15),
-    HAEMOLITE("haemolite_", NETHER_BASED_ORE, 0),
-    PACKED_HAEMOLITE("packed_haemolite_", DEEPSLATE_BASED_ORE, 0);
+    LIMBIPETRA(prefixMOID(MOID.LIMBIPETRA), TUFF_BASED_ORE, 15),
+    HAEMOLITE(prefixMOID(MOID.HAEMOLITE), NETHER_BASED_ORE, 0),
+    PACKED_HAEMOLITE(prefixMOID(MOID.PACKED_HAEMOLITE), DEEPSLATE_BASED_ORE, 0);
 
     private final String                    name;
     private final Supplier<BlockBehaviour.Properties> props;

@@ -1,12 +1,16 @@
 package com.github.peeftube.spiromodneo.core.init.registry.data;
 
+import com.github.peeftube.spiromodneo.core.MOID;
+
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
+
 public enum GrassLike
 {
-    GRASS("grass"),
-    MYCELIUM("mycelium"),
-    CRIMSON_NYLIUM("crimson_nylium"),
-    WARPED_NYLIUM("warped_nylium"),
-    VITALIUM("vitalium");
+    GRASS(getMOID(MOID.GRASS)),
+    MYCELIUM(getMOID(MOID.MYCELIUM)),
+    CRIMSON_NYLIUM(getMOID(MOID.CRIMSON_NYLIUM)),
+    WARPED_NYLIUM(getMOID(MOID.WARPED_NYLIUM)),
+    VITALIUM(getMOID(MOID.VITALIUM));
 
     private final String name;
 

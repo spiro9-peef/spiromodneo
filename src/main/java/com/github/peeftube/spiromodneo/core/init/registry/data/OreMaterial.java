@@ -1,5 +1,6 @@
 package com.github.peeftube.spiromodneo.core.init.registry.data;
 
+import com.github.peeftube.spiromodneo.core.MOID;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.util.SpiroTags;
 import net.minecraft.tags.BlockTags;
@@ -11,25 +12,27 @@ import net.neoforged.neoforge.common.Tags;
 
 import java.util.function.Supplier;
 
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
+
 public enum OreMaterial
 {
     // Vanilla.
-    COAL("coal", false, BlockTags.COAL_ORES, null),
-    IRON("iron", false, BlockTags.IRON_ORES, () -> Items.IRON_INGOT),
-    COPPER("copper", false, BlockTags.COPPER_ORES, () -> Items.COPPER_INGOT),
-    GOLD("gold", false, BlockTags.GOLD_ORES, () -> Items.GOLD_INGOT),
-    LAPIS("lapis", true, BlockTags.LAPIS_ORES, null),
-    REDSTONE("redstone", true, BlockTags.REDSTONE_ORES, null),
-    EMERALD("emerald", true, BlockTags.EMERALD_ORES, null),
-    DIAMOND("diamond", true, BlockTags.DIAMOND_ORES, null),
-    QUARTZ("quartz", true, null, null),
+    COAL(getMOID(MOID.COAL), false, BlockTags.COAL_ORES, null),
+    IRON(getMOID(MOID.IRON), false, BlockTags.IRON_ORES, () -> Items.IRON_INGOT),
+    COPPER(getMOID(MOID.COPPER), false, BlockTags.COPPER_ORES, () -> Items.COPPER_INGOT),
+    GOLD(getMOID(MOID.GOLD), false, BlockTags.GOLD_ORES, () -> Items.GOLD_INGOT),
+    LAPIS(getMOID(MOID.LAPIS), true, BlockTags.LAPIS_ORES, null),
+    REDSTONE(getMOID(MOID.REDSTONE), true, BlockTags.REDSTONE_ORES, null),
+    EMERALD(getMOID(MOID.EMERALD), true, BlockTags.EMERALD_ORES, null),
+    DIAMOND(getMOID(MOID.DIAMOND), true, BlockTags.DIAMOND_ORES, null),
+    QUARTZ(getMOID(MOID.QUARTZ), true, null, null),
 
     // Modded.
-    RUBY("ruby", true, null, null),
-    LEAD("lead", false, null, Registrar.LEAD_METAL.ingotData().getIngot()),
-    METHANE_ICE("methane_ice", true, null, null),
-    CRIMSONITE("crimsonite", false, null, Registrar.CRIMSONITE_METAL.ingotData().getIngot()),
-    STRAVIMITE("stravimite", false, null, Registrar.STRAVIMITE_METAL.ingotData().getIngot());
+    RUBY(getMOID(MOID.RUBY), true, null, null),
+    LEAD(getMOID(MOID.LEAD), false, null, Registrar.LEAD_METAL.ingotData().getIngot()),
+    METHANE_ICE(getMOID(MOID.METHANE_ICE), true, null, null),
+    CRIMSONITE(getMOID(MOID.CRIMSONITE), false, null, Registrar.CRIMSONITE_METAL.ingotData().getIngot()),
+    STRAVIMITE(getMOID(MOID.STRAVIMITE), false, null, Registrar.STRAVIMITE_METAL.ingotData().getIngot());
 
     private final String name;
 

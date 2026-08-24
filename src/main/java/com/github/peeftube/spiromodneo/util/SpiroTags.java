@@ -37,6 +37,7 @@ public class SpiroTags
         public static TagKey<Block> VISCERA = tag("is_gore");
         public static TagKey<Block> VISCERA_SOLID = tag("is_flesh");
         public static TagKey<Block> EVISCERA_STEM = tag("is_eviscera_stem");
+        public static TagKey<Block> VISCERA_PLANT = tag("is_viscera");
 
         public static TagKey<Block> SUPPORTS_GROUND_STONES = tag("can_support_ground_stone");
 

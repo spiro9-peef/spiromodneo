@@ -64,6 +64,7 @@ public class ItemModelDataProv extends ItemModelProvider
         itemParser(Registrar.LEAD_STICK);
         itemParser(Registrar.STEEL_ROD);
         itemParser(Registrar.BLOODTHORN);
+        itemParser(Registrar.COOKED_EYEFRUIT);
         for (EquipmentCollection equip : EquipmentCollection.EQUIP_COLLECTIONS) { equipmentSetDesign(equip); }
 
         // ============================================================================================================
@@ -72,6 +73,8 @@ public class ItemModelDataProv extends ItemModelProvider
         // Holdout from before the berry was declared separately
         ExtensibleBerryBushBlock ebPhantom = (ExtensibleBerryBushBlock) Registrar.PHANTOM_BERRY_BUSH.get();
         itemParser(ebPhantom.getBerry());
+        ExtensibleBerryBushBlock ebEyefruit = (ExtensibleBerryBushBlock) Registrar.EYEFRUIT_THISTLE.get();
+        itemParser(ebEyefruit.getBerry());
 
         // ============================================================================================================
         // Block items

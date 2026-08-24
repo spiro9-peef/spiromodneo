@@ -1,17 +1,21 @@
 package com.github.peeftube.spiromodneo.core.init.registry.data;
 
+import com.github.peeftube.spiromodneo.core.MOID;
+
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
+
 public enum MetalMaterial
 {
-    IRON("iron"),
-    COPPER("copper"),
-    GOLD("gold"),
-    NETHERITE("netherite"),
+    IRON(getMOID(MOID.IRON)),
+    COPPER(getMOID(MOID.COPPER)),
+    GOLD(getMOID(MOID.GOLD)),
+    NETHERITE(getMOID(MOID.NETHERITE)),
 
     // Modded.
-    LEAD("lead"),
-    STEEL("steel"),
-    CRIMSONITE("crimsonite"),
-    STRAVIMITE("stravimite");
+    LEAD(getMOID(MOID.LEAD)),
+    STEEL(getMOID(MOID.STEEL)),
+    CRIMSONITE(getMOID(MOID.CRIMSONITE)),
+    STRAVIMITE(getMOID(MOID.STRAVIMITE));
 
     private final String name;
 

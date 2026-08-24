@@ -40,26 +40,43 @@ public class RightClickHandler
                 event.getItemStack().is(Registrar.BLOODTHORN.get().asItem());
         boolean isSweetBerry =
                 event.getItemStack().is(Items.SWEET_BERRIES);
+        boolean isEyefruit =
+                event.getItemStack()
+                     .is(((ExtensibleBerryBushBlock) Registrar.EYEFRUIT_THISTLE.get()).getBerry().asItem());
 
         Level    level      = event.getLevel();
         BlockPos clickedPos = event.getPos();
         Direction face       = event.getFace();
 
-        if (isPhantomBerry || isSweetBerry || isBloodthorn)
+        if (isPhantomBerry || isSweetBerry || isBloodthorn || isEyefruit)
         {
             if (face == Direction.UP && !isSweetBerry && !isBloodthorn)
             {
                 BlockPos targetPos = clickedPos.above();
 
-                if (level.isEmptyBlock(targetPos) &&
-                        level.getBlockState(clickedPos).is(SpiroTags.Blocks.SUPPORTS_STONE_PLANTABLE_SAPLINGS))
+                if (level.isEmptyBlock(targetPos))
                 {
                     if (!level.isClientSide() && event.getPlayer() != null)
                     {
-                        // Replace with ternary later
-                        if (isPhantomBerry)
+                        if (isPhantomBerry && level.getBlockState(clickedPos)
+                                                   .is(SpiroTags.Blocks.SUPPORTS_STONE_PLANTABLE_SAPLINGS))
                         {
                             Block toPlace = Registrar.PHANTOM_BERRY_BUSH.get();
+                            level.setBlock(targetPos, toPlace.defaultBlockState(), 3);
+
+                            // Consume the berry from hand if not in creative
+                            if (!event.getPlayer().getAbilities().instabuild)
+                            { event.getItemStack().shrink(1); }
+
+                            // Play placement sound
+                            level.playSound(null, targetPos, SoundType.SWEET_BERRY_BUSH.getPlaceSound(),
+                                    SoundSource.BLOCKS, 1.0F, 1.0F);
+                        }
+
+                        if (isEyefruit && level.getBlockState(clickedPos)
+                                               .is(SpiroTags.Blocks.VISCERA_SOLID))
+                        {
+                            Block toPlace = Registrar.EYEFRUIT_THISTLE.get();
                             level.setBlock(targetPos, toPlace.defaultBlockState(), 3);
 
                             // Consume the berry from hand if not in creative
@@ -76,7 +93,7 @@ public class RightClickHandler
                 }
             }
 
-            if (face == Direction.DOWN)
+            if (face == Direction.DOWN && !isEyefruit)
             {
                 BlockPos targetPos = clickedPos.below();
 
@@ -102,7 +119,8 @@ public class RightClickHandler
                 }
             }
 
-            if ((level.getBlockState(clickedPos).is(SpiroTags.Blocks.PHANTOM_VINES) && isPhantomBerry) ||
+            if (!isEyefruit &&
+                    (level.getBlockState(clickedPos).is(SpiroTags.Blocks.PHANTOM_VINES) && isPhantomBerry) ||
                     (level.getBlockState(clickedPos).is(SpiroTags.Blocks.RUBY_VINES) && isSweetBerry) ||
                     (level.getBlockState(clickedPos).is(SpiroTags.Blocks.EVISCERA_STEM) && isBloodthorn))
             {

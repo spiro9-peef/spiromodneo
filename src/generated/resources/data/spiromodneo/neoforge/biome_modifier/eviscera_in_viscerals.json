@@ -1,6 +1,9 @@
 {
   "type": "neoforge:add_features",
   "biomes": "#spiromodneo:is_visceral_biome",
-  "features": "spiromodneo:eviscera_stems",
+  "features": [
+    "spiromodneo:eviscera_stems",
+    "spiromodneo:meat_vegetation"
+  ],
   "step": "vegetal_decoration"
 }

@@ -106,6 +106,32 @@ public class BlockLootTables extends BlockLootSubProvider
                         )
                 )
         );
+
+        // Eyefruit (copied from the phantom berry bush code)
+        ExtensibleBerryBushBlock ebEyefruit = (ExtensibleBerryBushBlock) Registrar.EYEFRUIT_THISTLE.get();
+        this.add(Registrar.EYEFRUIT_THISTLE.get(),
+                b -> this.applyExplosionDecay(b,
+                        LootTable.lootTable().withPool(
+                                LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition
+                                                .hasBlockStateProperties(Registrar.EYEFRUIT_THISTLE.get())
+                                                .setProperties(StatePropertiesPredicate.Builder
+                                                        .properties().hasProperty(SweetBerryBushBlock.AGE, 3)))
+                                        .add(LootItem.lootTableItem(ebEyefruit.getBerry().get()))
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                                        .apply(ApplyBonusCount.addUniformBonusCount(regLookup.getOrThrow(Enchantments.FORTUNE)))
+                        ).withPool(
+                                LootPool.lootPool().when(
+                                        LootItemBlockStatePropertyCondition
+                                                .hasBlockStateProperties(Registrar.EYEFRUIT_THISTLE.get())
+                                                .setProperties(StatePropertiesPredicate.Builder
+                                                        .properties().hasProperty(SweetBerryBushBlock.AGE, 2)))
+                                        .add(LootItem.lootTableItem(ebEyefruit.getBerry().get()))
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                        .apply(ApplyBonusCount.addUniformBonusCount(regLookup.getOrThrow(Enchantments.FORTUNE)))
+                        )
+                )
+        );
     }
 
     private void mossTables(MossCollection set)

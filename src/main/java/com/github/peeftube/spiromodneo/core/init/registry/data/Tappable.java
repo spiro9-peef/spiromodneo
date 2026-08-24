@@ -1,5 +1,6 @@
 package com.github.peeftube.spiromodneo.core.init.registry.data;
 
+import com.github.peeftube.spiromodneo.core.MOID;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
@@ -9,11 +10,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
+
 public enum Tappable implements StringRepresentable
 {
     EMPTY(), // Support tappers.
-    CAOUTCHOUC("caoutchouc", Registrar.CAOUTCHOUC),
-    MAPLE_SAP("maple_sap", Registrar.MAPLE_SAP);
+    CAOUTCHOUC(getMOID(MOID.CAOUTCHOUC), Registrar.CAOUTCHOUC),
+    MAPLE_SAP(getMOID(MOID.MAPLE_SAP), Registrar.MAPLE_SAP);
 
     private final String name;
     private final Supplier<? extends Item> item;

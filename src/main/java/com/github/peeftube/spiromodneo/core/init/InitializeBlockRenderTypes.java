@@ -34,6 +34,8 @@ public class InitializeBlockRenderTypes
         // Berry bushes?
         ItemBlockRenderTypes.setRenderLayer(Registrar.PHANTOM_BERRY_BUSH.get(),
                 ChunkRenderTypeSet.of(RenderType.CUTOUT));
+        ItemBlockRenderTypes.setRenderLayer(Registrar.EYEFRUIT_THISTLE.get(),
+                ChunkRenderTypeSet.of(RenderType.CUTOUT));
 
         // Vine sets.
         ItemBlockRenderTypes.setRenderLayer(Registrar.PHANTOM_VINES.get(),

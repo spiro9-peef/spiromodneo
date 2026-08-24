@@ -1,9 +1,12 @@
 package com.github.peeftube.spiromodneo.datagen.modules.lang;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
+import com.github.peeftube.spiromodneo.core.MOID;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.ExtensibleBerryBushBlock;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
+import com.github.peeftube.spiromodneo.datagen.modules.lang.util.helpers.TooltipUtils;
+import com.github.peeftube.spiromodneo.datagen.modules.lang.util.helpers.tooltips.LoreCategory;
 import com.github.peeftube.spiromodneo.util.moss.MossType;
 import com.github.peeftube.spiromodneo.util.ore.BaseStone;
 import com.github.peeftube.spiromodneo.util.ore.OreCoupling;
@@ -23,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
 import static com.github.peeftube.spiromodneo.util.stone.StoneSetPresets.getPresets;
 
 public class EN_USLangDataProv extends LanguageProvider
@@ -91,16 +95,55 @@ public class EN_USLangDataProv extends LanguageProvider
         add(Registrar.LEAD_STICK.get(), "Lead Rod");
         add(Registrar.STEEL_ROD.get(), "Steel Rod");
 
-        ExtensibleBerryBushBlock ebPhantom = (ExtensibleBerryBushBlock) Registrar.PHANTOM_BERRY_BUSH.get();
-        add(ebPhantom.getBerry().get(), "Phantom Berries");
+        add(getBerryFromBush((ExtensibleBerryBushBlock) Registrar.PHANTOM_BERRY_BUSH.get()), "Phantom Berries");
 
         add(Registrar.BLOODTHORN.get(), "Bloodthorn");
+        add(getBerryFromBush((ExtensibleBerryBushBlock) Registrar.EYEFRUIT_THISTLE.get()), "Eyefruit");
+        add(Registrar.COOKED_EYEFRUIT.get(), "Cooked Eyefruit");
 
         // Creative tabs
         add(Registrar.TAB_TITLE_KEY_FORMULAIC + ".minerals_tab", "Ores and Raw Minerals");
         add(Registrar.TAB_TITLE_KEY_FORMULAIC + ".woods_tab", "Wood and Carpentry");
         add(Registrar.TAB_TITLE_KEY_FORMULAIC + ".stone_tab", "Stone and Masonry");
+
+        // Do external passes
+        doLorePass();
     }
+
+    // Up here for ease of access
+    private void doLorePass()
+    {
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.PHANTOM_BERRIES), 0, LoreCategory.FLAVOR_TEXT),
+                "They glow brightly,");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.PHANTOM_BERRIES), 1, LoreCategory.FLAVOR_TEXT),
+                "but feel cool to the touch...");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.BLOODTHORN), 0, LoreCategory.FLAVOR_TEXT),
+                "It is unnaturally sharp...");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.BLOODTHORN), 1, LoreCategory.FLAVOR_TEXT),
+                "You feel unsafe holding it.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.BLOODTHORN), 0, LoreCategory.GAMEPLAY_HINTS),
+                "This may have a crafting use...");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.EYEFRUIT), 0, LoreCategory.FLAVOR_TEXT),
+                "It's slimy.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.EYEFRUIT), 1, LoreCategory.FLAVOR_TEXT),
+                "You feel sick looking at it...");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.EYEFRUIT), 0, LoreCategory.GAMEPLAY_HINTS),
+                "You refuse to even try to eat this raw.");
+
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.COOKED_EYEFRUIT), 0, LoreCategory.FLAVOR_TEXT),
+                "It's crispy, slimy, and smells horrid.");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.COOKED_EYEFRUIT), 1, LoreCategory.FLAVOR_TEXT),
+                "You feel sick just having it...");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.COOKED_EYEFRUIT), 2, LoreCategory.FLAVOR_TEXT),
+                "Are you sure you should be eating this?");
+        add(TooltipUtils.translateLoreKey(getMOID(MOID.COOKED_EYEFRUIT), 0, LoreCategory.GAMEPLAY_HINTS),
+                "This gives 10s of Nausea I if consumed.");
+    }
+
+    private Item getBerryFromBush(ExtensibleBerryBushBlock eb)
+    { return eb.getBerry().get(); }
 
     private void mossParser(MossCollection set)
     {

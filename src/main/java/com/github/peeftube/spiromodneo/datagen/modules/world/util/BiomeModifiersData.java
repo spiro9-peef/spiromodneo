@@ -236,7 +236,7 @@ public class BiomeModifiersData
         context.register(EVISCERA_STEMS_IN_VISCERALS, new BiomeModifiers.AddFeaturesBiomeModifier(
                 tag(biomes, SpiroTags.Biomes.IS_VISCERAL),
                 features(features,
-                        PlacedFeaturesData.EVISCERA_STEMS),
+                        PlacedFeaturesData.EVISCERA_STEMS, PlacedFeaturesData.CARNATURE_GROWTHS),
                 GenerationStep.Decoration.VEGETAL_DECORATION
         ));
     }

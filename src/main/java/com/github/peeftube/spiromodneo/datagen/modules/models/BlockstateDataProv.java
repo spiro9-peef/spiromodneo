@@ -95,6 +95,24 @@ public class BlockstateDataProv extends BlockStateProvider
                         new ConfiguredModel(models()
                                 .cross("phantom_berry_bush_stage3",
                                         RLUtility.makeRL("block/phantom_berry_bush_stage3"))));
+
+        getVariantBuilder(Registrar.EYEFRUIT_THISTLE.get())
+                .partialState().with(BlockStateProperties.AGE_3, 0).setModels(
+                        new ConfiguredModel(models()
+                                .cross("eyefruit_thistle_stage0",
+                                        RLUtility.makeRL("block/eyefruit_thistle_stage0"))))
+                .partialState().with(BlockStateProperties.AGE_3, 1).setModels(
+                        new ConfiguredModel(models()
+                                .cross("eyefruit_thistle_stage1",
+                                        RLUtility.makeRL("block/eyefruit_thistle_stage1"))))
+                .partialState().with(BlockStateProperties.AGE_3, 2).setModels(
+                        new ConfiguredModel(models()
+                                .cross("eyefruit_thistle_stage2",
+                                        RLUtility.makeRL("block/eyefruit_thistle_stage2"))))
+                .partialState().with(BlockStateProperties.AGE_3, 3).setModels(
+                        new ConfiguredModel(models()
+                                .cross("eyefruit_thistle_stage3",
+                                        RLUtility.makeRL("block/eyefruit_thistle_stage3"))));
     }
 
     private void tapper(Block tapper)

@@ -91,9 +91,12 @@ public class BlockTagDataProv extends BlockTagsProvider
         // Viscera
         tag(SpiroTags.Blocks.EVISCERA_STEM)
                 .add(Registrar.EVISCERA.get()).add(Registrar.EVISCERA_PLANT.get());
+        tag(SpiroTags.Blocks.VISCERA_PLANT)
+                .addTag(SpiroTags.Blocks.EVISCERA_STEM)
+                .add(Registrar.EYEFRUIT_THISTLE.get());
         tag(SpiroTags.Blocks.VISCERA)
                 .addTag(SpiroTags.Blocks.VISCERA_SOLID)
-                .addTag(SpiroTags.Blocks.EVISCERA_STEM);
+                .addTag(SpiroTags.Blocks.VISCERA_PLANT);
 
         // Tool level setup
         tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL)

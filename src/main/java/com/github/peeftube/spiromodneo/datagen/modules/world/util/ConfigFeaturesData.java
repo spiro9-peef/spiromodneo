@@ -195,6 +195,9 @@ public class ConfigFeaturesData
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> UNHOLY_FANGS = registerKey("unholy_fangs");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EYEFRUIT_THISTLE = registerKey("eyefruit_feature");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CARNATURE_GROWTHS = registerKey("meat_vegetation");
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context)
     {
         HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -811,6 +814,22 @@ public class ConfigFeaturesData
                 Blocks.BONE_BLOCK,
                 biomes.getOrThrow(SpiroTags.Biomes.IS_VISCERAL),
                 UniformInt.of(4, 24)));
+
+        register(context, EYEFRUIT_THISTLE, Feature.SIMPLE_BLOCK,
+                new SimpleBlockConfiguration(
+                        new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                                .add(Registrar.EYEFRUIT_THISTLE.get().defaultBlockState(), 5))));
+
+        register(context, CARNATURE_GROWTHS, Feature.VEGETATION_PATCH,
+                new VegetationPatchConfiguration(
+                        SpiroTags.Blocks.VISCERA_SOLID,
+                        BlockStateProvider.simple(Registrar.HAEMOLITE_SET.getBaseStone().get().defaultBlockState()),
+                        PlacementUtils.inlinePlaced(configuredFeatures.getOrThrow(EYEFRUIT_THISTLE)),
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(1),
+                        0F, 5, 0.8F,
+                        UniformInt.of(4, 7), 0.3F
+                ));
     }
 
     private static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name)
