@@ -22,7 +22,6 @@ public class TooltipHandler
     public static void onTooltip(ItemTooltipEvent event)
     {
         ItemStack stack = event.getItemStack();
-        int pI = event.getToolTip().size() - 3; // Placement Index
 
         // Stick
         if (stack.is(Items.STICK))
@@ -31,7 +30,7 @@ public class TooltipHandler
                     LoreCategory.GAMEPLAY_HINTS, 1
             );
 
-            event.getToolTip().addAll(pI, TooltipUtils.autoLore(getMOID(MOID.STICK), lore));
+            event.getToolTip().addAll(TooltipUtils.autoLore(getMOID(MOID.STICK), lore));
         }
 
         // Flint
@@ -42,7 +41,7 @@ public class TooltipHandler
                     LoreCategory.GAMEPLAY_HINTS, 1
             );
 
-            event.getToolTip().addAll(pI, TooltipUtils.autoLore(getMOID(MOID.FLINT), lore));
+            event.getToolTip().addAll(TooltipUtils.autoLore(getMOID(MOID.FLINT), lore));
         }
 
         // String
@@ -53,7 +52,7 @@ public class TooltipHandler
                     LoreCategory.GAMEPLAY_HINTS, 2
             );
 
-            event.getToolTip().addAll(pI, TooltipUtils.autoLore(getMOID(MOID.STRING), lore));
+            event.getToolTip().addAll(TooltipUtils.autoLore(getMOID(MOID.STRING), lore));
         }
     }
 }
