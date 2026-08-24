@@ -30,7 +30,7 @@ public class TooltipHandler
                     LoreCategory.GAMEPLAY_HINTS, 1
             );
 
-            event.getToolTip().addAll(TooltipUtils.autoLore(getMOID(MOID.STICK), lore));
+            event.getToolTip().addAll(0, TooltipUtils.autoLore(getMOID(MOID.STICK), lore));
         }
 
         // Flint
@@ -41,7 +41,7 @@ public class TooltipHandler
                     LoreCategory.GAMEPLAY_HINTS, 1
             );
 
-            event.getToolTip().addAll(TooltipUtils.autoLore(getMOID(MOID.FLINT), lore));
+            event.getToolTip().addAll(0, TooltipUtils.autoLore(getMOID(MOID.FLINT), lore));
         }
 
         // String
@@ -52,7 +52,7 @@ public class TooltipHandler
                     LoreCategory.GAMEPLAY_HINTS, 2
             );
 
-            event.getToolTip().addAll(TooltipUtils.autoLore(getMOID(MOID.STRING), lore));
+            event.getToolTip().addAll(0, TooltipUtils.autoLore(getMOID(MOID.STRING), lore));
         }
     }
 }
