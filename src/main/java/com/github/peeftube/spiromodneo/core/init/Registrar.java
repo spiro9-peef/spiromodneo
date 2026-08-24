@@ -163,36 +163,36 @@ public class Registrar
 
     // Consider maybe adding support for Vanilla Backported here - will require a major refactor
 
-    public static final DeferredItem<Item> SINEW = ITEMS.registerSimpleItem("sinew");
-    public static final DeferredItem<Item> PLANT_FIBRE = ITEMS.registerSimpleItem("plant_fibre");
+    public static final DeferredItem<Item> SINEW = ITEMS.registerSimpleItem("sinew"); // TODO: Provide MOID
+    public static final DeferredItem<Item> PLANT_FIBRE = ITEMS.registerSimpleItem("plant_fibre"); // TODO: Provide MOID
 
-    public static final DeferredItem<Item> SMALL_STONE = ITEMS.registerSimpleItem("small_stone");
+    public static final DeferredItem<Item> SMALL_STONE = ITEMS.registerSimpleItem("small_stone"); // TODO: Provide MOID
 
-    public static final DeferredItem<Item> SHARPENED_STICK = ITEMS.registerSimpleItem("sharpened_stick");
+    public static final DeferredItem<Item> SHARPENED_STICK = ITEMS.registerSimpleItem("sharpened_stick"); // TODO: Provide MOID
     public static final DeferredItem<Item> BUNDLE_OF_SHARP_STICKS =
-            ITEMS.registerSimpleItem("bundle_of_sharp_sticks");
+            ITEMS.registerSimpleItem("bundle_of_sharp_sticks"); // TODO: Provide MOID
     public static final DeferredItem<Item> WOODEN_TOOL_GRAFTING_KIT =
-            ITEMS.registerSimpleItem("wooden_tool_grafting_kit");
+            ITEMS.registerSimpleItem("wooden_tool_grafting_kit"); // TODO: Provide MOID
 
     // Special steel alloying items
     /** Cast iron mixture is made using one coal or charcoal item with 4 iron ingot items. It is the only form of steel
      * precursor which can be made using vanilla techniques.
      * <p> However, it can produce steel if run through an oxygenated smelting process. */
-    public static final DeferredItem<Item> CAST_IRON_MIXTURE = ITEMS.registerSimpleItem("cast_iron_mix");
+    public static final DeferredItem<Item> CAST_IRON_MIXTURE = ITEMS.registerSimpleItem("cast_iron_mix"); // TODO: Provide MOID
     /** Cast iron is added but has no particular uses, apart from smelting into steel. Iron ore blocks
      * can in theory be smelted into this but this has not been made a final decision as of writing this documentation.
      * <p> It can be converted back to regular iron once oxygenation is available to the player.
      * <p> To further compound upon the matter, cast iron cannot be made into blocks.
      * <p> TODO: Allow oxygenation. */
-    public static final DeferredItem<Item> CAST_IRON = ITEMS.registerSimpleItem("cast_iron");
+    public static final DeferredItem<Item> CAST_IRON = ITEMS.registerSimpleItem("cast_iron"); // TODO: Provide MOID
     /** Steel mixture is made using crushed carbon dust with cast iron or regular iron. The cast iron recipe
      * will require more cast iron, making it more expensive in terms of coal, but produces slightly more
      * steel mixture, offsetting this cost. Steel can be oxygenated to produce regular iron if needed.
      * <p> Steel mixture can also be run through oxygenation as a smelting process to produce extra steel. */
-    public static final DeferredItem<Item> STEEL_MIXTURE = ITEMS.registerSimpleItem("steel_mix");
+    public static final DeferredItem<Item> STEEL_MIXTURE = ITEMS.registerSimpleItem("steel_mix"); // TODO: Provide MOID
     /** To differentiate iron-based steel mix from cast iron-based steel mix, the two are separate items.
      * This allows them to have unique textures while having roughly the same properties in-game. */
-    public static final DeferredItem<Item> WEAK_STEEL_MIXTURE = ITEMS.registerSimpleItem("weak_steel_mix");
+    public static final DeferredItem<Item> WEAK_STEEL_MIXTURE = ITEMS.registerSimpleItem("weak_steel_mix"); // TODO: Provide MOID
     /** Crushed carbon is a coal or charcoal derivative. It can be made from regular coal or charcoal, but
      * when made using normal crafting is expensive to produce, requiring extra carbon sources as well as hard
      * "crusher" items, like bricks or stones, consuming those items in the process. This means steel can be
@@ -200,7 +200,7 @@ public class Registrar
      * for fuel sources, as well as the time needed to make this happen. */
     public static final DeferredItem<Item> CRUSHED_CARBON = ITEMS.registerSimpleItem("crushed_carbon");
 
-    public static final DeferredBlock<Block> MANUAL_CRUSHER = BLOCKS.register("manual_crusher",
+    public static final DeferredBlock<Block> MANUAL_CRUSHER = BLOCKS.register("manual_crusher", // TODO: Provide MOID
             () -> new ManualCrusherBlock(STONE_BASED_ORE.get().noOcclusion()));
     public static final Supplier<BlockEntityType<ManualCrusherBlockEntity>> MANUAL_CRUSHER_ENTITY =
             BLOCK_ENTITIES.register("manual_crusher_entity", () -> BlockEntityType.Builder.of(
@@ -221,21 +221,21 @@ public class Registrar
             public String toString() { return "manual_crusher"; }
         });
 
-    public static final DeferredItem<Item> NETHER_CLAY = ITEMS.registerSimpleItem("nether_clay");
+    public static final DeferredItem<Item> NETHER_CLAY = ITEMS.registerSimpleItem("nether_clay"); // TODO: Provide MOID
 
-    public static final DeferredItem<Item> CAOUTCHOUC = ITEMS.registerSimpleItem("caoutchouc");
-    public static final DeferredItem<Item> MAPLE_SAP = ITEMS.registerSimpleItem("maple_sap");
+    public static final DeferredItem<Item> CAOUTCHOUC = ITEMS.registerSimpleItem("caoutchouc"); // TODO: Provide MOID
+    public static final DeferredItem<Item> MAPLE_SAP = ITEMS.registerSimpleItem("maple_sap"); // TODO: Provide MOID
 
-    public static final DeferredItem<Item> RUBBER_PRECURSOR = ITEMS.registerSimpleItem("rubber_precursor");
-    public static final DeferredItem<Item> NATURAL_RUBBER = ITEMS.registerSimpleItem("natural_rubber");
-    public static final DeferredItem<Item> COPPER_WIRE = ITEMS.registerSimpleItem("copper_wire");
-    public static final DeferredItem<Item> SHIELDED_COPPER_WIRE = ITEMS.registerSimpleItem("shielded_copper_wire");
+    public static final DeferredItem<Item> RUBBER_PRECURSOR = ITEMS.registerSimpleItem("rubber_precursor"); // TODO: Provide MOID
+    public static final DeferredItem<Item> NATURAL_RUBBER = ITEMS.registerSimpleItem("natural_rubber"); // TODO: Provide MOID
+    public static final DeferredItem<Item> COPPER_WIRE = ITEMS.registerSimpleItem("copper_wire"); // TODO: Provide MOID
+    public static final DeferredItem<Item> SHIELDED_COPPER_WIRE = ITEMS.registerSimpleItem("shielded_copper_wire"); // TODO: Provide MOID
 
-    public static final DeferredItem<Item> IRON_STICK = ITEMS.registerSimpleItem("iron_stick");
-    public static final DeferredItem<Item> LEAD_STICK = ITEMS.registerSimpleItem("lead_stick");
-    public static final DeferredItem<Item> STEEL_ROD = ITEMS.registerSimpleItem("steel_rod");
+    public static final DeferredItem<Item> IRON_STICK = ITEMS.registerSimpleItem("iron_stick"); // TODO: Provide MOID
+    public static final DeferredItem<Item> LEAD_STICK = ITEMS.registerSimpleItem("lead_stick"); // TODO: Provide MOID
+    public static final DeferredItem<Item> STEEL_ROD = ITEMS.registerSimpleItem("steel_rod"); // TODO: Provide MOID
 
-    public static final DeferredBlock<Block> TAPPER = BLOCKS.register("tapper",
+    public static final DeferredBlock<Block> TAPPER = BLOCKS.register("tapper", // TODO: Provide MOID
             () -> new TapperBlock(RAW_ORE.get().noCollission().strength(0.5f, 0f)));
     public static final DeferredItem<Item> TAPPER_ITEM = regSimpleBlockItem(TAPPER);
 
@@ -265,7 +265,7 @@ public class Registrar
     public static final SimpleTier T_COPPER = new SimpleTier(SpiroTags.Blocks.INCORRECT_FOR_COPPER,
             240, 6.2F, 1.2F, 12, () -> Ingredient.of(Items.COPPER_INGOT));
     /** Armor Material for copper. */
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_COPPER = CustomArmorMaterial.register("copper",
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_COPPER = CustomArmorMaterial.register("copper", // TODO: Refactor with MOID
             new int[]{1, 3, 2, 1, 4}, SoundEvents.ARMOR_EQUIP_GOLD, 12, 0.0F, 0.0F,
             () -> Items.COPPER_INGOT);
     /** Tool tier for lead. TODO: Add appropriate tag */
@@ -273,7 +273,7 @@ public class Registrar
             320, 5.2F, 2.5F, 2,
             () -> Ingredient.of(getIngotFromMetal(LEAD_METAL)));
     /** Armor Material for lead. */
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_LEAD = CustomArmorMaterial.register("lead",
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_LEAD = CustomArmorMaterial.register("lead", // TODO: Refactor with MOID
             new int[]{2, 5, 3, 1, 7}, SoundEvents.ARMOR_EQUIP_IRON, 2, 1.0F, 2.5F,
             () -> getIngotFromMetal(LEAD_METAL));
     /** Tool tier for steel. TODO: Add appropriate tag */
@@ -281,7 +281,7 @@ public class Registrar
             650, 6.2F, 4.5F, 4,
             () -> Ingredient.of(getIngotFromMetal(STEEL_METAL)));
     /** Armor Material for steel. */
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_STEEL = CustomArmorMaterial.register("steel",
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> A_STEEL = CustomArmorMaterial.register("steel", // TODO: Refactor with MOID
             new int[]{3, 5, 3, 2, 7}, SoundEvents.ARMOR_EQUIP_IRON, 4, 2.0F, 1.5F,
             () -> getIngotFromMetal(STEEL_METAL));
 
@@ -387,7 +387,7 @@ public class Registrar
                                 .withStyle(ChatFormatting.ITALIC, ChatFormatting.AQUA),
                     TooltipUtils.lore(getMOID(MOID.PHANTOM_BERRIES), 1, LoreCategory.FLAVOR_TEXT)
                                 .withStyle(ChatFormatting.ITALIC, ChatFormatting.AQUA)))));
-    public static final DeferredBlock<Block> PHANTOM_BERRY_BUSH = BLOCKS.register("phantom_berry_bush",
+    public static final DeferredBlock<Block> PHANTOM_BERRY_BUSH = BLOCKS.register("phantom_berry_bush", // TODO: Provide MOID
             () -> new ExtensibleBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)
                     .lightLevel(s -> {
                         if (s.getValue(BlockStateProperties.AGE_3) < 2) return 6;
@@ -397,22 +397,22 @@ public class Registrar
                     true));
 
     public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> PHANTOM_VINES_PLANT =
-            BLOCKS.register("phantom_cave_vines_plant",
+            BLOCKS.register("phantom_cave_vines_plant", // TODO: Provide MOID
             () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
                     .lightLevel(ExtensibleCaveVines.emission(14, 6)),
                     PHANTOM_BERRIES, ExtensibleCaveVinesType.PHANTOM, true));
     public static final DeferredBlock<Block> PHANTOM_VINES =
-            BLOCKS.register("phantom_cave_vines",
+            BLOCKS.register("phantom_cave_vines", // TODO: Provide MOID
                     () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(PHANTOM_VINES_PLANT.get()),
                             PHANTOM_BERRIES, PHANTOM_VINES_PLANT, true));
 
     public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> RUBY_VINES_PLANT =
-            BLOCKS.register("ruby_cave_vines_plant",
+            BLOCKS.register("ruby_cave_vines_plant", // TODO: Provide MOID
             () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
                     .lightLevel(ExtensibleCaveVines.emission(6, 6)),
                     Items.SWEET_BERRIES, ExtensibleCaveVinesType.RUBY, false));
     public static final DeferredBlock<Block> RUBY_VINES =
-            BLOCKS.register("ruby_cave_vines",
+            BLOCKS.register("ruby_cave_vines", // TODO: Provide MOID
                     () -> new ExtensibleCaveVinesBlock(BlockBehaviour.Properties.ofFullCopy(RUBY_VINES_PLANT.get()),
                             Items.SWEET_BERRIES, RUBY_VINES_PLANT, false));
 
@@ -428,12 +428,12 @@ public class Registrar
                                                 .withStyle(ChatFormatting.RESET, ChatFormatting.DARK_GRAY)))));
 
     public static final DeferredBlock<ExtensibleCaveVinesPlantBlock> EVISCERA_PLANT =
-            BLOCKS.register("eviscera_plant",
+            BLOCKS.register("eviscera_plant", // TODO: Provide MOID
             () -> new ExtensibleCaveVinesPlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAVE_VINES_PLANT)
                     .lightLevel(ExtensibleCaveVines.emission(0, 0)).randomTicks(),
                     BLOODTHORN, ExtensibleCaveVinesType.VISCERAL, false, true));
     public static final DeferredBlock<Block> EVISCERA =
-            BLOCKS.register("eviscera",
+            BLOCKS.register("eviscera", // TODO: Provide MOID
                     () -> new ExtensibleCaveVinesBlock(
                             BlockBehaviour.Properties.ofFullCopy(EVISCERA_PLANT.get()).randomTicks(),
                             BLOODTHORN, EVISCERA_PLANT, false, true));
@@ -447,7 +447,7 @@ public class Registrar
                                         .withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_RED),
                             TooltipUtils.lore(getMOID(MOID.EYEFRUIT), 0, LoreCategory.GAMEPLAY_HINTS)
                                         .withStyle(ChatFormatting.RESET, ChatFormatting.DARK_GRAY)))));
-    public static final DeferredBlock<Block> EYEFRUIT_THISTLE = BLOCKS.register("eyefruit_thistle",
+    public static final DeferredBlock<Block> EYEFRUIT_THISTLE = BLOCKS.register("eyefruit_thistle", // TODO: Provide MOID
             () -> new ExtensibleBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH)
                     .lightLevel(s -> {
                         if (s.getValue(BlockStateProperties.AGE_3) < 2) return 3;
