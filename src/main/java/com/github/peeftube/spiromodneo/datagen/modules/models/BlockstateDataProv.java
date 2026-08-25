@@ -1,6 +1,7 @@
 package com.github.peeftube.spiromodneo.datagen.modules.models;
 
 import com.github.peeftube.spiromodneo.SpiroMod;
+import com.github.peeftube.spiromodneo.core.MOID;
 import com.github.peeftube.spiromodneo.core.init.Registrar;
 import com.github.peeftube.spiromodneo.core.init.content.blocks.*;
 import com.github.peeftube.spiromodneo.core.init.registry.data.*;
@@ -31,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import static com.github.peeftube.spiromodneo.core.MOID_Utility.getMOID;
 import static com.github.peeftube.spiromodneo.util.stone.StoneSetPresets.getPresets;
 
 public class BlockstateDataProv extends BlockStateProvider
@@ -77,6 +79,13 @@ public class BlockstateDataProv extends BlockStateProvider
         externalModelAssociation01(Registrar.MANUAL_CRUSHER.get(), "manual_crusher");
 
         tapper(Registrar.TAPPER.get());
+
+        getVariantBuilder(Registrar.WHITE_SAND.get()).partialState()
+                 .setModels(new ConfiguredModel(models().cubeAll(getMOID(MOID.WHITE_SAND), 
+                         RLUtility.makeRL("block/" + getMOID(MOID.WHITE_SAND)))));
+        getVariantBuilder(Registrar.BLACK_SAND.get()).partialState()
+                 .setModels(new ConfiguredModel(models().cubeAll(getMOID(MOID.BLACK_SAND), 
+                         RLUtility.makeRL("block/" + getMOID(MOID.BLACK_SAND)))));
 
         getVariantBuilder(Registrar.PHANTOM_BERRY_BUSH.get())
                 .partialState().with(BlockStateProperties.AGE_3, 0).setModels(
@@ -781,6 +790,8 @@ public class BlockstateDataProv extends BlockStateProvider
             {
                 case SMS -> r = getTopTex(blockTexture(Blocks.SANDSTONE));
                 case SMRS -> r = getTopTex(blockTexture(Blocks.RED_SANDSTONE));
+                case SMWS -> r = getTopTex(blockTexture(Registrar.WHITE_SANDSTONE_SET.getBaseStone().get()));
+                case SMBS -> r = getTopTex(blockTexture(Registrar.BLACK_SANDSTONE_SET.getBaseStone().get()));
             }
 
             // Initialize this.
@@ -846,7 +857,8 @@ public class BlockstateDataProv extends BlockStateProvider
                         Block                   b = knownCouplingReadBlockFromKeys(data, k0, k1, k2);
                         List<BlockModelBuilder> builders = new ArrayList<>();
 
-                        boolean isSandstoneLike = mat == StoneMaterial.SANDSTONE || mat == StoneMaterial.RED_SANDSTONE;
+                        boolean isSandstoneLike = mat == StoneMaterial.SANDSTONE || mat == StoneMaterial.RED_SANDSTONE
+                                || mat == StoneMaterial.WHITE_SANDSTONE || mat == StoneMaterial.BLACK_SANDSTONE;
                         boolean isBasaltLike = mat == StoneMaterial.BASALT;
                         boolean isDeepslateLike = mat == StoneMaterial.DEEPSLATE || isBasaltLike;
 

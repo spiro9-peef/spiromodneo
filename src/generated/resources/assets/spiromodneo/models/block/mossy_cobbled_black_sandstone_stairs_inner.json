@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "spiromodneo:block/mossy_cobbled_black_sandstone",
+    "side": "spiromodneo:block/mossy_cobbled_black_sandstone",
+    "top": "spiromodneo:block/mossy_cobbled_black_sandstone"
+  }
+}

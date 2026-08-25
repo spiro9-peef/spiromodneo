@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "spiromodneo:black_sandstone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "spiromodneo:black_sandstone_button"
+  }
+}

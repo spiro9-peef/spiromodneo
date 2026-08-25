@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:moss_block"
+    },
+    {
+      "item": "spiromodneo:white_sandstone_column"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "spiromodneo:mossy_white_sandstone_column"
+  }
+}

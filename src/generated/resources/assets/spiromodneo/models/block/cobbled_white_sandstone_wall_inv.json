@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "spiromodneo:block/cobbled_white_sandstone"
+  }
+}

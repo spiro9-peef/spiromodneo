@@ -32,7 +32,9 @@ public enum BaseStone
     // Modded stone types.
     LIMBIPETRA(prefixMOID(MOID.LIMBIPETRA), TUFF_BASED_ORE, 15),
     HAEMOLITE(prefixMOID(MOID.HAEMOLITE), NETHER_BASED_ORE, 0),
-    PACKED_HAEMOLITE(prefixMOID(MOID.PACKED_HAEMOLITE), DEEPSLATE_BASED_ORE, 0);
+    PACKED_HAEMOLITE(prefixMOID(MOID.PACKED_HAEMOLITE), DEEPSLATE_BASED_ORE, 0),
+    SMWS(prefixMOID(MOID.SMOOTH_WHITE_SANDSTONE), STONE_BASED_ORE),
+    SMBS(prefixMOID(MOID.SMOOTH_BLACK_SANDSTONE), STONE_BASED_ORE);
 
     private final String                    name;
     private final Supplier<BlockBehaviour.Properties> props;

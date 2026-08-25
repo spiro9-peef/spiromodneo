@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spiromodneo:black_sandstone_bricks"
+  },
+  "result": {
+    "count": 2,
+    "id": "spiromodneo:black_sandstone_brick_stairs"
+  }
+}

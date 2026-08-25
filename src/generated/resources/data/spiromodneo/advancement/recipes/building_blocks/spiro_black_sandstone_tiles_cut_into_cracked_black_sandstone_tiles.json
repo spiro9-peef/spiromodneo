@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spiromodneo:spiro_black_sandstone_tiles_cut_into_cracked_black_sandstone_tiles"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tile": {
+      "conditions": {
+        "items": [
+          {
+            "items": "spiromodneo:black_sandstone_tiles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_tile"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spiromodneo:spiro_black_sandstone_tiles_cut_into_cracked_black_sandstone_tiles"
+    ]
+  }
+}

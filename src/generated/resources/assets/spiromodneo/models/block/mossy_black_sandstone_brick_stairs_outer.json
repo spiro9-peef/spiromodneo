@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "spiromodneo:block/mossy_black_sandstone_bricks",
+    "side": "spiromodneo:block/mossy_black_sandstone_bricks",
+    "top": "spiromodneo:block/mossy_black_sandstone_bricks"
+  }
+}

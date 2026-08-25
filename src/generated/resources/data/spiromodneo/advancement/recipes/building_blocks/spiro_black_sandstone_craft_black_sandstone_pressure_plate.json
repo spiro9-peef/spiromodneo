@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_base_stone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "spiromodneo:black_sandstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spiromodneo:spiro_black_sandstone_craft_black_sandstone_pressure_plate"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_base_stone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spiromodneo:spiro_black_sandstone_craft_black_sandstone_pressure_plate"
+    ]
+  }
+}

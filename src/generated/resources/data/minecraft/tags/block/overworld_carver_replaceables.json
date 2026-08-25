@@ -15,6 +15,8 @@
     "minecraft:end_stone",
     "spiromodneo:limbipetra",
     "spiromodneo:haemolite",
-    "spiromodneo:packed_haemolite"
+    "spiromodneo:packed_haemolite",
+    "spiromodneo:white_sandstone",
+    "spiromodneo:black_sandstone"
   ]
 }

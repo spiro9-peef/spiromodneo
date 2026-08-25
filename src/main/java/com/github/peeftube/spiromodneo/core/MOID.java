@@ -44,6 +44,14 @@ public enum MOID
     GILDED_GLOWMOSS("gilded_glow_moss"),
     AMETHYST_GLOWMOSS("amethyst_glow_moss"),
 
+    // SAND IDS
+    // -- Vanilla
+    SAND("sand"),
+    RED_SAND("red_sand"),
+    // -- SpiroMod NEO
+    WHITE_SAND("white_sand"),
+    BLACK_SAND("black_sand"),
+
     // STONE IDS
     // -- Vanilla
     STONE("stone"),
@@ -72,6 +80,10 @@ public enum MOID
     LIMBIPETRA("limbipetra"),
     HAEMOLITE("haemolite"),
     PACKED_HAEMOLITE("packed_haemolite"),
+    WHITE_SANDSTONE("white_sandstone"),
+    BLACK_SANDSTONE("black_sandstone"),
+    SMOOTH_WHITE_SANDSTONE("smooth_white_sandstone"),
+    SMOOTH_BLACK_SANDSTONE("smooth_black_sandstone"),
 
     // ORGANICS AND ORGANIC MATERIAL IDS
     // -- Vanilla

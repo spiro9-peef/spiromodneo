@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button_inventory",
+  "textures": {
+    "texture": "spiromodneo:block/black_sandstone_bottom"
+  }
+}

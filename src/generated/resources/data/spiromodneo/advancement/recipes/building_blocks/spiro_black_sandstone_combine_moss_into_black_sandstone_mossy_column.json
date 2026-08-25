@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_column": {
+      "conditions": {
+        "items": [
+          {
+            "items": "spiromodneo:black_sandstone_column"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "spiromodneo:spiro_black_sandstone_combine_moss_into_black_sandstone_mossy_column"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_column"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "spiromodneo:spiro_black_sandstone_combine_moss_into_black_sandstone_mossy_column"
+    ]
+  }
+}

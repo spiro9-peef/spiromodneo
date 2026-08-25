@@ -75,6 +75,9 @@ public class BlockLootTables extends BlockLootSubProvider
         dropSelf(Registrar.MANUAL_CRUSHER.get());
         dropSelf(Registrar.TAPPER.get());
 
+        dropSelf(Registrar.WHITE_SAND.get());
+        dropSelf(Registrar.BLACK_SAND.get());
+
         // Stone tables
         for (StoneCollection stone : StoneCollection.STONE_COLLECTIONS) { stoneTables(stone); }
 

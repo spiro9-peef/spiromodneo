@@ -28,6 +28,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.ColorRGBA;
 import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -41,6 +42,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ColoredFallingBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -161,6 +163,16 @@ public class Registrar
     public static final StoneCollection LIMBIPETRA_SET = StoneCollection.registerCollection(StoneMaterial.LIMBIPETRA);
     public static final StoneCollection HAEMOLITE_SET = StoneCollection.registerCollection(StoneMaterial.HAEMOLITE);
     public static final StoneCollection PACKED_HAEMOLITE_SET = StoneCollection.registerCollection(StoneMaterial.PACKED_HAEMOLITE);
+    public static final StoneCollection WHITE_SANDSTONE_SET = StoneCollection.registerCollection(StoneMaterial.WHITE_SANDSTONE);
+    public static final StoneCollection BLACK_SANDSTONE_SET = StoneCollection.registerCollection(StoneMaterial.BLACK_SANDSTONE);
+
+    // Custom sands go here. TODO: Determine if this needs to come BEFORE stone!
+    public static final DeferredBlock<Block> WHITE_SAND = BLOCKS.register(getMOID(MOID.WHITE_SAND),
+            () -> new ColoredFallingBlock(new ColorRGBA(0xFFD5CDAE), BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)));
+    public static final DeferredItem<Item> WHITE_SAND_ITEM = regSimpleBlockItem(WHITE_SAND);
+    public static final DeferredBlock<Block> BLACK_SAND = BLOCKS.register(getMOID(MOID.BLACK_SAND),
+            () -> new ColoredFallingBlock(new ColorRGBA(0xFF222635), BlockBehaviour.Properties.ofFullCopy(Blocks.SAND)));
+    public static final DeferredItem<Item> BLACK_SAND_ITEM = regSimpleBlockItem(BLACK_SAND);
 
     // Consider maybe adding support for Vanilla Backported here - will require a major refactor
 

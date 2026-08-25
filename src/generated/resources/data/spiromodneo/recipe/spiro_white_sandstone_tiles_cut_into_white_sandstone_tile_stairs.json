@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spiromodneo:white_sandstone_tiles"
+  },
+  "result": {
+    "count": 2,
+    "id": "spiromodneo:white_sandstone_tile_stairs"
+  }
+}

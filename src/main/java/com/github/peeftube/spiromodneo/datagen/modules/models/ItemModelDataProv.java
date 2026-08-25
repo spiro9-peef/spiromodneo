@@ -87,6 +87,8 @@ public class ItemModelDataProv extends ItemModelProvider
         for (MossCollection moss : MossCollection.MOSS_COLLECTIONS) { mossSetDesign(moss); }
         blockParser(Registrar.MANUAL_CRUSHER_ITEM);
         itemParser(Registrar.TAPPER_ITEM); // This is parsed as an item because it has an item texture.
+        blockParser(Registrar.WHITE_SAND_ITEM);
+        blockParser(Registrar.BLACK_SAND_ITEM);
     }
 
     private void mossSetDesign(MossCollection set)

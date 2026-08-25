@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "spiromodneo:block/cracked_black_sandstone_bricks"
+  }
+}

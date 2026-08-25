@@ -48,6 +48,10 @@ public class EN_USLangDataProv extends LanguageProvider
         // Moss
         for (MossCollection moss : MossCollection.MOSS_COLLECTIONS) { mossParser(moss); }
 
+        // Sand!
+        add(Registrar.WHITE_SAND.get(), "White Sand");
+        add(Registrar.BLACK_SAND.get(), "Black Sand");
+
         // Stone collections
         for (StoneCollection stone : StoneCollection.STONE_COLLECTIONS) { stoneParser(stone); }
 

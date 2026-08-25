@@ -96,6 +96,22 @@
     "spiromodneo:mossy_limbipetra_brick_wall",
     "spiromodneo:cracked_limbipetra_brick_wall",
     "spiromodneo:limbipetra_tile_wall",
-    "spiromodneo:cracked_limbipetra_tile_wall"
+    "spiromodneo:cracked_limbipetra_tile_wall",
+    "spiromodneo:white_sandstone_wall",
+    "spiromodneo:cobbled_white_sandstone_wall",
+    "spiromodneo:mossy_cobbled_white_sandstone_wall",
+    "spiromodneo:white_sandstone_brick_wall",
+    "spiromodneo:mossy_white_sandstone_brick_wall",
+    "spiromodneo:cracked_white_sandstone_brick_wall",
+    "spiromodneo:white_sandstone_tile_wall",
+    "spiromodneo:cracked_white_sandstone_tile_wall",
+    "spiromodneo:black_sandstone_wall",
+    "spiromodneo:cobbled_black_sandstone_wall",
+    "spiromodneo:mossy_cobbled_black_sandstone_wall",
+    "spiromodneo:black_sandstone_brick_wall",
+    "spiromodneo:mossy_black_sandstone_brick_wall",
+    "spiromodneo:cracked_black_sandstone_brick_wall",
+    "spiromodneo:black_sandstone_tile_wall",
+    "spiromodneo:cracked_black_sandstone_tile_wall"
   ]
 }

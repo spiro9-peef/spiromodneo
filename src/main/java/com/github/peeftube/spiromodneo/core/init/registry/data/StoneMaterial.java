@@ -27,7 +27,9 @@ public enum StoneMaterial
     // Modded stone types!
     LIMBIPETRA(getMOID(MOID.LIMBIPETRA), BaseStone.LIMBIPETRA),
     HAEMOLITE(getMOID(MOID.HAEMOLITE), BaseStone.HAEMOLITE),
-    PACKED_HAEMOLITE(getMOID(MOID.PACKED_HAEMOLITE), BaseStone.PACKED_HAEMOLITE);
+    PACKED_HAEMOLITE(getMOID(MOID.PACKED_HAEMOLITE), BaseStone.PACKED_HAEMOLITE),
+    WHITE_SANDSTONE(getMOID(MOID.WHITE_SANDSTONE), BaseStone.SMWS),
+    BLACK_SANDSTONE(getMOID(MOID.BLACK_SANDSTONE), BaseStone.SMBS);
 
     private final String name;
     /** This has been coded in to force any additions to this enum to also have additions

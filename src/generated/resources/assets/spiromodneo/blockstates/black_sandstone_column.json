@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "spiromodneo:block/black_sandstone_column_x"
+    },
+    "axis=y": {
+      "model": "spiromodneo:block/black_sandstone_column_y"
+    },
+    "axis=z": {
+      "model": "spiromodneo:block/black_sandstone_column_z"
+    }
+  }
+}
