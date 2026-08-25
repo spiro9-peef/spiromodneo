@@ -141,6 +141,24 @@
       },
       {
         "state": {
+          "Name": "spiromodneo:smooth_white_sandstone_lapis_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "spiromodneo:white_sandstone_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "spiromodneo:smooth_black_sandstone_lapis_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "spiromodneo:black_sandstone_ore_replaceables"
+        }
+      },
+      {
+        "state": {
           "Name": "spiromodneo:calcite_lapis_ore"
         },
         "target": {

@@ -1,6 +1,7 @@
 {
   "values": [
     "#minecraft:is_jungle",
-    "#spiromodneo:is_like_lush_caves"
+    "#spiromodneo:is_like_lush_caves",
+    "spiromodneo:spiro_white_sand_beach"
   ]
 }

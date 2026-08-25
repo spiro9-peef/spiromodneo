@@ -72,6 +72,18 @@ public class NeoBiomes
     public static final ResourceKey<Biome> FLESH_CAVERNS =
             registerKey("spiro_flesh_caverns");
 
+    /**
+     * A black-sand river biome based on the real-life Mattole River Outlet.
+     */
+    public static final ResourceKey<Biome> MATTOLE_RIVER =
+            registerKey("spiro_black_sand_river");
+
+    /**
+     * Needs no explanation, I hope.
+     */
+    public static final ResourceKey<Biome> TROPICAL_BEACH =
+            registerKey("spiro_white_sand_beach");
+
     private static ResourceKey<Biome> registerKey(String name)
     { return ResourceKey.create(Registries.BIOME, RLUtility.makeRL(name)); }
 }

@@ -39,6 +39,16 @@ public class BlockTagDataProv extends BlockTagsProvider
         tag(SpiroTags.Blocks.RED_SANDSTONE_ORE_REPLACEABLES)
                 .add(Blocks.RED_SANDSTONE)
                 .add(Blocks.SMOOTH_RED_SANDSTONE);
+        tag(SpiroTags.Blocks.WHITE_SANDSTONE_ORE_REPLACEABLES)
+                .add(Registrar.WHITE_SANDSTONE_SET.getBaseStone().get())
+                .add(Registrar.WHITE_SANDSTONE_SET.bulkData()
+                      .getCouplingForKeys(StoneBlockType.SMOOTH, StoneVariantType.DEFAULT, StoneSubBlockType.DEFAULT)
+                          .getBlock().get());
+        tag(SpiroTags.Blocks.BLACK_SANDSTONE_ORE_REPLACEABLES)
+                .add(Registrar.BLACK_SANDSTONE_SET.getBaseStone().get())
+                .add(Registrar.BLACK_SANDSTONE_SET.bulkData()
+                      .getCouplingForKeys(StoneBlockType.SMOOTH, StoneVariantType.DEFAULT, StoneSubBlockType.DEFAULT)
+                          .getBlock().get());
         tag(SpiroTags.Blocks.BASALT_ORE_REPLACEABLES)
                 .add(Blocks.BASALT)
                 .add(Blocks.SMOOTH_BASALT);

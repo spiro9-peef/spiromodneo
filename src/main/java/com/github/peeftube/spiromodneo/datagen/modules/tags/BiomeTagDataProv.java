@@ -24,7 +24,9 @@ public class BiomeTagDataProv extends BiomeTagsProvider
     {
         tag(BiomeTags.IS_OVERWORLD)
                 .add(NeoBiomes.OVERWORLD_RUBBER_FOREST)
-                .addTag(SpiroTags.Biomes.IS_VISCERAL);
+                .addTag(SpiroTags.Biomes.IS_VISCERAL)
+                .add(NeoBiomes.MATTOLE_RIVER)
+                .add(NeoBiomes.TROPICAL_BEACH);
 
         tag(SpiroTags.Biomes.IS_VISCERAL)
                 .add(NeoBiomes.FLESH_CAVERNS);
@@ -53,7 +55,8 @@ public class BiomeTagDataProv extends BiomeTagsProvider
 
         tag(SpiroTags.Biomes.RUBY_SPAWNABLE)
                 .addTag(BiomeTags.IS_JUNGLE)
-                .addTag(SpiroTags.Biomes.IS_LUSH_CAVES_LIKE);
+                .addTag(SpiroTags.Biomes.IS_LUSH_CAVES_LIKE)
+                .add(NeoBiomes.TROPICAL_BEACH);
 
         tag(SpiroTags.Biomes.LIMBO_GARDEN)
                 .add(NeoBiomes.NETHER_LIMBO_GARDEN);

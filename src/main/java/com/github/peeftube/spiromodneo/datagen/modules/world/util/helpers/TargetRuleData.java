@@ -35,6 +35,8 @@ public class TargetRuleData
 
         public static final RuleTest TAG_SANDSTONE = new TagMatchTest(SpiroTags.Blocks.SANDSTONE_ORE_REPLACEABLES);
         public static final RuleTest TAG_RED_SANDSTONE = new TagMatchTest(SpiroTags.Blocks.RED_SANDSTONE_ORE_REPLACEABLES);
+        public static final RuleTest TAG_WHITE_SANDSTONE = new TagMatchTest(SpiroTags.Blocks.WHITE_SANDSTONE_ORE_REPLACEABLES);
+        public static final RuleTest TAG_BLACK_SANDSTONE = new TagMatchTest(SpiroTags.Blocks.BLACK_SANDSTONE_ORE_REPLACEABLES);
         public static final RuleTest TAG_BASALT = new TagMatchTest(SpiroTags.Blocks.BASALT_ORE_REPLACEABLES);
         public static final RuleTest TAG_TERRACOTTA = new TagMatchTest(BlockTags.TERRACOTTA);
     }
@@ -61,6 +63,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.COAL_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.COAL_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.COAL_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.COAL_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.COAL_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.COAL_ORES, StoneMaterial.CALCITE))
         ));
 
@@ -81,6 +85,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.IRON_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.IRON_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.IRON_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.IRON_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.IRON_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.IRON_ORES, StoneMaterial.GRANITE))
         ));
 
@@ -101,6 +107,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.COPPER_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.COPPER_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.COPPER_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.COPPER_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.COPPER_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.COPPER_ORES, StoneMaterial.ANDESITE))
         ));
 
@@ -121,6 +129,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.GOLD_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.GOLD_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.GOLD_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.GOLD_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.GOLD_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.GOLD_ORES, StoneMaterial.GRANITE))
         ));
 
@@ -141,6 +151,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.DIAMOND_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.DIAMOND_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.DIAMOND_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.DIAMOND_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.DIAMOND_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.DIAMOND_ORES, StoneMaterial.ANDESITE))
         ));
 
@@ -161,6 +173,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.REDSTONE_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.REDSTONE_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.REDSTONE_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.REDSTONE_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.REDSTONE_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.REDSTONE_ORES, StoneMaterial.BASALT))
         ));
 
@@ -181,6 +195,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.EMERALD_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.EMERALD_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.EMERALD_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.EMERALD_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.EMERALD_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.EMERALD_ORES, StoneMaterial.BASALT))
         ));
 
@@ -201,6 +217,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.QUARTZ_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.QUARTZ_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.QUARTZ_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.QUARTZ_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.QUARTZ_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.QUARTZ_ORES, StoneMaterial.GRANITE))
         ));
 
@@ -221,6 +239,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.LAPIS_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.LAPIS_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.LAPIS_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.LAPIS_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.LAPIS_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.LAPIS_ORES, StoneMaterial.CALCITE))
         ));
 
@@ -241,6 +261,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.LEAD_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.LEAD_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.LEAD_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.LEAD_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.LEAD_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.LEAD_ORES, StoneMaterial.CALCITE))
         ));
 
@@ -261,6 +283,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.RUBY_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.RUBY_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.RUBY_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.RUBY_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.RUBY_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.RUBY_ORES, StoneMaterial.CALCITE))
         ));
 
@@ -281,6 +305,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.METHANE_ICE_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.METHANE_ICE_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.METHANE_ICE_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.METHANE_ICE_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.METHANE_ICE_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.METHANE_ICE_ORES, StoneMaterial.BASALT))
         ));
 
@@ -301,6 +327,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.CRIMSONITE_ORES, StoneMaterial.CALCITE)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.CRIMSONITE_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.CRIMSONITE_ORES, StoneMaterial.CALCITE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.CRIMSONITE_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.CRIMSONITE_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.CRIMSONITE_ORES, StoneMaterial.CALCITE))
         ));
 
@@ -321,6 +349,8 @@ public class TargetRuleData
                 OreConfiguration.target(TargetRules.TAG_BASALT, rDBS(Registrar.STRAVIMITE_ORES, StoneMaterial.BASALT)),
                 OreConfiguration.target(TargetRules.TAG_SANDSTONE, rDBS(Registrar.STRAVIMITE_ORES, StoneMaterial.SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_RED_SANDSTONE, rDBS(Registrar.STRAVIMITE_ORES, StoneMaterial.RED_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_WHITE_SANDSTONE, rDBS(Registrar.STRAVIMITE_ORES, StoneMaterial.WHITE_SANDSTONE)),
+                OreConfiguration.target(TargetRules.TAG_BLACK_SANDSTONE, rDBS(Registrar.STRAVIMITE_ORES, StoneMaterial.BLACK_SANDSTONE)),
                 OreConfiguration.target(TargetRules.TAG_TERRACOTTA, rDBS(Registrar.STRAVIMITE_ORES, StoneMaterial.BASALT))
         ));
     }
