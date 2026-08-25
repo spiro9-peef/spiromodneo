@@ -91,13 +91,12 @@ public class OverworldCustomRegionSourceRules
         );
 
         return SurfaceRules.sequence(
-                preventFloatingWhiteSandRule,
                 SurfaceRules.ifTrue(
                         SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.aboveBottom(0),
                                 VerticalAnchor.aboveBottom(5)), BEDROCK),
                 SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
                         SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(), grassSurfaceOverrideRule),
-                                tropicalSand)),
+                                tropicalSand, preventFloatingWhiteSandRule)),
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient(
                         "deepslate", VerticalAnchor.absolute(0),
                         VerticalAnchor.absolute(8)), deepstoneOverrideRule),
