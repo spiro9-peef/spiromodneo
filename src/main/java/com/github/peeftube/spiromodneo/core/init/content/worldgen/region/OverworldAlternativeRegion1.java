@@ -37,7 +37,8 @@ public class OverworldAlternativeRegion1 extends Region
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.NEUTRAL)
                 .humidity(ParameterUtils.Humidity.WET)
-                .continentalness(Climate.Parameter.span(-0.13F, 1.0F))
+                .continentalness(ParameterUtils.Continentalness.span(ParameterUtils.Continentalness.COAST,
+                        ParameterUtils.Continentalness.NEAR_INLAND))
                 .erosion(ParameterUtils.Erosion.span(ParameterUtils.Erosion.EROSION_2, ParameterUtils.Erosion.EROSION_5))
                 .depth(Climate.Parameter.span(-0.01F, 0.15F))
                 .weirdness(ParameterUtils.Weirdness.PEAK_VARIANT)

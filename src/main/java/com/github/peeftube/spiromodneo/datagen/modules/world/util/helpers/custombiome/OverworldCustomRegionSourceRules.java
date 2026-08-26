@@ -37,12 +37,6 @@ public class OverworldCustomRegionSourceRules
         SurfaceRules.ConditionSource isTropicalSandBiome = SurfaceRules.isBiome(NeoBiomes.TROPICAL_BEACH);
         SurfaceRules.RuleSource preventFloatingWhiteSand =
                 SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, WHITE_SANDSTONE), WHITE_SAND);
-        SurfaceRules.RuleSource preventFloatingWhiteSandRule =
-                SurfaceRules.ifTrue(isTropicalSandBiome, preventFloatingWhiteSand);
-
-        SurfaceRules.RuleSource tropicalSand =
-                SurfaceRules.ifTrue(isTropicalSandBiome,
-                        SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR, WHITE_SANDSTONE));
 
         SurfaceRules.ConditionSource isAtOrAboveWaterLevel = SurfaceRules.waterBlockCheck(-1, 0);
         SurfaceRules.RuleSource grassSurface =
@@ -56,8 +50,12 @@ public class OverworldCustomRegionSourceRules
                         SurfaceRules.sequence(SurfaceRules.ifTrue(ATOP_FLOOR,
                                 SurfaceRules.ifTrue(
                                         SurfaceRules.noiseCondition(Noises.NETHERRACK,
-                            -0.0075, 0.0075), MOSS_CARPET)),
+                            -0.075, 0.075), MOSS_CARPET)),
                         SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, MOSS))), DIRT);
+
+        SurfaceRules.RuleSource mossOrElseGrassSurface = SurfaceRules.sequence(SurfaceRules.ifTrue(
+                SurfaceRules.noiseCondition(Noises.NETHERRACK, -0.175, 0.175),
+                mossSurface), grassSurface);
 
         /** This is a per-biome materials replacer rule. It *should* run as expected.
          * Note that this will override deepslate, but not stone. This needs to go first so
@@ -65,12 +63,10 @@ public class OverworldCustomRegionSourceRules
         SurfaceRules.RuleSource grassSurfaceOverrideRule = SurfaceRules.sequence(
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(NeoBiomes.OVERWORLD_RUBBER_FOREST),
                         SurfaceRules.sequence(SurfaceRules.ifTrue(
-                                SurfaceRules.noiseCondition(Noises.SPAGHETTI_2D, -0.275, 0.275),
+                                SurfaceRules.noiseCondition(Noises.SPAGHETTI_2D, -0.175, 0.175),
                                 grassSurface), mudGrassSurface)),
                 SurfaceRules.ifTrue(isTropicalSandBiome, SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.CONTINENTALNESS,
-                        -0.13F, 1.0F), SurfaceRules.sequence(SurfaceRules.ifTrue(
-                                SurfaceRules.noiseCondition(Noises.NETHERRACK, -0.075, 0.075),
-                        mossSurface), grassSurface)), preventFloatingWhiteSand)),
+                        -0.05F, 1.0F), mossOrElseGrassSurface), preventFloatingWhiteSand)),
                 grassSurface
         );
 
@@ -95,8 +91,8 @@ public class OverworldCustomRegionSourceRules
                         SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.aboveBottom(0),
                                 VerticalAnchor.aboveBottom(5)), BEDROCK),
                 SurfaceRules.ifTrue(SurfaceRules.DEEP_UNDER_FLOOR,
-                        SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.abovePreliminarySurface(), grassSurfaceOverrideRule),
-                                tropicalSand, preventFloatingWhiteSandRule)),
+                        SurfaceRules.sequence(SurfaceRules.ifTrue(
+                                SurfaceRules.abovePreliminarySurface(), grassSurfaceOverrideRule), preventFloatingWhiteSand)),
                 SurfaceRules.ifTrue(SurfaceRules.verticalGradient(
                         "deepslate", VerticalAnchor.absolute(0),
                         VerticalAnchor.absolute(8)), deepstoneOverrideRule),
